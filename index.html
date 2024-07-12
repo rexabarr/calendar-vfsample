@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Calendar</title>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js'></script>
+    <style>
+        #calendar {
+            max-width: 900px;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id='calendar'></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'timeGridWeek',
+                allDaySlot: false,
+                slotMinTime: '08:00:00',
+                slotMaxTime: '16:00:00',
+                slotDuration: '00:30:00',
+                hiddenDays: [0],  // Hide Sunday
+                selectable: true,
+                selectOverlap: false,
+                select: function(info) {
+                    alert('You selected: ' + info.startStr + ' to ' + info.endStr);
+                },
+                businessHours: {
+                    daysOfWeek: [1, 2, 3, 4, 5, 6], // Monday - Saturday
+                    startTime: '08:00',
+                    endTime: '16:00'
+                },
+                events: function(fetchInfo, successCallback, failureCallback) {
+                    let events = [];
+                    let startDate = new Date(fetchInfo.start);
+                    let endDate = new Date(fetchInfo.end);
+                    let date = new Date(startDate);
+                    
+                    while (date < endDate) {
+                        if (date.getDay() !== 0) { // Skip Sundays
+                            let dateString = date.toISOString().split('T')[0];
+                            for (let hour = 8; hour < 16; hour++) {
+                                for (let minutes = 0; minutes < 60; minutes += 30) {
+                                    if (!(hour === 12 && minutes === 0)) {
+                                        let startStr = `${dateString}T${String(hour).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`;
+                                        let endMinutes = minutes + 30;
+                                        let endHour = hour;
+                                        if (endMinutes >= 60) {
+                                            endMinutes = 0;
+                                            endHour += 1;
+                                        }
+                                        let endStr = `${dateString}T${String(endHour).padStart(2, '0')}:${String(endMinutes).padStart(2, '0')}:00`;
+                                        events.push({
+                                            title: 'Available',
+                                            start: startStr,
+                                            end: endStr,
+                                            backgroundColor: 'lightgreen',
+                                            borderColor: 'green'
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                        date.setDate(date.getDate() + 1); // Move to next day
+                    }
+                    successCallback(events);
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+</body>
+</html>

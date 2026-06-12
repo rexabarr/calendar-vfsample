@@ -1,0 +1,117 @@
+/* ── TREE CONTAINER ── */
+.tree-container {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.tree-svg {
+  width: 320px;
+  height: 440px;
+  overflow: visible;
+}
+
+/* ── GROWTH LAYERS ── */
+/* Each layer starts hidden and grows in */
+.tree-layer {
+  opacity: 0;
+  transform-origin: 50% 100%;
+}
+
+.tree-layer.visible {
+  animation: growIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes growIn {
+  from { opacity: 0; transform: scaleY(0.3) scaleX(0.5); }
+  to   { opacity: 1; transform: scaleY(1) scaleX(1); }
+}
+
+/* Layer 0 — always visible (trunk base / seed) */
+.tree-layer-0 {
+  opacity: 1;
+}
+
+/* ── LEAVES ── */
+.leaf-group {
+  transform-origin: center bottom;
+}
+
+.leaf {
+  transform-origin: center center;
+}
+
+.tree-layer.visible .leaf {
+  animation: leafUnfurl 1.4s ease-out forwards;
+}
+
+@keyframes leafUnfurl {
+  0%   { opacity: 0; transform: scale(0) rotate(-20deg); }
+  60%  { opacity: 1; transform: scale(1.1) rotate(5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ── DEATH ANIMATION ── */
+.tree-dying .leaf {
+  animation: leafFall 2.8s ease-in forwards !important;
+}
+
+@keyframes leafFall {
+  0%   { opacity: 1; transform: scale(1) rotate(0deg) translateY(0); fill: #4a8f2a; }
+  20%  { fill: #c8a020; }
+  50%  { fill: #8B4513; transform: scale(0.9) rotate(25deg) translateY(10px); opacity: 0.8; }
+  80%  { transform: scale(0.7) rotate(50deg) translateY(40px); opacity: 0.4; }
+  100% { opacity: 0; transform: scale(0.4) rotate(90deg) translateY(80px); fill: #5a3010; }
+}
+
+.tree-dying .branch {
+  animation: branchWither 3s ease-in forwards !important;
+}
+
+@keyframes branchWither {
+  0%   { stroke: #5D4037; }
+  40%  { stroke: #8B6914; }
+  80%  { stroke: #9E9E9E; opacity: 0.7; }
+  100% { stroke: #757575; opacity: 0.3; transform: scale(0.9); }
+}
+
+.tree-dying .trunk {
+  animation: trunkCrumble 3s ease-in forwards !important;
+}
+
+@keyframes trunkCrumble {
+  0%   { fill: #5D4037; }
+  50%  { fill: #8B6914; }
+  100% { fill: #9E9E9E; opacity: 0.5; }
+}
+
+/* ── WIN BLOOM ── */
+.tree-won .leaf {
+  animation: bloomPulse 1.5s ease-in-out infinite alternate !important;
+}
+
+@keyframes bloomPulse {
+  from { filter: brightness(1); }
+  to   { filter: brightness(1.25) drop-shadow(0 0 6px rgba(100,220,100,0.6)); }
+}
+
+/* ── PARTICLES (falling leaves on death) ── */
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50% 0 50% 0;
+  background: #8B4513;
+  animation: particleFall 2.5s ease-in forwards;
+  pointer-events: none;
+}
+
+@keyframes particleFall {
+  0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
+  100% { opacity: 0; transform: translateY(120px) rotate(360deg) translateX(var(--dx, 30px)); }
+}

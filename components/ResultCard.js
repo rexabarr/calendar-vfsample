@@ -34,7 +34,7 @@ export default function ResultCard({ won, playerName, questionsAnswered, total, 
         </div>
         <div className="result-score">
           {won
-            ? `All ${total} questions answered — full bloom achieved.`
+            ? `All ${total} questions answered. Full bloom achieved.`
             : `Reached question ${questionsAnswered} of ${total}.`}
         </div>
         <div style={{ fontSize: '0.82rem', color: '#888', marginTop: 6 }}>{today} · Tree of Life</div>
@@ -42,7 +42,7 @@ export default function ResultCard({ won, playerName, questionsAnswered, total, 
 
       <p style={{ marginBottom: 8 }}>
         {won
-          ? 'You have walked the full path. The tree stands in full bloom — a testament to your truth.'
+          ? 'You have walked the full path. The tree stands in full bloom, a testament to your truth.'
           : 'The tree has withered. Return tomorrow when you are ready to seek again.'}
       </p>
 

@@ -10,32 +10,28 @@ const ResultCard = dynamic(() => import('../components/ResultCard'), { ssr: fals
 
 const QUESTIONS = [
   {
-    text: 'Describe a moment that changed the way you see the world.',
-    criteria: 'The answer must show genuine reflection and personal growth, not just a surface-level event.',
+    text: 'What first made you fall for your spouse, and when did you last make them feel that way?',
+    criteria: 'Must include a sincere specific memory and some honest reflection on whether they have shown up that way recently. Vague or deflecting answers fail.',
   },
   {
-    text: 'What would you sacrifice to protect something you truly love?',
-    criteria: 'The answer must demonstrate depth of values and go beyond material or trivial things.',
+    text: 'Name three things you know you could be doing better but have not been.',
+    criteria: 'Must name at least three specific areas. Health, financial contribution, or relationship effort should be present. Vague answers like "everything" or "I don\'t know" fail.',
   },
   {
-    text: 'If you could only keep one memory forever, what would it be and why?',
-    criteria: 'The answer must be specific and carry emotional meaning, not a vague or generic response.',
+    text: "What is your plan to get healthier or back in shape? What will you actually do, and by when?",
+    criteria: 'Must name a concrete action (for example: exercise type, diet change) and give a realistic timeframe. Answers like "I will try" or "eventually" fail.',
   },
   {
-    text: 'What does true success look like for you in 10 years?',
-    criteria: 'The answer must go beyond money, status, or possessions — it must reflect personal meaning.',
+    text: 'Are you willing to bring in income to take pressure off the household? If so, what kind of work, and by when?',
+    criteria: 'Must show genuine willingness and name a realistic type of work with a timeframe. Deflection or vague "maybe someday" answers fail.',
   },
   {
-    text: 'Describe a time you were wrong about something important and what it cost you.',
-    criteria: 'The answer must show genuine accountability and self-awareness, not deflection.',
+    text: 'Describe one way you have been hard to live with lately, and how you will show up kinder this week.',
+    criteria: 'Must show real self-awareness about a specific behavior, plus a concrete plan to improve this week. Vague promises or blaming others fails.',
   },
   {
-    text: 'What is something most people misunderstand about who you really are?',
-    criteria: 'The answer must be honest and self-aware, not a performance.',
-  },
-  {
-    text: 'Why are you here, walking this path today?',
-    criteria: 'Any sincere, thoughtful answer passes. Only dismissive or empty answers fail.',
+    text: 'Why does becoming this better version of yourself matter to you right now?',
+    criteria: 'Any sincere, personal answer passes. Only dismissive, sarcastic, or empty answers fail.',
   },
 ]
 
@@ -56,7 +52,8 @@ export default function Home() {
   const [gameState,        setGameState]        = useState(STATES.LOADING)
   const [playerName,       setPlayerName]       = useState('')
   const [currentQ,         setCurrentQ]         = useState(0)   // 0-indexed
-  const [treeStage,        setTreeStage]        = useState(0)
+  const [treeStage,        setTreeStage]        = useState(1)
+  const [answers,          setAnswers]          = useState([])
   const [isDying,          setIsDying]          = useState(false)
   const [isWon,            setIsWon]            = useState(false)
   const [feedback,         setFeedback]         = useState(null)
@@ -91,6 +88,9 @@ export default function Home() {
     setGameState(STATES.JUDGING)
 
     const q = QUESTIONS[currentQ]
+    const newAnswers = [...answers, { question: q.text, answer }]
+    setAnswers(newAnswers)
+
     let result
     try {
       const resp = await fetch('/api/judge-answer', {
@@ -113,24 +113,39 @@ export default function Home() {
       setFeedback(null)
 
       if (currentQ + 1 >= QUESTIONS.length) {
-        // Won!
         setIsWon(true)
         setGameState(STATES.WIN)
         await recordResult('win', QUESTIONS.length)
+        await sendWebhook(newAnswers, 'win')
       } else {
         setCurrentQ(q => q + 1)
         setGameState(STATES.QUESTION)
       }
     } else {
-      // Wrong — die
       await pause(1200)
       setFeedback(null)
       setIsDying(true)
       setGameState(STATES.DYING)
       await recordResult('lose', currentQ + 1)
+      await sendWebhook(newAnswers, 'lose')
       await pause(3200)
       setGameState(STATES.GAME_OVER)
     }
+  }
+
+  async function sendWebhook(allAnswers, result) {
+    try {
+      await fetch('/api/submit-webhook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          playerName,
+          result,
+          date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+          answers: allAnswers,
+        }),
+      })
+    } catch { /* silent */ }
   }
 
   async function recordResult(result, questionsAnswered) {
@@ -202,8 +217,8 @@ export default function Home() {
               <h1>The Tree of Life</h1>
               <p>
                 Within its branches lie answers waiting to be found.<br/>
-                Today, it grows for those who seek — or withers for those who do not.<br/><br/>
-                Seven questions stand between a seed and full bloom.<br/>
+                Today, it grows for those who seek, or withers for those who do not.<br/><br/>
+                Six questions stand between a seed and full bloom.<br/>
                 Answer them with honesty. The tree knows.
               </p>
               <p style={{ fontSize: '0.9rem', color: '#888' }}>One chance per day. Choose your words carefully.</p>

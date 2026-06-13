@@ -25,7 +25,7 @@ export default function QuestionCard({ playerName, question, questionNumber, tot
         ))}
       </div>
 
-      <p className="question-label">Question {questionNumber} of {total} &mdash; {playerName}</p>
+      <p className="question-label">{playerName}, question {questionNumber} of {total}</p>
       <h2>{question.text}</h2>
 
       {isJudging ? (

@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   }
 
   const prompt = `You are a wise, fair judge for a reflective game called "Tree of Life".
-Your role: decide if the player's answer meets the creator's criteria. Be thoughtful but not overly strict — genuine effort and sincerity count.
+Your role: decide if the player's answer meets the creator's criteria. Be thoughtful but not overly strict. Genuine effort and sincerity count.
 
 Question: ${question}
 Creator's criteria: ${criteria}

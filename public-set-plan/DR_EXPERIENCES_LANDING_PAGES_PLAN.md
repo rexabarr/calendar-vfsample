@@ -60,7 +60,7 @@ Rules:
 3. **The story:** an audience-specific version of your "feet in the pool" story
 4. **What's included:** 6 icons + short lines
 5. **How it works:** 3 steps
-6. **The team:** chef, concierges, driver, security, housekeeper (photo cards)
+6. **The team:** chef, concierge team (personal concierge + AI assistant), driver, security, housekeeper (photo cards)
 7. **A day in the life:** an itinerary strip (morning, afternoon, night)
 8. **Excursions:** a photo grid with "at least 15% below resort prices"
 9. **Villa vs. resort:** a short comparison
@@ -72,13 +72,13 @@ Rules:
 
 ### 3b. "What's included" (from your story; see section 8 for items to confirm)
 - 🏝 **Private villa with a private pool**, about 10 minutes from the beach
-- 🍽 **Chef-prepared meals:** breakfast and lunch by the housekeeper/cook, dinners by the private chef
+- 🍽 **Most meals made in your villa:** breakfast and lunch fresh every full day, and private-chef dinners every night but one, which is left open for a night out
 - 🚙 **Private car service** with security for scheduled outings
-- 🗣 **Two English-speaking concierges**, a text away
+- 🗣 **A concierge team a text away, day or night:** your personal concierge, plus a 24/7 AI concierge assistant for instant answers
 - 🌴 **Excursions at least 15% below resort prices** (booked separately)
 - 🎁 Welcome kit on arrival
 
-**Not included (always shown):** flights, excursions, drinks and meals out, gratuities, travel insurance.
+**Not included (always shown):** flights, excursions, drinks and meals out (including your free night), gratuities, travel insurance.
 
 ### 3c. Contact form (sends leads to the sales team)
 
@@ -129,7 +129,7 @@ Rules:
 | 2 | **The story** | Your story told from a guy's point of view: feet in the pool, the music, laughing about the driver stopping at a random roadside spot, texting the concierge for a lounge, "Done. Your driver is outside when you're ready," the VIP table. Ends with: "That's DR Experiences." | `SH-07` (concierge chat mockup), `CR-02` |
 | 3 | **What's included** | Shared block 3b | Icons |
 | 4 | **How it works** | 1) Tell us your crew and dates. 2) We send your all-in price, split per person. 3) Pack a bag. We handle the rest. | — |
-| 5 | **Your team** | Cards: Private Chef · Concierges · Driver · Security · Housekeeper. Each with one line, e.g. *Driver: "Airport pickup, nights out, the random taco stop. He knows the island."* | `SH-10`–`SH-14` |
+| 5 | **Your team** | Cards: Private Chef · Concierge team · Driver · Security · Housekeeper. Each with one line, e.g. *Driver: "Airport pickup, nights out, the random taco stop. He knows the island."* | `SH-10`–`SH-14` |
 | 6 | **A day in the life** | Morning: breakfast by the pool → Afternoon: deep-sea fishing or golf → Evening: chef dinner → Night: VIP table, driver waiting | `CR-03`, `CR-04`, `SH-11`, `CR-05` |
 | 7 | **Excursions** | "Deep-sea fishing, golf, catamaran, ATVs, cigar tours. At least 15% below resort prices." | `CR-06`–`CR-09` |
 | 8 | **Villa vs. resort** | 3 rows: no shared pool / no wristbands / no shuttle buses. "One price, no resort fees." | `SH-01` vs. a generic resort-crowd illustration `SH-16` |
@@ -146,11 +146,11 @@ Rules:
 
 **Goal:** make the planner of the group (often the one who "does everything") feel this is effortless and fully taken care of.
 **Page title:** *DR Experiences – Private Villa Girls' Trips & Moms' Getaways*
-**Meta description:** *A private villa, a private pool, chef-prepared meals and a concierge a text away. Nobody asks you for anything. From $1,510/person.*
+**Meta description:** *A private villa, a private pool, most meals made in your villa and a concierge a text away. Nobody asks you for anything. From $1,510/person.*
 
 | # | Section | Copy direction (draft) | Images |
 |---|---|---|---|
-| 1 | **Hero** | **H1:** "Four days where nobody needs anything from you." **Sub:** "A private villa, a private chef, and two concierges who handle every detail." Teaser: *From $1,510/person* · CTA: **Get my group's price** | `GW-01` |
+| 1 | **Hero** | **H1:** "Four days where nobody needs anything from you." **Sub:** "A private villa, a private chef, and a concierge team that handles every detail." Teaser: *From $1,510/person* · CTA: **Get my group's price** | `GW-01` |
 | 2 | **The story** | Your story told from her friends' point of view: feet in the pool, the music, a long breakfast she didn't cook, a text to the concierge for a spa or a lounge, the driver waiting, a night out that's fun and relaxed. | `SH-07`, `GW-02` |
 | 3 | **What's included** | Shared block 3b, with the meals line first | Icons |
 | 4 | **How it works** | Same 3 steps; step 2 adds "split it with your friends" | — |
@@ -210,13 +210,46 @@ Your story is strong, and it should be the heart of every page. A few lines don'
 
 | Line in the story | Issue | Suggested fix |
 |---|---|---|
-| "Be a part of the .001% … the most exclusive service in the Western Hemisphere" | An unprovable superlative (FTC / false-advertising risk) | "Experience the Dominican Republic the way very few people ever get to." |
+| "Be a part of the .001% … the most exclusive service in the Western Hemisphere" | An unprovable statistic and superlative (FTC / false-advertising risk) | ✅ **Decided:** use the **"travel like the top 0.1%"** angle. It describes *how you're treated*, not a statistic about the guest or a ranking of the service (see 8a). |
 | "a lounge where you can … be safe for the night" | "Safe" reads as a promise | "…relax, have fun, and have your driver and security with you all night." |
-| "All meals are prepared by the chef and staff" | The model has **no chef dinner on the last night**, and arrival-day lunch may not be covered | Either add those meals to the workbook or say "Breakfast, lunch and dinners prepared in your villa (see itinerary)." |
-| "two English-speaking concierges" | **There's no concierge cost line** in the updated Public Set model | Add a concierge line to the workbook, or confirm it's covered by the DR contact/admin. |
+| "All meals are prepared by the chef and staff" | The model has chef dinners on every night but one, and breakfast/lunch on full days only | ✅ **Decided:** "Most meals made in your villa." The free night is presented as a feature (a night out), not a gap (see 8a). |
+| "two English-speaking concierges" | One concierge is the **VA** and the other is an **AI assistant**. Calling both "English-speaking concierges" implies two people. | ✅ **Decided:** "Your personal concierge, plus a 24/7 AI concierge assistant." The AI is always labeled as AI (see 8b). |
 | "car service with security for scheduled events" | The model charges security **per night** | Fine, but make sure the page says "for scheduled outings" consistently. |
 | "10 minutes from the beach" | Must be true for **every** villa you use | Confirm per villa, or say "minutes from the beach." |
 | "a random taco shop" | Not very Dominican | Maybe "a roadside chimi stand." It's more local and it's a great detail. |
+
+
+### 8a. Approved story wording (replaces the last two paragraphs of the story doc)
+
+> That's DR Experiences. You're not booking a vacation. You're experiencing the Dominican Republic **the way the top 0.1% in America and Canada travel**: everything handled before you think to ask, and then some.
+>
+> Every trip includes a private villa with a private pool, minutes from the beach. **Most of your meals are made right in your villa:** breakfast and lunch fresh every full day, and your private chef cooks dinner every night but one. **That one we leave open on purpose, for a night out on the town** (your concierge can book the table and your driver will get you there). You get car service with security for scheduled outings, excursions at least 15% below resort prices, and a concierge team a text away: **your personal concierge, plus a 24/7 AI concierge assistant** for instant answers at any hour.
+
+**Where to use the "top 0.1%" angle:**
+
+| Page | Line |
+|---|---|
+| Shared tagline (footer, IG bio, email signature) | "Travel like the top 0.1%." |
+| The Crew – hero sub (option B) | "The way the top 0.1% do a guys trip: private villa, private chef, driver waiting." |
+| The Getaway – story close | "This is how the top 0.1% get away, and now it's your turn." |
+| The Celebration – hero sub (option B) | "Celebrate like the top 0.1%, with your people, in your own villa." |
+
+**Rules:** say "travel *like* / the way the top 0.1% *do*." It's aspirational and about the experience. Don't say guests *are* the 0.1%, don't use "only 0.1% will ever…", and don't make rankings like "most exclusive in the Western Hemisphere." Those are factual claims you can't back up.
+
+### 8b. The concierge team (VA + AI assistant)
+
+| | Personal concierge (VA) | AI concierge assistant |
+|---|---|---|
+| **What guests are told** | A real person, by first name, with a photo | "Our AI concierge assistant." Always labeled as AI, never given a human name or face |
+| **Hours** | [OWNER: e.g. 9am–11pm ET] | 24/7 |
+| **Handles** | Bookings, changes, problems, anything involving money or safety | Instant answers (itinerary, what's included, restaurant/lounge ideas, packing, timing), taking requests |
+| **Hand-off** | Gets every request the AI can't fully confirm | Says "I've passed this to [VA first name] / your driver and will confirm shortly." Never invents a confirmation |
+
+- **The story's "30 seconds later… Done"** line is only true if whoever answers (VA or AI) can actually reach the driver that fast. Set up a group thread (VA + DR contact + driver) per trip so it's real.
+- **The AI must say it's an AI** at the start of every chat. Several U.S. states require bots to disclose that in sales or customer-service chats, and it's the honest thing to do.
+- **The AI never** confirms prices or refunds, promises safety, or handles emergencies. Emergencies go straight to the VA + DR contact, with local emergency numbers in the welcome kit.
+- **The FAQ** gets a new question: *"Who is my concierge?"* Answer: "Your personal concierge, [first name], handles your trip, and our AI concierge assistant is available 24/7 for quick answers. Anything it can't handle goes straight to [first name] and our team in the DR."
+
 
 ---
 
@@ -246,7 +279,8 @@ Every placeholder on the build should show: the ID, the type, the aspect ratio a
 | SH-11 | REAL-PREFERRED | **Driver** holding the SUV door as guests step out at night | 4:5 | "Driver opening the car door for guests" |
 | SH-12 | REAL-PREFERRED | **Driver** greeting guests at arrivals with a name sign and loading luggage | 4:5 | "Driver greeting guests at the airport" |
 | SH-13 | REAL-PREFERRED | **Security** escorting a group from a venue entrance to the SUV at night (professional, calm, not intimidating) | 4:5 | "Security walking guests to their car" |
-| SH-14 | REAL-PREFERRED | **Concierge** on the phone/tablet, smiling, at the villa entrance | 4:5 | "Concierge arranging plans" |
+| SH-14 | REAL | **Your personal concierge (the VA):** a real, friendly headshot with first name. Don't show them at the villa unless they're actually there. | 1:1 | "[First name], your personal concierge" |
+| SH-19 | CREATED | **AI concierge assistant:** a brand icon/avatar (e.g. logo mark in a chat bubble). **Not a human face**, so nobody mistakes it for a person. | 1:1 | "DR Experiences AI concierge assistant" |
 | SH-15 | REAL-PREFERRED | **Housekeeper/cook** setting out a breakfast spread by the pool | 3:2 | "Breakfast spread by the pool" |
 | SH-16 | CREATED | Crowded resort pool / buffet line (generic illustration, no real resort brand) | 3:2 | "Crowded resort pool" |
 | SH-17 | REAL | Guest review photos (with written permission) | 1:1 | "[Guest first name] and friends" |
@@ -295,7 +329,7 @@ Every placeholder on the build should show: the ID, the type, the aspect ratio a
 Rules for created images: no recognizable real people, no real brand logos, no suggestive poses or outfits, and nothing that could pass as a real guest review. Keep the source file and record that it's AI-generated. `[OWNER]` Decide whether to add a small "Illustrative image" caption. Recommended for staff images until real ones replace them.
 
 ### 9f. DR shoot add-ons (for your team's end-of-month shoot)
-Add these to the shot list: every SH REAL shot; a 10-second vertical and horizontal clip for each hero; team portraits of the real chef, driver, security and concierges (with **signed photo/model releases**); and the drive from the villa to the beach.
+Add these to the shot list: every SH REAL shot; a 10-second vertical and horizontal clip for each hero; team portraits of the real chef, driver and security, plus a headshot of your personal concierge (all with **signed photo/model releases**); and the drive from the villa to the beach.
 
 ---
 
@@ -310,8 +344,8 @@ Add these to the shot list: every SH REAL shot; a 10-second vertical and horizon
 
 ## 11. Open items for the owner
 1. **Domain and brand.** Is "DR Experiences" final? Check the domain and the IG/FB handles.
-2. **Concierge cost:** add it to the workbook, since the story promises two concierges.
-3. **Meals:** confirm whether "all meals" includes last-night dinner and arrival-day lunch, and update the model or the wording.
+2. **Concierge cost:** add the VA's time per trip and the AI assistant's monthly cost to the workbook (as a per-booking line or inside Admin).
+3. **AI concierge setup:** which tool, what it's allowed to confirm on its own, and the hand-off rule to the VA / DR contact (see 8b).
 4. **Lead response time** promise and who on the sales team covers which hours.
 5. **Celebration add-ons** (cake, decor, photographer, DJ): offer them or not, and at what prices.
 6. **Founding-rate mention on the page:** yes or no.

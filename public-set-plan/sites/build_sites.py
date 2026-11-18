@@ -22,7 +22,8 @@ INCLUDED = [
     ("Driver", "Private car service", "Airport pickup and drop-off, plus a driver for scheduled outings, with security along for those outings."),
     ("Concierge", "A concierge team, day or night", "Your personal concierge, plus a 24/7 AI concierge assistant for instant answers."),
     ("Excursions", "Excursions for less", "Booked by your concierge at least 15% below resort prices. Paid separately."),
-    ("Welcome kit", "Welcome kit", "Waiting when you arrive, with local tips and emergency contacts."),
+    ("Early check-in", "Early check-in from 12pm", "Check in as early as 12pm, so your first afternoon starts at the pool."),
+    ("Welcome kit", "Welcome kit", "Waiting for you when you arrive."),
 ]
 NOT_INCLUDED = "Flights, excursions, drinks and meals out, gratuities, travel insurance."
 
@@ -31,8 +32,8 @@ BASE_FAQ = [
     ("What's not included?", "Flights, excursions, drinks and meals out (including your free night), gratuities and travel insurance. We recommend every guest buys their own travel insurance."),
     ("Who is my concierge?", "Your personal concierge handles your trip from booking to departure. Our AI concierge assistant is available 24/7 for quick answers, and anything it can't handle goes straight to your personal concierge and our team in the DR."),
     ("What if someone in the group cancels?", "Cancellations follow our published tiers, based on how many days before arrival you cancel. We walk you through them before you book. Date changes are possible for a rebooking fee, subject to availability."),
-    ("How far is the beach?", "Our villas are minutes from the beach, and your driver can take you there on scheduled outings."),
-    ("What about getting around safely?", "Your driver takes you to and from scheduled outings, security comes along, and your concierge always knows your plans. Your welcome kit includes local tips and emergency contacts."),
+    ("How far is the beach?", "Our villas are minutes from the beach. On beach days your driver can bring all of your beach supplies, coolers included, and help you set up."),
+    ("What about getting around safely?", "Your driver takes you to and from scheduled outings, security comes along, and your concierge always knows your plans."),
 ]
 
 
@@ -58,11 +59,9 @@ def form_html(p):
     </div></fieldset>
   <div class="f"><label for="f-size">Group size <span class="req">*</span></label><select id="f-size" name="size" required><option value="">Choose…</option><option>2</option><option>3–4</option><option>5–6</option><option>7–8</option><option>Not sure yet</option></select></div>
   <div class="f"><label for="f-occ">What's the occasion? <span class="req">*</span></label><select id="f-occ" name="occasion" required><option value="">Choose…</option>{occ}</select></div>
-  <div class="f"><label for="f-month">When are you thinking? <span class="req">*</span></label><input id="f-month" name="month" type="month" required></div>
+  <div class="f"><label for="f-date">Date of arrival <span class="req">*</span></label><input id="f-date" name="arrival" type="date" required></div>
   <div class="f"><label for="f-nights">How many nights?</label><select id="f-nights" name="nights"><option value="">Not sure</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
-  <div class="f"><label for="f-from">Flying from</label><select id="f-from" name="from"><option value="">Choose…</option><option>Philadelphia (PHL)</option><option>DC area (DCA / IAD / BWI)</option><option>Atlanta (ATL)</option><option>New Jersey (EWR)</option><option>New York (JFK / LGA)</option><option>Other</option></select></div>
-  <div class="f"><label for="f-time">Best time to reach you</label><select id="f-time" name="time"><option value="">Any time</option><option>Morning (ET)</option><option>Afternoon (ET)</option><option>Evening (ET)</option></select></div>
-  <div class="f full"><label class="check"><input type="checkbox" id="f-flex" name="flexible"><span>Our dates are flexible</span></label></div>
+  <div class="f"><label class="check" style="align-self:end;padding-bottom:12px"><input type="checkbox" id="f-flex" name="flexible"><span>Our dates are flexible</span></label></div>
   <div class="f full"><label for="f-notes">Anything we should know?</label><textarea id="f-notes" name="notes" placeholder="Birthdays, dietary needs, excursions you're curious about…"></textarea></div>
   <div class="f full"><label for="f-heard">How did you hear about us?</label><select id="f-heard" name="heard"><option value="">Choose…</option><option>Instagram</option><option>Facebook</option><option>A friend</option><option>Google</option><option>Other</option></select></div>
   <div class="f full"><label class="check"><input type="checkbox" id="f-sms" name="sms"><span>I agree to receive text messages from DR Experiences about my trip inquiry. Message and data rates may apply. Reply STOP to opt out. Consent isn't required to get a quote.</span></label></div>
@@ -90,6 +89,8 @@ JS = """<script>
     document.getElementById('t-method').textContent=m?m.value.toLowerCase():'your preferred method';
     form.hidden=true;thanks.hidden=false;thanks.focus();
   });
+  var bar=document.querySelector('.mbar'),contact=document.getElementById('contact');
+  if(bar&&contact&&'IntersectionObserver' in window){new IntersectionObserver(function(es){bar.hidden=es[0].isIntersecting;}).observe(contact);}
   document.querySelectorAll('[data-occ]').forEach(function(t){
     t.addEventListener('click',function(){
       document.getElementById('f-occ').value=t.getAttribute('data-occ');
@@ -108,7 +109,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1,h2,h3{margin:0;text-wrap:balance;font-family:var(--display);font-weight:400}
 p{margin:0}
-section{padding-block:88px}
+section{padding-block:72px}
+section.tight{padding-top:0}
 a{color:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--primary);color:var(--primary-ink);font-family:var(--body);font-weight:700;font-size:1rem;
   border:0;border-radius:var(--btn-radius);padding:15px 28px;text-decoration:none;cursor:pointer;transition:transform .15s ease,filter .15s ease}
@@ -163,7 +165,7 @@ form .btn{justify-self:start}
   footer{padding-bottom:110px !important}
   .top .btn{display:none}
 }
-@media (max-width:560px){form{grid-template-columns:1fr}section{padding-block:64px}}
+@media (max-width:560px){form{grid-template-columns:1fr}section{padding-block:52px}body{font-size:16.5px}}
 .reviews{border:2px dashed var(--line);border-radius:var(--card-radius);padding:28px;display:grid;gap:14px;justify-items:center;text-align:center}
 .reviews .ph{width:100%}
 .reviews p{color:var(--muted);max-width:56ch}
@@ -191,6 +193,27 @@ def doc(title, meta, fonts, css, body):
 PAGE_CTA = {}
 
 # ================================================================ 1. THE CREW
+LINEUP_JS = """<script>
+(function(){
+  var root=document.querySelector('.lineup'); if(!root) return;
+  var items=[].slice.call(root.querySelectorAll('.lu-item')), shots=[].slice.call(root.querySelectorAll('.lu-stage .ph'));
+  function show(n){
+    items.forEach(function(it,i){var on=i===n; it.classList.toggle('on',on); it.querySelector('.lu-btn').setAttribute('aria-expanded',on?'true':'false');
+      var bar=it.querySelector('.lu-bar i'); bar.style.animation='none'; void bar.offsetWidth; bar.style.animation='';});
+    shots.forEach(function(s,i){s.classList.toggle('on',i===n);});
+  }
+  items.forEach(function(it,i){
+    it.querySelector('.lu-btn').addEventListener('click',function(){root.classList.add('manual');show(i);});
+    it.querySelector('.lu-bar i').addEventListener('animationend',function(){ if(!root.classList.contains('manual')) show((i+1)%items.length); });
+  });
+  root.addEventListener('mouseenter',function(){root.classList.add('paused');});
+  root.addEventListener('mouseleave',function(){root.classList.remove('paused');});
+  root.addEventListener('focusin',function(){root.classList.add('paused');});
+  root.addEventListener('focusout',function(){root.classList.remove('paused');});
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){es.forEach(function(e){root.classList.toggle('run',e.isIntersecting);});},{threshold:.35}).observe(root); }
+  else root.classList.add('run');
+})();
+</script>"""
 CREW_CSS = r"""
 /* Layout: matchday poster. Flag-cross hero (blue|red / red|blue split by white gutters), red ticker, lineup rows, roster cards, ticket prices. Single dark look. */
 :root{
@@ -211,27 +234,24 @@ CREW_CSS = r"""
 h2{font-size:clamp(2.4rem,6vw,4.4rem);line-height:.95;text-transform:uppercase}
 .head{display:grid;gap:14px;margin-bottom:40px;max-width:760px}
 .head p{color:var(--muted);font-size:1.08rem}
-/* hero cross */
-.hero{padding-block:28px 0}
-.cross{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:14px;background:var(--white);border-radius:6px;overflow:hidden}
-.cross > *{min-width:0}
-.q-blue{background:var(--navy)}.q-red{background:var(--red)}
-.q-text{padding:clamp(28px,5vw,56px);display:grid;gap:20px;align-content:end;min-height:440px}
-.q-text h1{font-size:clamp(3rem,7.4vw,6.2rem);line-height:.9;text-transform:uppercase}
-.q-text p{font-size:1.15rem;color:#DCE6F5;max-width:40ch}
-.q-photo{min-height:440px}
-.q-photo .ph{position:absolute;inset:0;border-radius:0}
-.q-photo{position:relative}
-.q-price{padding:clamp(28px,4vw,48px);display:grid;gap:16px;align-content:center}
-.q-price .big{font-family:var(--display);font-size:clamp(3.4rem,8vw,5.6rem);line-height:.9}
-.q-price .big small{font-family:var(--body);font-size:1rem;font-weight:600;margin-left:6px}
-.q-price .btn{background:var(--white);color:var(--red);justify-self:start}
-.q-price p{font-size:.92rem;color:#FFE3E6}
-.seal{position:absolute;left:calc(52.5% - 60px);top:calc(50% - 60px);width:120px;height:120px;border-radius:50%;background:var(--white);display:grid;place-items:center;z-index:3;pointer-events:none}
-.seal svg{width:108px;height:108px}
-@media (max-width:860px){.cross{grid-template-columns:1fr}.seal{display:none}.q-text,.q-photo{min-height:360px}.q-photo{order:0}}
+/* hero */
+.hero{padding-block:44px 0}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+.hero-copy{display:grid;gap:22px;justify-items:start}
+.hero h1{font-size:clamp(2.7rem,6.2vw,5.4rem);line-height:.92;text-transform:uppercase}
+.hero .sub{font-size:1.15rem;color:var(--soft);max-width:42ch}
+.price-chip{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;border-left:6px solid var(--red);padding:4px 0 4px 14px}
+.price-chip b{font-family:var(--display);font-weight:400;font-size:2.3rem;line-height:1}
+.price-chip span{color:var(--soft);font-size:.95rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center}
+.textlink{color:var(--white);font-weight:600;text-underline-offset:5px}
+.micro{font-size:.88rem;color:var(--soft)}
+.hero-photo{position:relative;margin:0 18px 18px 0}
+.hero-photo::before{content:"";position:absolute;inset:18px -18px -18px 18px;background:var(--red);border-radius:4px}
+.hero-photo .ph{border-radius:4px;aspect-ratio:4/5 !important;z-index:1}
+@media (max-width:860px){.hero{padding-top:28px}.hero-grid{grid-template-columns:1fr;gap:40px}.hero-photo .ph{aspect-ratio:4/3 !important}}
 /* ticker */
-.ticker{background:var(--red);overflow:hidden;border-block:4px solid var(--white);margin-top:28px}
+.ticker{background:var(--red);overflow:hidden;border-block:4px solid var(--white);margin-top:52px}
 .ticker-track{display:flex;width:max-content;animation:tick 38s linear infinite}
 .ticker span{font-family:var(--display);font-size:1.6rem;text-transform:uppercase;padding:12px 22px;white-space:nowrap;display:flex;align-items:center;gap:22px}
 .ticker span::after{content:"";width:12px;height:12px;background:var(--white);transform:rotate(45deg)}
@@ -248,15 +268,34 @@ h2{font-size:clamp(2.4rem,6vw,4.4rem);line-height:.95;text-transform:uppercase}
 .bub.me{background:var(--red);justify-self:end;border-bottom-right-radius:4px}
 .bub.them{background:#E8EEF7;color:var(--ink);border-bottom-left-radius:4px}
 @media (max-width:820px){.story{grid-template-columns:1fr}}
-/* lineup */
-.lineup{border-top:2px solid var(--white)}
-.lineup .row{display:grid;grid-template-columns:minmax(150px,.7fr) 1.3fr;gap:24px;padding-block:22px;border-bottom:1px solid var(--line);align-items:baseline}
-.lineup .tag{font-family:var(--display);font-size:clamp(1.6rem,3.4vw,2.4rem);text-transform:uppercase;line-height:1}
-.lineup h3{font-family:var(--body);font-weight:700;font-size:1.12rem;margin-bottom:4px}
-.lineup p{color:var(--muted)}
+/* lineup: auto-advancing feature list with image stage */
+.lineup{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:start}
+.lu-stage{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);display:grid;overflow:hidden;border-radius:4px}
+.lu-stage .ph{grid-area:1/1;aspect-ratio:4/3 !important;border-radius:4px;opacity:0;transform:scale(1.05);transition:opacity .55s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.lu-stage .ph.on{opacity:1;transform:none}
+.lu-list{border-top:2px solid var(--white)}
+.lu-item{border-bottom:1px solid var(--line)}
+.lu-btn{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;align-items:center;gap:16px;padding:16px 0}
+.lu-btn:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.lu-tag{font-family:var(--display);font-size:clamp(1.7rem,3.6vw,2.6rem);text-transform:uppercase;line-height:1;color:#6F86AD;transition:color .3s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.lu-btn:hover .lu-tag{color:var(--soft)}
+.lu-item.on .lu-tag{color:var(--white);transform:translateX(14px)}
+.lu-btn::after{content:"+";margin-left:auto;font-family:var(--display);font-size:1.7rem;line-height:1;color:var(--primary-text);transition:transform .35s ease}
+.lu-item.on .lu-btn::after{transform:rotate(45deg)}
+.lu-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.lu-item.on .lu-body{grid-template-rows:1fr}
+.lu-body > div{overflow:hidden;padding-left:14px}
+.lu-body h3{font-family:var(--body);font-weight:700;font-size:1.1rem;margin-bottom:4px}
+.lu-body p{color:var(--muted);padding-bottom:18px;max-width:52ch}
+.lu-bar{height:3px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
+.lu-bar i{position:absolute;inset:0;background:var(--red);transform-origin:left;transform:scaleX(0)}
+.lineup.run .lu-item.on .lu-bar i{animation:lufill 5s linear forwards}
+.lineup.paused .lu-item.on .lu-bar i{animation-play-state:paused}
+.lineup.manual .lu-item.on .lu-bar i{animation:none;transform:scaleX(1)}
+@keyframes lufill{to{transform:scaleX(1)}}
 .lineup-note{margin-top:22px;color:var(--muted)}
 .lineup-note b{color:var(--fg)}
-@media (max-width:600px){.lineup .row{grid-template-columns:1fr;gap:6px}}
+@media (max-width:860px){.lineup{grid-template-columns:1fr;gap:24px}.lu-stage{position:static}}
 /* steps */
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0;padding:0;list-style:none;counter-reset:s}
 .steps li{background:var(--navy);padding:28px;display:grid;gap:10px;counter-increment:s;border-top:6px solid var(--red)}
@@ -301,18 +340,27 @@ h2{font-size:clamp(2.4rem,6vw,4.4rem);line-height:.95;text-transform:uppercase}
 /* light band */
 .light{background:var(--paper);color:var(--ink);--muted:#3D5170;--line:#D3DCEA;--card:#FFFFFF;--primary-text:#B20F22;--error:#B3261E;--cap-bg:rgba(0,22,49,.88)}
 .light .kicker{color:#3D5170}
-/* scoreboard */
-.score{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink)}
-.score > div{padding:24px;display:grid;gap:14px;align-content:start}
-.score .them{background:#E3E9F2}
-.score .us{background:var(--navy);color:var(--white)}
-.score h3{font-size:2rem;text-transform:uppercase;line-height:1}
-.score .us h3{color:var(--white)}
-.score ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.score li{display:grid;gap:2px;padding-bottom:12px;border-bottom:1px solid rgba(10,27,51,.15)}
-.score .us li{border-color:rgba(255,255,255,.18)}
-.score li span{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
-@media (max-width:620px){.score{grid-template-columns:1fr}}
+/* them vs us */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:28px;position:relative;align-items:stretch}
+.vs-card{border-radius:8px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;background:#FFFFFF;border:1px solid #D3DCEA}
+.vs-photo{position:relative}
+.vs-photo img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.vs-label{position:absolute;left:16px;top:16px;font-family:var(--display);text-transform:uppercase;font-size:1.15rem;padding:6px 14px;border-radius:3px;letter-spacing:.03em}
+.vs-them .vs-label{background:#FFFFFF;color:var(--ink)}
+.vs-us{background:var(--navy);color:var(--white);border:0;box-shadow:0 0 0 4px var(--red),0 24px 60px rgba(0,22,49,.35)}
+.vs-us .vs-label{background:var(--red);color:var(--white)}
+.vs-body{padding:24px clamp(18px,3vw,30px) 28px;display:grid;gap:16px;align-content:start}
+.vs-body h3{font-size:clamp(1.7rem,3vw,2.2rem);text-transform:uppercase;line-height:1}
+.vs-body ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.vs-body li{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start}
+.vs-body li::before{content:"✕";width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.85rem;background:#E3E9F2;color:#5B6B85}
+.vs-us li::before{content:"✓";background:var(--red);color:var(--white);font-size:1rem}
+.vs-body li span{display:block;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.65}
+.vs-them .vs-body{color:#3D5170}
+.vs-badge{position:absolute;left:50%;top:0;margin-top:calc(37.5% - 10.5px);transform:translate(-50%,-50%);z-index:3;width:84px;height:84px;border-radius:50%;background:var(--red);color:var(--white);
+  border:6px solid var(--paper);display:grid;place-items:center;font-family:var(--display);font-size:1.8rem;line-height:1}
+.vs-note{margin-top:16px;font-size:.82rem;color:#3D5170}
+@media (max-width:720px){.vs{grid-template-columns:1fr;gap:0}.vs-badge{position:relative;left:auto;top:auto;transform:none;justify-self:center;margin:-26px 0 -26px;width:70px;height:70px;font-size:1.5rem}}
 /* tickets */
 .tickets{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .ticket{--cut:calc(100% - 140px);display:grid;grid-template-columns:1fr 140px;background:var(--white);color:var(--ink);
@@ -339,7 +387,7 @@ footer{background:var(--navy-deep)}
 footer .big{font-family:var(--display);font-size:clamp(2rem,5vw,3.2rem);text-transform:uppercase;color:var(--white);line-height:1}
 """
 
-CREW = dict(slug="crew", occasions=["Guys trip", "Birthday", "Bachelor party", "Reunion", "Golf or fishing trip", "Just because"], cta="Get my group's price")
+CREW = dict(slug="crew", occasions=["Guys trip", "Birthday", "Bachelor party", "Reunion", "Golf or fishing trip", "Just because"], cta="Check our dates & price")
 
 
 def crew():
@@ -355,28 +403,35 @@ def crew():
             ("8:00", "PM", "Chef's dinner", "On the terrace, cooked in your villa.", "SH-05", "REAL", "Villa table set for dinner"),
             ("11:00", "PM", "VIP table", "Your driver gets you there and back.", "CR-05", "CREATED", "Friends at a VIP lounge table (illustrative)")]
     plan_h = "".join(f'<article><span class="time">{t}<small>{ap}</small></span>{ph(i, k, d, "4/3")}<h3>{E(h)}</h3><p>{E(x)}</p></article>' for t, ap, h, x, i, k, d in plan)
-    lineup_h = "".join(f'<div class="row"><span class="tag">{E(tag)}</span><div><h3>{E(t)}</h3><p>{E(d)}</p></div></div>' for tag, t, d in INCLUDED)
+    stage = {"Private villa": ("SH-01", "REAL", "Villa exterior and pool at golden hour"), "Meals": ("SH-10", "PREF", "Chef plating dinner for the crew"),
+             "Driver": ("SH-12", "PREF", "Driver greeting the crew at arrivals, loading luggage"), "Concierge": ("SH-07", "CREATED", "Phone mockup of a concierge text chat"),
+             "Excursions": ("CR-06", "PREF", "Deep-sea fishing charter"), "Early check-in": ("SH-03", "REAL", "Villa living room on arrival"), "Welcome kit": ("SH-08", "REAL", "Welcome kit laid out")}
+    stage_h = "".join(ph(*stage[tag], "4/3", "on" if n == 0 else "").replace('<figure ', f'<figure data-i="{n}" ', 1) for n, (tag, _, _) in enumerate(INCLUDED))
+    lineup_h = "".join(f'<div class="lu-item{" on" if n == 0 else ""}" data-i="{n}"><button class="lu-btn" type="button" aria-expanded="{"true" if n == 0 else "false"}" aria-controls="lu-{n}"><span class="lu-tag">{E(tag)}</span></button>'
+                       f'<div class="lu-body" id="lu-{n}"><div><h3>{E(t)}</h3><p>{E(d)}</p></div></div><div class="lu-bar"><i></i></div></div>' for n, (tag, t, d) in enumerate(INCLUDED))
     exc = [("Deep-sea fishing", "CR-06", "Fishing charter"), ("Golf", "CR-07", "Golf course"), ("ATVs", "CR-08", "ATV ride"), ("Cigar tour", "CR-09", "Cigar factory tour")]
     exc_h = "".join(f'<article>{ph(i, "PREF", d, "3/4")}<h3>{E(t)}</h3></article>' for t, i, d in exc)
     ticker = "".join(f"<span>{w}</span>" for w in ["Private pool", "Chef dinners", "Driver on call", "VIP tables", "Deep-sea fishing", "Golf", "One price, split by the crew"] * 2)
     them = [("Space", "Shared pool, lobby and beach"), ("Getting around", "Shuttle buses and taxi lines"), ("Food", "Buffet lines and reservations"), ("Price", "Room rate plus resort fees and add-ons")]
     us = [("Space", "The whole villa is yours"), ("Getting around", "Your own driver, on your schedule"), ("Food", "A private chef in your kitchen"), ("Price", "One all-in price, split by the crew")]
-    li = lambda rows: "".join(f"<li><span>{E(a)}</span>{E(b)}</li>" for a, b in rows)
+    li = lambda rows: "".join(f"<li><div><span>{E(a)}</span>{E(b)}</div></li>" for a, b in rows)
     extra_faq = [("Can we add people later?", "Usually, yes. Bigger groups move into a bigger villa and the per-person price drops. Tell our team and we'll requote."),
                  ("What about nightlife?", "Your concierge can book lounges, rooftops and VIP tables, and your driver takes you there and brings you back. Drinks and table minimums are paid separately.")]
-    seal = """<div class="seal" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="c" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+    _unused_seal = """<div class="seal" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="c" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
 <text font-family="Anton,Impact,sans-serif" font-size="13" letter-spacing="3" fill="#002D62"><textPath href="#c">PRIVATE VILLA ✦ CHEF ✦ DRIVER ✦ CONCIERGE ✦</textPath></text>
 <rect x="44" y="49" width="14" height="10" fill="#002D62"/><rect x="62" y="49" width="14" height="10" fill="#CE1126"/><rect x="44" y="62" width="14" height="10" fill="#CE1126"/><rect x="62" y="62" width="14" height="10" fill="#002D62"/></svg></div>"""
     body = f"""<header class="top"><div class="wrap"><a class="logo" href="#top"><span class="flagmark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>DR Experiences</a><a class="btn" href="#contact">{p['cta']}</a></div></header>
 <main id="top">
-<section class="hero"><div class="wrap">
-  <div class="cross">
-    <div class="q-blue q-text"><span class="kicker">Private villa guys trips · Dominican Republic</span><h1>The trip your group chat keeps talking about. Done.</h1><p>Private villa. Private chef. A driver and a concierge on call. You just show up.</p></div>
-    <div class="q-red q-photo">{ph("CR-01", "REAL", "Video loop: 4–6 guys arriving at the villa, first look at the pool", "auto")}</div>
-    <div class="q-red q-price"><span class="kicker" style="color:#FFE3E6">Crews of 8, 3 nights</span><span class="big">$1,320<small>/person</small></span><a class="btn" href="#contact">{p['cta']}</a><p>Flights, excursions and drinks out not included.</p></div>
-    <div class="q-blue q-photo">{ph("CR-02", "PREF", "Guys with feet in the pool, laughing, drinks in hand", "auto")}</div>
-    {seal}
+<section class="hero"><div class="wrap hero-grid">
+  <div class="hero-copy">
+    <span class="kicker">Private villa guys trips · Dominican Republic</span>
+    <h1>The trip your group chat keeps talking about. Done.</h1>
+    <p class="sub">Private villa. Private chef. A driver and a concierge on call. You just show up.</p>
+    <div class="price-chip"><b>$1,320</b><span>per person · crew of 8, 3 nights</span></div>
+    <div class="cta-row"><a class="btn" href="#contact">{p['cta']}</a><a class="textlink" href="#lineup">See what's included</a></div>
+    <p class="micro">Takes about a minute. No payment needed to check.</p>
   </div>
+  <div class="hero-photo">{ph("CR-01", "REAL", "Video loop: 4–6 guys arriving at the villa, first look at the pool", "4/5")}</div>
 </div>
 <div class="ticker" aria-hidden="true"><div class="ticker-track">{ticker}</div></div>
 </section>
@@ -395,13 +450,13 @@ def crew():
     <span class="meta">Example conversation</span></div>
 </div></section>
 
-<section><div class="wrap">
+<section class="tight" id="lineup"><div class="wrap">
   <div class="head"><span class="kicker">What's included</span><h2>The lineup</h2></div>
-  <div class="lineup">{lineup_h}</div>
+  <div class="lineup"><div class="lu-stage">{stage_h}</div><div class="lu-list">{lineup_h}</div></div>
   <p class="lineup-note"><b>Not included:</b> {NOT_INCLUDED}</p>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
+<section class="tight"><div class="wrap">
   <div class="head"><span class="kicker">How it works</span><h2>Three steps to the villa</h2></div>
   <ol class="steps">
     <li><h3>Tell us about your crew</h3><p>Group size, rough dates, and what you're celebrating, if anything.</p></li>
@@ -433,7 +488,14 @@ def crew():
 
 <section class="light"><div class="wrap">
   <div class="head"><span class="kicker">Villa vs. resort</span><h2>Them vs. us</h2></div>
-  <div class="score"><div class="them"><h3>Typical resort</h3><ul>{li(them)}</ul></div><div class="us"><h3>DR Experiences</h3><ul>{li(us)}</ul></div></div>
+  <div class="vs">
+    <article class="vs-card vs-them"><div class="vs-photo"><img src="img/resort.jpg" alt="Crowded resort pool lined with rows of loungers and straw umbrellas" loading="lazy"><span class="vs-label">Them</span></div>
+      <div class="vs-body"><h3>Typical resort</h3><ul>{li(them)}</ul></div></article>
+    <div class="vs-badge" aria-hidden="true">VS</div>
+    <article class="vs-card vs-us"><div class="vs-photo"><img src="img/villa.jpg" alt="Private villa with its own pool, wooden deck and shaded lounge" loading="lazy"><span class="vs-label">Us</span></div>
+      <div class="vs-body"><h3>DR Experiences</h3><ul>{li(us)}</ul></div></article>
+  </div>
+  <p class="vs-note">Example photos for illustration.</p>
 </div></section>
 
 <section class="light" id="pricing" style="padding-top:0"><div class="wrap">
@@ -442,7 +504,7 @@ def crew():
     <div class="ticket"><div class="main"><span class="lbl">Crew of 8 · 3 nights</span><span class="amt">$1,320<small>/person</small></span><span class="fine">Based on 8 guests sharing a 4-bedroom villa. {FINE}</span></div><div class="stub">Admit<br>8</div></div>
     <div class="ticket alt"><div class="main"><span class="lbl">Crew of 4 · 4 nights</span><span class="amt">$1,880<small>/person</small></span><span class="fine">Based on 4 guests sharing a 2-bedroom villa. {FINE}</span></div><div class="stub">Admit<br>4</div></div>
   </div>
-  <div class="price-foot"><a class="btn" href="#contact">{p['cta']}</a><span>50% deposit to reserve. Balance due 30 days before arrival.</span></div>
+  <div class="price-foot"><a class="btn" href="#contact">{p['cta']}</a><span>No payment needed to check. When you're ready, a 50% deposit holds your dates and the balance is due 30 days before arrival.</span></div>
 </div></section>
 
 <section><div class="wrap">
@@ -456,15 +518,16 @@ def crew():
 </div></section>
 
 <section class="light" id="contact"><div class="wrap form-grid">
-  <div class="form-side"><span class="kicker">Talk to our team</span><h2>Get your crew's price</h2>
-    <p style="color:#3D5170">Tell us about your group. Someone from our sales team will reach out the way you prefer, usually within [X] business hours.</p>
-    <ul><li>No payment needed for a quote</li><li>Your price, split per person</li><li>A real person on the other end</li></ul></div>
+  <div class="form-side"><span class="kicker">Check your dates</span><h2>See if your dates are open</h2>
+    <p style="color:#3D5170">Tell us when you want to land and who's coming. A real person on our team checks villa availability and replies the way you prefer, usually within [X] business hours, with your exact price per person.</p>
+    <ul><li>Your exact price, split per person</li><li>Early check-in from 12pm</li><li>No payment needed to check</li></ul></div>
   <div>{form_html(p)}</div>
 </div></section>
 </main>
 <footer><div class="wrap"><span class="big">Travel like the top 0.1%.</span>
 <div class="links"><span>Terms</span><span>Privacy</span><span>Guest conduct policy</span><span>[EMAIL]</span><span>[PHONE]</span><span>[BUSINESS ADDRESS]</span><span>@[HANDLE]</span></div>
 <span>DR Experiences · Private villa group trips to the Dominican Republic. Prices are per person and depend on group size, dates and villa.</span></div></footer>"""
+    body += LINEUP_JS
     PAGE_CTA["DR Experiences Crew Trips"] = p["cta"]
     return doc("DR Experiences Crew Trips", "Your crew, a private villa with a pool, a chef, a driver and a concierge on call. One price, split by the group. From $1,320/person.",
                "family=Anton&family=Barlow:wght@400;500;600;700", CREW_CSS, body)

@@ -146,7 +146,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1,h2,h3{margin:0;text-wrap:balance;font-family:var(--display);font-weight:400}
 p{margin:0}
-section{padding-block:88px}
+section{padding-block:72px}
+section.tight{padding-top:0}
 a{color:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--primary);color:var(--primary-ink);font-family:var(--body);font-weight:700;font-size:1rem;
   border:0;border-radius:var(--btn-radius);padding:15px 28px;text-decoration:none;cursor:pointer;transition:transform .15s ease,filter .15s ease}
@@ -201,7 +202,7 @@ form .btn{justify-self:start}
   footer{padding-bottom:110px !important}
   .top .btn{display:none}
 }
-@media (max-width:560px){form{grid-template-columns:1fr}section{padding-block:64px}}
+@media (max-width:560px){form{grid-template-columns:1fr}section{padding-block:52px}body{font-size:16.5px}}
 .reviews{border:2px dashed var(--line);border-radius:var(--card-radius);padding:28px;display:grid;gap:14px;justify-items:center;text-align:center}
 .reviews .ph{width:100%}
 .reviews p{color:var(--muted);max-width:56ch}
@@ -244,7 +245,7 @@ html{scroll-behavior:smooth}
 <section><div class="wrap incl">
   <div class="sticky"><figure class="ph ph-real arch" style="aspect-ratio:3/4"><figcaption><span class="ph-id">SH-01</span><span class="ph-type">Real photo needed</span><span class="ph-desc">Villa exterior and pool at golden hour</span></figcaption></figure></div>
   <div><div class="head"><span class="kicker">What's included</span><h2>Everything taken care of. <em>Truly</em> everything.</h2></div>
-    <ul><li><div><h3>Private villa, private pool</h3><p>The whole villa is yours, minutes from the beach.</p></div></li><li><div><h3>Most meals made in your villa</h3><p>Breakfast and lunch fresh every full day. Your private chef cooks dinner every night but one, which we leave open for a night out.</p></div></li><li><div><h3>Private car service</h3><p>Airport pickup and drop-off, plus a driver for scheduled outings, with security along for those outings.</p></div></li><li><div><h3>A concierge team, day or night</h3><p>Your personal concierge, plus a 24/7 AI concierge assistant for instant answers.</p></div></li><li><div><h3>Excursions for less</h3><p>Booked by your concierge at least 15% below resort prices. Paid separately.</p></div></li><li><div><h3>Welcome kit</h3><p>Waiting when you arrive, with local tips and emergency contacts.</p></div></li></ul><p class="excl"><b>Not included:</b> Flights, excursions, drinks and meals out, gratuities, travel insurance.</p></div>
+    <ul><li><div><h3>Private villa, private pool</h3><p>The whole villa is yours, minutes from the beach.</p></div></li><li><div><h3>Most meals made in your villa</h3><p>Breakfast and lunch fresh every full day. Your private chef cooks dinner every night but one, which we leave open for a night out.</p></div></li><li><div><h3>Private car service</h3><p>Airport pickup and drop-off, plus a driver for scheduled outings, with security along for those outings.</p></div></li><li><div><h3>A concierge team, day or night</h3><p>Your personal concierge, plus a 24/7 AI concierge assistant for instant answers.</p></div></li><li><div><h3>Excursions for less</h3><p>Booked by your concierge at least 15% below resort prices. Paid separately.</p></div></li><li><div><h3>Early check-in from 12pm</h3><p>Check in as early as 12pm, so your first afternoon starts at the pool.</p></div></li><li><div><h3>Welcome kit</h3><p>Waiting for you when you arrive.</p></div></li></ul><p class="excl"><b>Not included:</b> Flights, excursions, drinks and meals out, gratuities, travel insurance.</p></div>
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
@@ -300,7 +301,7 @@ html{scroll-behavior:smooth}
 
 <section style="padding-top:0"><div class="wrap">
   <div class="head"><span class="kicker">FAQ</span><h2>Good questions</h2></div>
-  <div class="faq"><details><summary>Can the chef handle dietary needs?</summary><p>Yes. Tell us about allergies and preferences when you book, and your chef will plan around them.</p></details><details><summary>Do we have to go out, or can we stay in?</summary><p>Completely up to you. Some groups never leave the pool. Excursions and nights out are optional.</p></details><details><summary>Can we bring kids?</summary><p>These trips are designed for adults. Ask our team about your group and we&#x27;ll let you know what works.</p></details><details><summary>Is this legit? How do I pay?</summary><p>You&#x27;ll talk with a real person on our team before you pay anything. To reserve, you pay a 50% deposit by card through our secure checkout and sign our terms. The balance is due 30 days before you arrive.</p></details><details><summary>What&#x27;s not included?</summary><p>Flights, excursions, drinks and meals out (including your free night), gratuities and travel insurance. We recommend every guest buys their own travel insurance.</p></details><details><summary>Who is my concierge?</summary><p>Your personal concierge handles your trip from booking to departure. Our AI concierge assistant is available 24/7 for quick answers, and anything it can&#x27;t handle goes straight to your personal concierge and our team in the DR.</p></details><details><summary>What if someone in the group cancels?</summary><p>Cancellations follow our published tiers, based on how many days before arrival you cancel. We walk you through them before you book. Date changes are possible for a rebooking fee, subject to availability.</p></details><details><summary>How far is the beach?</summary><p>Our villas are minutes from the beach, and your driver can take you there on scheduled outings.</p></details><details><summary>What about getting around safely?</summary><p>Your driver takes you to and from scheduled outings, security comes along, and your concierge always knows your plans. Your welcome kit includes local tips and emergency contacts.</p></details></div>
+  <div class="faq"><details><summary>Can the chef handle dietary needs?</summary><p>Yes. Tell us about allergies and preferences when you book, and your chef will plan around them.</p></details><details><summary>Do we have to go out, or can we stay in?</summary><p>Completely up to you. Some groups never leave the pool. Excursions and nights out are optional.</p></details><details><summary>Can we bring kids?</summary><p>These trips are designed for adults. Ask our team about your group and we&#x27;ll let you know what works.</p></details><details><summary>Is this legit? How do I pay?</summary><p>You&#x27;ll talk with a real person on our team before you pay anything. To reserve, you pay a 50% deposit by card through our secure checkout and sign our terms. The balance is due 30 days before you arrive.</p></details><details><summary>What&#x27;s not included?</summary><p>Flights, excursions, drinks and meals out (including your free night), gratuities and travel insurance. We recommend every guest buys their own travel insurance.</p></details><details><summary>Who is my concierge?</summary><p>Your personal concierge handles your trip from booking to departure. Our AI concierge assistant is available 24/7 for quick answers, and anything it can&#x27;t handle goes straight to your personal concierge and our team in the DR.</p></details><details><summary>What if someone in the group cancels?</summary><p>Cancellations follow our published tiers, based on how many days before arrival you cancel. We walk you through them before you book. Date changes are possible for a rebooking fee, subject to availability.</p></details><details><summary>How far is the beach?</summary><p>Our villas are minutes from the beach. On beach days your driver can bring all of your beach supplies, coolers included, and help you set up.</p></details><details><summary>What about getting around safely?</summary><p>Your driver takes you to and from scheduled outings, security comes along, and your concierge always knows your plans.</p></details></div>
 </div></section>
 
 <section class="formband" id="contact"><div class="wrap form-grid">
@@ -323,11 +324,9 @@ html{scroll-behavior:smooth}
     </div></fieldset>
   <div class="f"><label for="f-size">Group size <span class="req">*</span></label><select id="f-size" name="size" required><option value="">Choose…</option><option>2</option><option>3–4</option><option>5–6</option><option>7–8</option><option>Not sure yet</option></select></div>
   <div class="f"><label for="f-occ">What's the occasion? <span class="req">*</span></label><select id="f-occ" name="occasion" required><option value="">Choose…</option><option>Girls&#x27; trip</option><option>Moms&#x27; getaway</option><option>Birthday</option><option>Bachelorette</option><option>Reunion</option><option>Just because</option></select></div>
-  <div class="f"><label for="f-month">When are you thinking? <span class="req">*</span></label><input id="f-month" name="month" type="month" required></div>
+  <div class="f"><label for="f-date">Date of arrival <span class="req">*</span></label><input id="f-date" name="arrival" type="date" required></div>
   <div class="f"><label for="f-nights">How many nights?</label><select id="f-nights" name="nights"><option value="">Not sure</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
-  <div class="f"><label for="f-from">Flying from</label><select id="f-from" name="from"><option value="">Choose…</option><option>Philadelphia (PHL)</option><option>DC area (DCA / IAD / BWI)</option><option>Atlanta (ATL)</option><option>New Jersey (EWR)</option><option>New York (JFK / LGA)</option><option>Other</option></select></div>
-  <div class="f"><label for="f-time">Best time to reach you</label><select id="f-time" name="time"><option value="">Any time</option><option>Morning (ET)</option><option>Afternoon (ET)</option><option>Evening (ET)</option></select></div>
-  <div class="f full"><label class="check"><input type="checkbox" id="f-flex" name="flexible"><span>Our dates are flexible</span></label></div>
+  <div class="f"><label class="check" style="align-self:end;padding-bottom:12px"><input type="checkbox" id="f-flex" name="flexible"><span>Our dates are flexible</span></label></div>
   <div class="f full"><label for="f-notes">Anything we should know?</label><textarea id="f-notes" name="notes" placeholder="Birthdays, dietary needs, excursions you're curious about…"></textarea></div>
   <div class="f full"><label for="f-heard">How did you hear about us?</label><select id="f-heard" name="heard"><option value="">Choose…</option><option>Instagram</option><option>Facebook</option><option>A friend</option><option>Google</option><option>Other</option></select></div>
   <div class="f full"><label class="check"><input type="checkbox" id="f-sms" name="sms"><span>I agree to receive text messages from DR Experiences about my trip inquiry. Message and data rates may apply. Reply STOP to opt out. Consent isn't required to get a quote.</span></label></div>
@@ -359,6 +358,8 @@ html{scroll-behavior:smooth}
     document.getElementById('t-method').textContent=m?m.value.toLowerCase():'your preferred method';
     form.hidden=true;thanks.hidden=false;thanks.focus();
   });
+  var bar=document.querySelector('.mbar'),contact=document.getElementById('contact');
+  if(bar&&contact&&'IntersectionObserver' in window){new IntersectionObserver(function(es){bar.hidden=es[0].isIntersecting;}).observe(contact);}
   document.querySelectorAll('[data-occ]').forEach(function(t){
     t.addEventListener('click',function(){
       document.getElementById('f-occ').value=t.getAttribute('data-occ');

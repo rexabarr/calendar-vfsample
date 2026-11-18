@@ -89,12 +89,10 @@ Rules:
 | Email | email | ✓ | |
 | Mobile phone | tel | ✓ | |
 | Best way to reach you | Call / Text / Email / WhatsApp | ✓ | |
-| Best time to reach you | Morning / Afternoon / Evening (ET) | | |
 | Group size | 2 / 3–4 / 5–6 / 7–8 / Not sure | ✓ | |
 | What's the occasion? | Page-specific dropdown (see each page) | ✓ | |
-| When are you thinking? | Month picker + "dates are flexible" checkbox | ✓ | |
+| Date of arrival | Date picker + "dates are flexible" checkbox | ✓ | |
 | How many nights? | 3 / 4 / 5 / 6 / Not sure | | |
-| Where are you flying from? | PHL / DC area / ATL / NJ / NYC / Other | | Helps sales mention nonstop flights |
 | Anything we should know? | textarea | | |
 | How did you hear about us? | IG / FB / Friend / Google / Other | | |
 | ☐ Text consent | checkbox, **unchecked by default** | | "I agree to receive texts from DR Experiences about my trip. Msg & data rates may apply. Reply STOP to opt out." (TCPA) |

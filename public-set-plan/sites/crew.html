@@ -1,6 +1,6 @@
 <title>DR Experiences Crew Trips</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Your crew, a private villa with a pool, a chef, a driver and a concierge on call. One price, split by the group. From $1,320/person.">
+<meta name="description" content="Your crew, a private villa with a pool, a chef, a driver and a concierge on call. One price, split by the group. From $1,510/person.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap">
 <style>
@@ -152,7 +152,7 @@ h2{font-size:clamp(2.4rem,6vw,4.4rem);line-height:.95;text-transform:uppercase}
 @media (max-width:720px){.vs{grid-template-columns:1fr;gap:0}.vs-badge{position:relative;left:auto;top:auto;transform:none;justify-self:center;margin:-26px 0 -26px;width:70px;height:70px;font-size:1.5rem}}
 /* tickets */
 .tickets{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.ticket{--cut:calc(100% - 140px);display:grid;grid-template-columns:1fr 140px;background:var(--white);color:var(--ink);
+.ticket{--stub:140px;--cut:calc(100% - var(--stub));display:grid;grid-template-columns:minmax(0,1fr) var(--stub);background:var(--white);color:var(--ink);
   -webkit-mask:radial-gradient(circle 14px at var(--cut) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 14px at var(--cut) 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
   mask:radial-gradient(circle 14px at var(--cut) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 14px at var(--cut) 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
 .ticket .main{padding:24px;display:grid;gap:8px}
@@ -164,6 +164,7 @@ h2{font-size:clamp(2.4rem,6vw,4.4rem);line-height:.95;text-transform:uppercase}
 .ticket.alt .stub{background:var(--navy)}
 .price-foot{margin-top:24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;color:#3D5170;font-size:.95rem}
 @media (max-width:760px){.tickets{grid-template-columns:1fr}}
+@media (max-width:480px){.ticket{--stub:92px}.ticket .main{padding:20px 16px}.ticket .amt{font-size:2.7rem}.ticket .stub{font-size:1.05rem}}
 /* form */
 .form-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:56px}
 .form-side{display:grid;gap:16px;align-content:start}
@@ -255,7 +256,7 @@ html{scroll-behavior:smooth}
     <span class="kicker">Private villa guys trips · Dominican Republic</span>
     <h1>The trip your group chat keeps talking about. Done.</h1>
     <p class="sub">Private villa. Private chef. A driver and a concierge on call. You just show up.</p>
-    <div class="price-chip"><b>$1,320</b><span>per person · crew of 8, 3 nights</span></div>
+    <div class="price-chip"><b>$1,510</b><span>per person · crew of 4, 3 nights</span></div>
     <div class="cta-row"><a class="btn" href="#contact">Check our dates & price</a><a class="textlink" href="#lineup">See what's included</a></div>
     <p class="micro">Takes about a minute. No payment needed to check.</p>
   </div>
@@ -329,8 +330,8 @@ html{scroll-behavior:smooth}
 <section class="light" id="pricing" style="padding-top:0"><div class="wrap">
   <div class="head"><span class="kicker">Pricing</span><h2>One price, split by the crew</h2><p>Here's where groups start. Our team sends an exact quote for your dates.</p></div>
   <div class="tickets">
-    <div class="ticket"><div class="main"><span class="lbl">Crew of 8 · 3 nights</span><span class="amt">$1,320<small>/person</small></span><span class="fine">Based on 8 guests sharing a 4-bedroom villa. Flights, excursions, drinks and meals out, and gratuities not included. Your exact price depends on dates, group size and villa.</span></div><div class="stub">Admit<br>8</div></div>
-    <div class="ticket alt"><div class="main"><span class="lbl">Crew of 4 · 4 nights</span><span class="amt">$1,880<small>/person</small></span><span class="fine">Based on 4 guests sharing a 2-bedroom villa. Flights, excursions, drinks and meals out, and gratuities not included. Your exact price depends on dates, group size and villa.</span></div><div class="stub">Admit<br>4</div></div>
+    <div class="ticket"><div class="main"><span class="lbl">Crew of 4 · 3 nights</span><span class="amt">$1,510<small>/person</small></span><span class="fine">Based on 4 guests sharing a 2-bedroom villa. Flights, excursions, drinks and meals out, and gratuities not included. Your exact price depends on dates, group size and villa.</span></div><div class="stub">Admit<br>4</div></div>
+    <div class="ticket alt"><div class="main"><span class="lbl">Crew of 3 · 4 nights</span><span class="amt">$2,390<small>/person</small></span><span class="fine">Based on 3 guests sharing a 2-bedroom villa. Flights, excursions, drinks and meals out, and gratuities not included. Your exact price depends on dates, group size and villa.</span></div><div class="stub">Admit<br>3</div></div>
   </div>
   <div class="price-foot"><a class="btn" href="#contact">Check our dates & price</a><span>No payment needed to check. When you're ready, a 50% deposit holds your dates and the balance is due 30 days before arrival.</span></div>
 </div></section>
@@ -366,7 +367,7 @@ html{scroll-behavior:smooth}
   <div class="f"><label for="f-size">Group size <span class="req">*</span></label><select id="f-size" name="size" required><option value="">Choose…</option><option>2</option><option>3–4</option><option>5–6</option><option>7–8</option><option>Not sure yet</option></select></div>
   <div class="f"><label for="f-occ">What's the occasion? <span class="req">*</span></label><select id="f-occ" name="occasion" required><option value="">Choose…</option><option>Guys trip</option><option>Birthday</option><option>Bachelor party</option><option>Reunion</option><option>Golf or fishing trip</option><option>Just because</option></select></div>
   <div class="f"><label for="f-date">Date of arrival <span class="req">*</span></label><input id="f-date" name="arrival" type="date" required></div>
-  <div class="f"><label for="f-nights">How many nights?</label><select id="f-nights" name="nights"><option value="">Not sure</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+  <div class="f"><label for="f-nights">How many nights?</label><select id="f-nights" name="nights"><option value="">Not sure</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9+</option></select></div>
   <div class="f"><label class="check" style="align-self:end;padding-bottom:12px"><input type="checkbox" id="f-flex" name="flexible"><span>Our dates are flexible</span></label></div>
   <div class="f full"><label for="f-notes">Anything we should know?</label><textarea id="f-notes" name="notes" placeholder="Birthdays, dietary needs, excursions you're curious about…"></textarea></div>
   <div class="f full"><label for="f-heard">How did you hear about us?</label><select id="f-heard" name="heard"><option value="">Choose…</option><option>Instagram</option><option>Facebook</option><option>A friend</option><option>Google</option><option>Other</option></select></div>

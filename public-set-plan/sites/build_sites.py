@@ -60,7 +60,7 @@ def form_html(p):
   <div class="f"><label for="f-size">Group size <span class="req">*</span></label><select id="f-size" name="size" required><option value="">Choose…</option><option>2</option><option>3–4</option><option>5–6</option><option>7–8</option><option>Not sure yet</option></select></div>
   <div class="f"><label for="f-occ">What's the occasion? <span class="req">*</span></label><select id="f-occ" name="occasion" required><option value="">Choose…</option>{occ}</select></div>
   <div class="f"><label for="f-date">Date of arrival <span class="req">*</span></label><input id="f-date" name="arrival" type="date" required></div>
-  <div class="f"><label for="f-nights">How many nights?</label><select id="f-nights" name="nights"><option value="">Not sure</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+  <div class="f"><label for="f-nights">How many nights?</label><select id="f-nights" name="nights"><option value="">Not sure</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9+</option></select></div>
   <div class="f"><label class="check" style="align-self:end;padding-bottom:12px"><input type="checkbox" id="f-flex" name="flexible"><span>Our dates are flexible</span></label></div>
   <div class="f full"><label for="f-notes">Anything we should know?</label><textarea id="f-notes" name="notes" placeholder="Birthdays, dietary needs, excursions you're curious about…"></textarea></div>
   <div class="f full"><label for="f-heard">How did you hear about us?</label><select id="f-heard" name="heard"><option value="">Choose…</option><option>Instagram</option><option>Facebook</option><option>A friend</option><option>Google</option><option>Other</option></select></div>
@@ -363,7 +363,7 @@ h2{font-size:clamp(2.4rem,6vw,4.4rem);line-height:.95;text-transform:uppercase}
 @media (max-width:720px){.vs{grid-template-columns:1fr;gap:0}.vs-badge{position:relative;left:auto;top:auto;transform:none;justify-self:center;margin:-26px 0 -26px;width:70px;height:70px;font-size:1.5rem}}
 /* tickets */
 .tickets{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.ticket{--cut:calc(100% - 140px);display:grid;grid-template-columns:1fr 140px;background:var(--white);color:var(--ink);
+.ticket{--stub:140px;--cut:calc(100% - var(--stub));display:grid;grid-template-columns:minmax(0,1fr) var(--stub);background:var(--white);color:var(--ink);
   -webkit-mask:radial-gradient(circle 14px at var(--cut) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 14px at var(--cut) 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
   mask:radial-gradient(circle 14px at var(--cut) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 14px at var(--cut) 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
 .ticket .main{padding:24px;display:grid;gap:8px}
@@ -375,6 +375,7 @@ h2{font-size:clamp(2.4rem,6vw,4.4rem);line-height:.95;text-transform:uppercase}
 .ticket.alt .stub{background:var(--navy)}
 .price-foot{margin-top:24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;color:#3D5170;font-size:.95rem}
 @media (max-width:760px){.tickets{grid-template-columns:1fr}}
+@media (max-width:480px){.ticket{--stub:92px}.ticket .main{padding:20px 16px}.ticket .amt{font-size:2.7rem}.ticket .stub{font-size:1.05rem}}
 /* form */
 .form-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:56px}
 .form-side{display:grid;gap:16px;align-content:start}
@@ -427,7 +428,7 @@ def crew():
     <span class="kicker">Private villa guys trips · Dominican Republic</span>
     <h1>The trip your group chat keeps talking about. Done.</h1>
     <p class="sub">Private villa. Private chef. A driver and a concierge on call. You just show up.</p>
-    <div class="price-chip"><b>$1,320</b><span>per person · crew of 8, 3 nights</span></div>
+    <div class="price-chip"><b>$1,510</b><span>per person · crew of 4, 3 nights</span></div>
     <div class="cta-row"><a class="btn" href="#contact">{p['cta']}</a><a class="textlink" href="#lineup">See what's included</a></div>
     <p class="micro">Takes about a minute. No payment needed to check.</p>
   </div>
@@ -501,8 +502,8 @@ def crew():
 <section class="light" id="pricing" style="padding-top:0"><div class="wrap">
   <div class="head"><span class="kicker">Pricing</span><h2>One price, split by the crew</h2><p>Here's where groups start. Our team sends an exact quote for your dates.</p></div>
   <div class="tickets">
-    <div class="ticket"><div class="main"><span class="lbl">Crew of 8 · 3 nights</span><span class="amt">$1,320<small>/person</small></span><span class="fine">Based on 8 guests sharing a 4-bedroom villa. {FINE}</span></div><div class="stub">Admit<br>8</div></div>
-    <div class="ticket alt"><div class="main"><span class="lbl">Crew of 4 · 4 nights</span><span class="amt">$1,880<small>/person</small></span><span class="fine">Based on 4 guests sharing a 2-bedroom villa. {FINE}</span></div><div class="stub">Admit<br>4</div></div>
+    <div class="ticket"><div class="main"><span class="lbl">Crew of 4 · 3 nights</span><span class="amt">$1,510<small>/person</small></span><span class="fine">Based on 4 guests sharing a 2-bedroom villa. {FINE}</span></div><div class="stub">Admit<br>4</div></div>
+    <div class="ticket alt"><div class="main"><span class="lbl">Crew of 3 · 4 nights</span><span class="amt">$2,390<small>/person</small></span><span class="fine">Based on 3 guests sharing a 2-bedroom villa. {FINE}</span></div><div class="stub">Admit<br>3</div></div>
   </div>
   <div class="price-foot"><a class="btn" href="#contact">{p['cta']}</a><span>No payment needed to check. When you're ready, a 50% deposit holds your dates and the balance is due 30 days before arrival.</span></div>
 </div></section>
@@ -529,7 +530,7 @@ def crew():
 <span>DR Experiences · Private villa group trips to the Dominican Republic. Prices are per person and depend on group size, dates and villa.</span></div></footer>"""
     body += LINEUP_JS
     PAGE_CTA["DR Experiences Crew Trips"] = p["cta"]
-    return doc("DR Experiences Crew Trips", "Your crew, a private villa with a pool, a chef, a driver and a concierge on call. One price, split by the group. From $1,320/person.",
+    return doc("DR Experiences Crew Trips", "Your crew, a private villa with a pool, a chef, a driver and a concierge on call. One price, split by the group. From $1,510/person.",
                "family=Anton&family=Barlow:wght@400;500;600;700", CREW_CSS, body)
 
 
@@ -770,7 +771,7 @@ def getaway():
   <div class="head"><span class="kicker">Pricing</span><h2>One price, split <em>your</em> way.</h2><p>Here's where groups start. Our team sends an exact quote for your dates.</p></div>
   <div class="price">
     <div class="pcard main"><span class="lbl">4 friends · 3 nights</span><span class="amt">$1,510<small>/person</small></span><span class="fine">Based on 4 guests sharing a 2-bedroom villa. {FINE}</span></div>
-    <div class="pcard"><span class="lbl">4 friends · 4 nights</span><span class="amt">$1,880<small>/person</small></span><span class="fine">Based on 4 guests sharing a 2-bedroom villa. {FINE}</span></div>
+    <div class="pcard"><span class="lbl">3 friends · 4 nights</span><span class="amt">$2,390<small>/person</small></span><span class="fine">Based on 3 guests sharing a 2-bedroom villa. {FINE}</span></div>
   </div>
   <div class="price-foot"><a class="btn" href="#contact">{p['cta']}</a><span>50% deposit to reserve. Balance due 30 days before arrival.</span></div>
 </div></section>
@@ -968,9 +969,9 @@ def celebrate():
     <span class="kicker">You're invited · Birthday & celebration trips · Dominican Republic</span>
     <h1>Some birthdays deserve <em>a villa</em>.</h1>
     <p class="sub">Bring your people. We'll bring the chef, the driver, the concierge and the plan.</p>
-    <div class="row"><a class="btn" href="#contact">{p['cta']}</a><span class="from">Groups of 8 from <b>$1,320</b> per person</span></div>
+    <div class="row"><a class="btn" href="#contact">{p['cta']}</a><span class="from">Groups of 4 from <b>$1,510</b> per person</span></div>
   </div>
-  <div class="wrap frame">{ph("CE-01", "REAL", "Video loop: group of 6–8 toasting at the villa pool at sunset", "21/9")}</div>
+  <div class="wrap frame">{ph("CE-01", "REAL", "Video loop: group of 4 toasting at the villa pool at sunset", "21/9")}</div>
 </section>
 
 <section><div class="wrap">
@@ -986,7 +987,7 @@ def celebrate():
     <p class="close">That's DR Experiences. Celebrate like the top 0.1%.</p>
   </div>
   <div class="phone" role="img" aria-label="Example text conversation with the concierge"><span class="meta">Concierge · SH-07 phone mockup</span>
-    <div class="bub me">Birthday dinner tonight, then VIP table for 8 after? 🎉</div>
+    <div class="bub me">Birthday dinner tonight, then a VIP table for the 4 of us? 🎉</div>
     <div class="bub them">Done. Cake is with the chef for 8pm. Table's booked for 10:30 and your driver will be outside.</div>
     <span class="meta">Example conversation</span></div>
 </div></section>
@@ -1029,19 +1030,20 @@ def celebrate():
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
-  <div class="head"><span class="kicker">Bigger group, better price</span><h2>More of you, <em>less each</em>.</h2><p>Price per person for a 4-night trip.</p></div>
+  <div class="head"><span class="kicker">Stay longer, pay less per night</span><h2>More nights, <em>less each</em>.</h2><p>Price per person, per night, for a group of 4.</p></div>
   <div class="bars">
-    <div class="bar"><b>4 guests</b><div class="track"><div class="fill" style="width:100%">$1,880</div></div></div>
-    <div class="bar"><b>6 guests</b><div class="track"><div class="fill" style="width:91.5%">$1,720</div></div></div>
-    <div class="bar"><b>8 guests</b><div class="track"><div class="fill" style="width:87.5%">$1,645</div></div></div>
+    <div class="bar"><b>3 nights</b><div class="track"><div class="fill" style="width:100%">$503</div></div></div>
+    <div class="bar"><b>4 nights</b><div class="track"><div class="fill" style="width:93.4%">$470</div></div></div>
+    <div class="bar"><b>5 nights</b><div class="track"><div class="fill" style="width:89.5%">$450</div></div></div>
+    <div class="bar"><b>6 nights</b><div class="track"><div class="fill" style="width:86.7%">$436</div></div></div>
   </div>
 </div></section>
 
 <section id="pricing" style="padding-top:0"><div class="wrap">
   <div class="head" style="margin-inline:auto;text-align:center;justify-items:center"><span class="kicker">Pricing</span><h2>One price for the whole <em>party</em>.</h2><p>Here's where groups start. Our team sends an exact quote for your dates.</p></div>
   <div class="price">
-    <div class="pcard"><span class="lbl">8 guests · 3 nights</span><span class="amt">$1,320<small>/person</small></span><span class="fine">Based on 8 guests sharing a 4-bedroom villa. {FINE}</span></div>
-    <div class="pcard"><span class="lbl">6 guests · 4 nights</span><span class="amt">$1,720<small>/person</small></span><span class="fine">Based on 6 guests sharing a 3-bedroom villa. {FINE}</span></div>
+    <div class="pcard"><span class="lbl">4 guests · 3 nights</span><span class="amt">$1,510<small>/person</small></span><span class="fine">Based on 4 guests sharing a 2-bedroom villa. {FINE}</span></div>
+    <div class="pcard"><span class="lbl">3 guests · 4 nights</span><span class="amt">$2,390<small>/person</small></span><span class="fine">Based on 3 guests sharing a 2-bedroom villa. {FINE}</span></div>
   </div>
   <div class="price-foot"><a class="btn" href="#contact">{p['cta']}</a><span>50% deposit to reserve. Balance due 30 days before arrival.</span></div>
 </div></section>
@@ -1067,7 +1069,7 @@ def celebrate():
 <div class="links"><span>Terms</span><span>Privacy</span><span>Guest conduct policy</span><span>[EMAIL]</span><span>[PHONE]</span><span>[BUSINESS ADDRESS]</span><span>@[HANDLE]</span></div>
 <span>DR Experiences · Private villa group trips to the Dominican Republic. Prices are per person and depend on group size, dates and villa.</span></div></footer>"""
     PAGE_CTA["DR Experiences Celebrations"] = p["cta"]
-    return doc("DR Experiences Celebrations", "Turn 40, 50 or a new chapter into a private villa trip with your people. Chef, driver, concierge, VIP nights. From $1,320/person.",
+    return doc("DR Experiences Celebrations", "Turn 40, 50 or a new chapter into a private villa trip with your people. Chef, driver, concierge, VIP nights. From $1,510/person.",
                "family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Manrope:wght@400;500;600;700;800", CE_CSS, body)
 
 

@@ -2,285 +2,274 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Turn 40, 50 or a new chapter into a private villa trip with your people. Chef, driver, concierge, VIP nights. From $1,320/person.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
-/* Layout: one long scroll; photo-led hero, alternating plain and banded sections, form at the end. Accent changes per audience. */
-
+/* Layout: black-tie invitation. Outlined gold numerals behind the hero, restrained confetti, place-card occasions, a menu of inclusions, an order-of-the-evening programme, RSVP form card. Single dark look. */
 :root{
-  --bg:#F4F8F7; --surface:#FFFFFF; --ink:#0F1F1D; --muted:#4A5F5B; --line:#D3DFDB;
-  --sea:#0E5C57; --sea-soft:#DCEDEA; --sun:#E9A13B; --on-photo:#FFFFFF; --scrim:rgba(6,22,20,.62);
-  --ph-a:#9FD3CB; --ph-b:#F3C98B; --ph-c:#5FA9A0;
-  --font-display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
-  --font-body:"Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-  --radius:14px;
+  --bg:#0E0C09; --panel:#17140E; --gold:#D9B76E; --gold-soft:rgba(217,183,110,.12); --ivory:#F4ECDC; --muted:#BFB29A; --rose:#E9A7B0; --sky:#8FB0FF;
+  --fg:var(--ivory); --line:rgba(217,183,110,.32); --card:var(--panel); --bar-bg:#0E0C09;
+  --primary:var(--gold); --primary-ink:#1A1408; --primary-text:var(--gold); --focus:#F7DFA4; --error:#FF9C8F;
+  --field-bg:#0E0C09; --field-fg:var(--ivory); --field-line:rgba(217,183,110,.4); --field-radius:2px; --btn-radius:2px; --card-radius:4px;
+  --ph-bg:linear-gradient(160deg,#3A2F1B,#1B1710 55%,#2A1F25); --ph-pattern:radial-gradient(circle at 20% 20%,rgba(217,183,110,.25) 0 2px,transparent 3px) 0 0/26px 26px;
+  --cap-bg:rgba(14,12,9,.9); --cap-fg:var(--ivory); --cap-accent:var(--gold);
+  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif; --body:"Manrope",system-ui,sans-serif;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0B1514; --surface:#12201E; --ink:#E6F0EE; --muted:#9BB1AC; --line:#22403B;
-  --sea:#56C2B6; --sea-soft:#163330; --sun:#F0B55E; --scrim:rgba(4,12,11,.66);
-  --ph-a:#1F5B54; --ph-b:#7A5B2E; --ph-c:#2D7A70; color-scheme:dark;}}
-:root[data-theme="dark"]{
-  --bg:#0B1514; --surface:#12201E; --ink:#E6F0EE; --muted:#9BB1AC; --line:#22403B;
-  --sea:#56C2B6; --sea-soft:#163330; --sun:#F0B55E; --scrim:rgba(4,12,11,.66);
-  --ph-a:#1F5B54; --ph-b:#7A5B2E; --ph-c:#2D7A70; color-scheme:dark;}
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
-.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--font-display);line-height:1.08;text-wrap:balance;margin:0;letter-spacing:-.015em}
-h1{font-size:clamp(2.3rem,6vw,4.2rem);font-weight:800}
-h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:750}
-h3{font-size:1.2rem;font-weight:700}
-p{margin:0}
-a{color:var(--sea)}
-.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--accent)}
-section{padding-block:72px}
-.sec-head{display:grid;gap:12px;max-width:62ch;margin-bottom:36px}
-.sec-head p{color:var(--muted)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:var(--accent-ink);font-weight:700;
-  border:0;border-radius:999px;padding:14px 26px;font-size:1rem;text-decoration:none;cursor:pointer;font-family:var(--font-body)}
-.btn:hover{filter:brightness(1.08)}
-.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.tile:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
-.preview-bar{background:var(--sun);color:#1B1203;font-size:.85rem;text-align:center}
-.preview-bar .wrap{padding-block:7px}
-/* top bar */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
-.logo{font-family:var(--font-display);font-weight:800;font-size:1.25rem;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
-.logo span{color:var(--sea)}
-.top nav{display:flex;align-items:center;gap:20px}
-.top nav a.plain{color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem}
-.top .btn{padding:10px 18px;font-size:.92rem}
-@media (max-width:620px){.top nav a.plain{display:none}}
-/* placeholders */
-.ph{position:relative;margin:0;border-radius:var(--radius);overflow:hidden;max-width:100%;
-  background:linear-gradient(170deg,var(--ph-b) 0%,var(--ph-a) 55%,var(--ph-c) 100%)}
-.ph-art{position:absolute;inset:0;background:
-  radial-gradient(circle at 78% 30%,rgba(255,255,255,.55) 0 7%,transparent 7.5%),
-  repeating-linear-gradient(0deg,rgba(255,255,255,.12) 0 2px,transparent 2px 14px);
-  -webkit-mask:linear-gradient(to bottom,#000 0 62%,transparent 62%);mask:linear-gradient(to bottom,#000 0 62%,transparent 62%)}
-.ph::after{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;
-  background:repeating-linear-gradient(170deg,rgba(255,255,255,.18) 0 3px,transparent 3px 18px)}
-.ph-real{outline:2px dashed var(--ink);outline-offset:-8px}
-.ph figcaption{position:absolute;left:10px;right:10px;bottom:10px;z-index:1;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
-  background:var(--surface);color:var(--ink);border-radius:10px;padding:8px 10px;font-size:.76rem;line-height:1.35}
-.ph-id{font-weight:800;font-family:ui-monospace,Menlo,monospace}
-.ph-type{background:var(--sea-soft);color:var(--sea);border-radius:999px;padding:1px 8px;font-weight:700}
-.ph-real .ph-type{background:var(--accent);color:var(--accent-ink)}
-.ph-desc{flex-basis:100%;color:var(--muted)}
+.logo{font-family:var(--display);font-size:1.4rem;text-decoration:none;letter-spacing:.04em}
+.logo i{color:var(--gold)}
+h2{font-size:clamp(2.3rem,5vw,3.8rem);line-height:1.02;font-weight:500}
+h2 em,h1 em{color:var(--gold)}
+.kicker{font-size:.76rem;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+.head{display:grid;gap:14px;margin-bottom:44px;max-width:680px}
+.head p{color:var(--muted);font-size:1.08rem}
+.rule{display:flex;align-items:center;gap:14px;color:var(--gold)}
+.rule::before,.rule::after{content:"";height:1px;background:var(--line);flex:1}
 /* hero */
-.hero{padding-block:24px 0}
-.hero-frame{position:relative;border-radius:22px;overflow:hidden;min-height:560px;display:grid;align-items:end}
-.hero-frame .ph{position:absolute;inset:0;border-radius:0;aspect-ratio:auto !important}
-.hero-frame .ph figcaption{top:14px;bottom:auto;left:14px;right:auto;max-width:330px}
-.hero-copy{position:relative;z-index:2;padding:40px clamp(20px,4vw,48px);display:grid;gap:18px;color:var(--on-photo);
-  background:linear-gradient(to top,var(--scrim),transparent);width:100%}
-.hero-copy>*{max-width:760px}
-.hero-copy .eyebrow{color:var(--on-photo);opacity:.9}
-.hero-copy p.sub{font-size:1.18rem;max-width:52ch}
-.hero-price{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-.hero-price .from{font-weight:700;font-size:1.05rem}
-.hero-price .from b{font-family:var(--font-display);font-size:1.5rem}
-/* story */
-.story{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
-.story-text{display:grid;gap:18px;font-size:1.13rem;max-width:62ch}
-.story-text p:first-child::first-letter{font-family:var(--font-display);font-size:3.4em;float:left;line-height:.9;padding-right:8px;color:var(--accent)}
-.story-text .close{font-family:var(--font-display);font-size:1.45rem;font-weight:700;line-height:1.25}
-.chat{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:18px;display:grid;gap:10px;max-width:360px;justify-self:center;width:100%}
-.chat .meta{font-size:.75rem;color:var(--muted);text-align:center}
-.bubble{padding:10px 14px;border-radius:18px;max-width:85%;font-size:.95rem;line-height:1.4}
-.bubble.me{background:var(--sea);color:var(--bg);justify-self:end;border-bottom-right-radius:4px}
-.bubble.them{background:var(--sea-soft);color:var(--ink);border-bottom-left-radius:4px}
-.chat .tag{font-size:.7rem;color:var(--muted)}
-@media (max-width:820px){.story{grid-template-columns:1fr}}
-/* included */
-.band{background:var(--surface);border-block:1px solid var(--line)}
-.incl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 36px}
-.incl div{display:grid;gap:6px;padding-top:16px;border-top:2px solid var(--accent)}
-.incl p{color:var(--muted)}
-.excl{margin-top:30px;font-size:.95rem;color:var(--muted)}
-.excl b{color:var(--ink)}
-@media (max-width:820px){.incl{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:520px){.incl{grid-template-columns:1fr}}
+.hero{position:relative;overflow:hidden;padding-block:72px 40px;text-align:center}
+.nums{position:absolute;inset:0;display:flex;justify-content:center;align-items:flex-start;gap:4vw;padding-top:24px;pointer-events:none;
+  font-family:var(--display);font-weight:700;font-size:clamp(8rem,24vw,21rem);line-height:.9;color:transparent;-webkit-text-stroke:1.5px rgba(217,183,110,.2)}
+.confetti i{position:absolute;width:10px;height:18px;border-radius:2px;opacity:.85;animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px) rotate(var(--rot2))}}
+.hero .wrap{position:relative;z-index:1;display:grid;gap:22px;justify-items:center}
+.hero h1{font-size:clamp(3rem,8vw,6.4rem);line-height:.95;font-weight:500;max-width:14ch}
+.hero h1 em{font-style:italic}
+.hero p.sub{font-size:1.18rem;color:var(--muted);max-width:46ch}
+.hero .row{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:center}
+.from{color:var(--muted)}.from b{font-family:var(--display);color:var(--ivory);font-size:1.6rem;font-weight:500}
+.hero .wrap.frame{display:block;margin-top:46px;position:relative;z-index:1}
+.frame .ph{width:100%}
+.frame .ph{outline:1px solid var(--gold);outline-offset:10px;border-radius:2px}
+/* occasions */
+.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.place{all:unset;cursor:pointer;display:grid;gap:12px;background:var(--panel);border:1px solid var(--line);padding:12px 12px 18px;text-align:center;transition:transform .2s ease,border-color .2s}
+.place:hover{transform:translateY(-4px);border-color:var(--gold)}
+.place:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.place b{font-family:var(--display);font-weight:500;font-style:italic;font-size:1.3rem}
+.place small{color:var(--gold);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* letter */
+.letter{display:grid;grid-template-columns:1.3fr .7fr;gap:56px;align-items:center}
+.letter .copy{display:grid;gap:18px;font-size:1.14rem;max-width:62ch;border-left:1px solid var(--gold);padding-left:28px}
+.letter .close{font-family:var(--display);font-style:italic;font-size:1.8rem;color:var(--gold);line-height:1.2}
+.phone{justify-self:center;width:100%;max-width:320px;background:var(--panel);border:1px solid var(--line);border-radius:36px;padding:20px 14px;display:grid;gap:10px}
+.phone .meta{font-size:.72rem;color:var(--muted);text-align:center}
+.bub{padding:10px 14px;border-radius:18px;font-size:.95rem;line-height:1.4;max-width:86%}
+.bub.me{background:var(--gold);color:#1A1408;justify-self:end;border-bottom-right-radius:4px}
+.bub.them{background:#2A251B;border-bottom-left-radius:4px}
+@media (max-width:820px){.letter{grid-template-columns:1fr}}
+/* menu */
+.menu{max-width:820px;margin-inline:auto;border:1px solid var(--line);outline:1px solid var(--line);outline-offset:8px;padding:clamp(24px,5vw,56px);background:var(--panel);display:grid;gap:22px}
+.menu .title{text-align:center;display:grid;gap:10px}
+.menu .item{display:grid;gap:4px}
+.menu .line{display:flex;align-items:baseline;gap:10px}
+.menu .line h3{font-size:1.45rem;font-weight:500}
+.menu .line .dots{flex:1;border-bottom:1px dotted var(--gold);transform:translateY(-6px)}
+.menu .line span{color:var(--gold);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;white-space:nowrap}
+.menu .item p{color:var(--muted);font-size:.95rem;max-width:56ch}
+.menu .excl{text-align:center;color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padding-top:18px}
+@media (max-width:520px){.menu .line{flex-wrap:wrap}.menu .line .dots{display:none}}
 /* steps */
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;counter-reset:s}
-.steps li{list-style:none;display:grid;gap:8px;counter-increment:s}
-.steps li::before{content:counter(s);font-family:var(--font-display);font-weight:800;font-size:2.6rem;color:var(--accent);line-height:1}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none;counter-reset:s;border-block:1px solid var(--line)}
+.steps li{padding:28px;display:grid;gap:10px;counter-increment:s;border-left:1px solid var(--line)}
+.steps li:first-child{border-left:0}
+.steps li::before{content:counter(s,upper-roman);font-family:var(--display);font-style:italic;font-size:2rem;color:var(--gold)}
+.steps h3{font-size:1.45rem;font-weight:500}
 .steps p{color:var(--muted)}
-.steps{padding:0;margin:0}
-@media (max-width:720px){.steps{grid-template-columns:1fr}}
+@media (max-width:760px){.steps{grid-template-columns:1fr}.steps li{border-left:0;border-top:1px solid var(--line)}.steps li:first-child{border-top:0}}
 /* team */
-.team{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
-.team article{display:grid;gap:10px;align-content:start}
-.team .role{font-weight:700}
-.team p{color:var(--muted);font-size:.93rem}
-@media (max-width:980px){.team{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.team{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;text-align:center}
+.team article{display:grid;gap:10px;justify-items:center;align-content:start}
+.team .ph{border-radius:50% / 42%;outline:1px solid var(--gold);outline-offset:6px;width:100%}
+.team .ph figcaption{left:12%;right:12%;bottom:12%;font-size:.62rem}
+.team b{font-family:var(--display);font-weight:500;font-size:1.25rem;margin-top:8px}
+.team p{color:var(--muted);font-size:.92rem}
+@media (max-width:1000px){.team{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:620px){.team{grid-template-columns:repeat(2,minmax(0,1fr))}}
-/* day */
-.day{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.day article{display:grid;gap:10px;align-content:start}
-.day .when{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--accent)}
-.day p{color:var(--muted);font-size:.95rem}
-@media (max-width:900px){.day{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:480px){.day{grid-template-columns:1fr}}
+/* programme */
+.prog{display:grid;gap:0;border-top:1px solid var(--line)}
+.prog article{display:grid;grid-template-columns:140px 1fr 260px;gap:28px;align-items:center;padding-block:24px;border-bottom:1px solid var(--line)}
+.prog .when{font-family:var(--display);font-style:italic;font-size:2rem;color:var(--gold);line-height:1}
+.prog h3{font-size:1.6rem;font-weight:500;margin-bottom:6px}
+.prog p{color:var(--muted)}
+@media (max-width:820px){.prog article{grid-template-columns:1fr;gap:12px}}
 /* excursions */
 .exc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.exc article{display:grid;gap:8px}
-.exc h3{font-size:1.02rem}
+.exc article{display:grid;gap:10px}
+.exc h3{font-size:1.25rem;font-weight:500;font-style:italic}
 @media (max-width:820px){.exc{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.note{margin-top:22px;color:var(--muted);font-size:.95rem}
 /* compare */
 .cmp-wrap{overflow-x:auto}
-.cmp{width:100%;border-collapse:collapse;min-width:520px;font-size:.98rem}
-.cmp th,.cmp td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-.cmp thead th{font-family:var(--font-display);font-size:1.1rem}
-.cmp td:first-child{font-weight:700;width:24%}
-.cmp td:last-child{background:var(--sea-soft)}
-.cmp thead th:last-child{background:var(--sea-soft);color:var(--sea)}
+.cmp{width:100%;border-collapse:collapse;min-width:520px}
+.cmp th,.cmp td{padding:16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp thead th{font-family:var(--display);font-weight:500;font-size:1.25rem}
+.cmp thead th:last-child{color:var(--gold)}
+.cmp td:first-child{color:var(--gold);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;width:22%}
+.cmp td:nth-child(2){color:var(--muted)}
+.cmp td:last-child{background:var(--gold-soft)}
+/* bars */
+.bars{display:grid;gap:16px;max-width:760px}
+.bar{display:grid;grid-template-columns:100px 1fr;gap:16px;align-items:center}
+.bar b{font-family:var(--display);font-weight:500;font-size:1.15rem}
+.bar .track{border:1px solid var(--line);padding:3px}
+.bar .fill{background:linear-gradient(90deg,#B8924A,var(--gold));color:#1A1408;font-weight:800;padding:8px 14px;font-variant-numeric:tabular-nums;white-space:nowrap}
 /* price */
 .price{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.price-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:grid;gap:10px;align-content:start}
-.price-card.main{border:2px solid var(--accent)}
-.price-card .lbl{font-weight:700;color:var(--muted)}
-.price-card .amt{font-family:var(--font-display);font-size:clamp(2.4rem,6vw,3.4rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
-.price-card .amt small{font-size:.4em;font-weight:600;color:var(--muted)}
-.fine{font-size:.85rem;color:var(--muted)}
-.price-cta{margin-top:26px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.pcard{border:1px solid var(--gold);outline:1px solid var(--line);outline-offset:6px;padding:30px;display:grid;gap:10px;background:var(--panel);text-align:center;justify-items:center}
+.pcard .lbl{color:var(--gold);font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700}
+.pcard .amt{font-family:var(--display);font-size:clamp(3rem,7vw,4.6rem);line-height:1;font-weight:500;font-variant-numeric:tabular-nums}
+.pcard .amt small{font-family:var(--body);font-size:.9rem;color:var(--muted);margin-left:4px}
+.pcard .fine{font-size:.84rem;color:var(--muted);max-width:40ch}
+.price-foot{margin-top:28px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center;color:var(--muted);font-size:.95rem}
 @media (max-width:720px){.price{grid-template-columns:1fr}}
-/* bars */
-.bars{display:grid;gap:12px;max-width:720px}
-.bar{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center}
-.bar .track{background:var(--sea-soft);border-radius:999px;overflow:hidden}
-.bar .fill{background:var(--accent);color:var(--accent-ink);font-weight:700;padding:8px 14px;border-radius:999px;font-variant-numeric:tabular-nums;white-space:nowrap}
-/* tiles */
-.tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
-.tile{all:unset;cursor:pointer;display:grid;gap:8px;border-radius:var(--radius)}
-.tile b{font-family:var(--font-display);font-size:1.02rem}
-.tile .ph figcaption{font-size:.68rem}
-@media (max-width:900px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
-/* split band */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
-.split .copy{display:grid;gap:14px}
-.split .copy p{color:var(--muted);font-size:1.08rem}
-@media (max-width:760px){.split{grid-template-columns:1fr}}
-/* reviews */
-.reviews{border:2px dashed var(--line);border-radius:var(--radius);padding:32px;display:grid;gap:10px;text-align:center;justify-items:center}
-.reviews p{color:var(--muted);max-width:56ch}
-/* faq */
-.faq{display:grid;gap:10px;max-width:820px}
-.faq details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px 18px}
-.faq summary{cursor:pointer;font-weight:700;padding:14px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
-.faq summary::after{content:"+";font-size:1.3rem;color:var(--accent);line-height:1}
-.faq details[open] summary::after{content:"–"}
-.faq details p{padding-bottom:16px;color:var(--muted)}
-/* form */
-.form-sec{background:var(--surface);border-top:1px solid var(--line)}
-.form-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px}
-.form-side{display:grid;gap:16px;align-content:start}
-.form-side p{color:var(--muted)}
-.form-side ul{margin:0;padding-left:20px;color:var(--muted);display:grid;gap:6px}
+/* rsvp */
+.rsvp{max-width:900px;margin-inline:auto;border:1px solid var(--gold);outline:1px solid var(--line);outline-offset:10px;background:var(--panel);padding:clamp(22px,5vw,56px);display:grid;gap:28px}
+.rsvp .title{text-align:center;display:grid;gap:12px;justify-items:center}
+.rsvp .title p{color:var(--muted);max-width:52ch}
+footer .big{font-family:var(--display);font-style:italic;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--gold)}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bar-bg)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;text-wrap:balance;font-family:var(--display);font-weight:400}
+p{margin:0}
+section{padding-block:88px}
+a{color:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--primary);color:var(--primary-ink);font-family:var(--body);font-weight:700;font-size:1rem;
+  border:0;border-radius:var(--btn-radius);padding:15px 28px;text-decoration:none;cursor:pointer;transition:transform .15s ease,filter .15s ease}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.preview{background:var(--focus);color:#14100A;font-size:.82rem;text-align:center;font-family:var(--body)}
+.preview .wrap{padding-block:6px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--bar-bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.top .btn{padding:10px 18px;font-size:.92rem}
+.ph{position:relative;margin:0;overflow:hidden;max-width:100%;background:var(--ph-bg)}
+.ph::before{content:"";position:absolute;inset:0;background:var(--ph-pattern)}
+.ph figcaption{position:absolute;left:10px;right:10px;bottom:10px;z-index:1;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;
+  background:var(--cap-bg);color:var(--cap-fg);border-radius:8px;padding:7px 10px;font-family:var(--body);font-size:.72rem;line-height:1.35}
+.ph-id{font-weight:800;font-family:ui-monospace,Menlo,monospace}
+.ph-type{font-weight:700;color:var(--cap-accent)}
+.ph-desc{flex-basis:100%;opacity:.85}
+.ph-real{outline:2px dashed var(--cap-fg);outline-offset:-7px}
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{border:1px solid var(--line);border-radius:var(--card-radius);padding:2px 20px;background:var(--card)}
+.faq summary{cursor:pointer;font-weight:700;padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--primary-text)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding-bottom:18px;color:var(--muted)}
 form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.f{display:grid;gap:6px;min-width:0}
+.f{display:grid;gap:6px;min-width:0;margin:0}
+fieldset.f{border:0;padding:0}
 .f.full{grid-column:1/-1}
-label,.legend{font-weight:600;font-size:.92rem}
-.req{color:var(--accent)}
-input,select,textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;width:100%}
+.f label,.f legend{font-weight:600;font-size:.92rem;padding:0}
+.req{color:var(--primary-text)}
+input,select,textarea{font:inherit;font-size:1rem;color:var(--field-fg);background:var(--field-bg);border:1px solid var(--field-line);border-radius:var(--field-radius);padding:12px;width:100%}
 textarea{min-height:96px;resize:vertical}
-.check{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-weight:400;font-size:.88rem;color:var(--muted)}
+.check{display:grid !important;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-weight:400 !important;font-size:.88rem !important;color:var(--muted)}
 .check input{width:20px;height:20px;margin-top:2px;padding:0}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips label{font-weight:500;border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;background:var(--bg)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chips label{font-weight:500;border:1px solid var(--field-line);border-radius:999px;padding:8px 16px;cursor:pointer;background:var(--field-bg);color:var(--field-fg)}
 .chips input{position:absolute;opacity:0;width:1px;height:1px}
-.chips input:checked+span{color:var(--accent);font-weight:700}
-.chips label:has(input:checked){border-color:var(--accent)}
-.chips label:has(input:focus-visible){outline:3px solid var(--sun);outline-offset:2px}
+.chips label:has(input:checked){background:var(--primary);border-color:var(--primary);color:var(--primary-ink)}
+.chips label:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:2px}
 form .btn{justify-self:start}
 .hp{position:absolute;left:-9999px}
-.thanks{background:var(--sea-soft);border-radius:var(--radius);padding:28px;display:grid;gap:12px}
-.thanks h3{font-size:1.5rem}
+.err{color:var(--error);font-size:.92rem;font-weight:600}
+.thanks{border-radius:var(--card-radius);padding:28px;display:grid;gap:12px;background:var(--card);border:1px solid var(--line)}
+.thanks h3{font-size:1.7rem}
 .thanks .pv{font-size:.88rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
-.err{color:#B3261E;font-size:.9rem}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .err{color:#FF8A80}}
-:root[data-theme="dark"] .err{color:#FF8A80}
-@media (max-width:820px){.form-grid{grid-template-columns:1fr}}
-@media (max-width:560px){form{grid-template-columns:1fr}}
-/* footer */
-footer{padding-block:40px;font-size:.9rem;color:var(--muted)}
+.mbar{display:none}
+@media (max-width:720px){
+  .mbar{display:block;position:fixed;left:0;right:0;bottom:0;z-index:8;background:var(--bar-bg);border-top:1px solid var(--line);
+    padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+  .mbar .btn{width:100%}
+  footer{padding-bottom:110px !important}
+  .top .btn{display:none}
+}
+@media (max-width:560px){form{grid-template-columns:1fr}section{padding-block:64px}}
+.reviews{border:2px dashed var(--line);border-radius:var(--card-radius);padding:28px;display:grid;gap:14px;justify-items:center;text-align:center}
+.reviews .ph{width:100%}
+.reviews p{color:var(--muted);max-width:56ch}
+footer{padding-block:48px;font-size:.9rem;color:var(--muted)}
 footer .wrap{display:grid;gap:14px}
-footer .tagline{font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--ink)}
-footer .links{display:flex;flex-wrap:wrap;gap:18px}
-@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto !important;transition:none !important}}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 20px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}html{scroll-behavior:auto}}
 html{scroll-behavior:smooth}
-
-:root{--accent:#9A6B12;--accent-ink:#FFFFFF}@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--accent:#E6BC62;--accent-ink:#241703}}:root[data-theme="dark"]{--accent:#E6BC62;--accent-ink:#241703}
 </style>
-<div class="preview-bar"><div class="wrap">Preview draft. Boxes marked with an ID are image placeholders; prices are from the current pricing model.</div></div>
-<header class="top"><div class="wrap">
-  <a class="logo" href="#top">DR <span>Experiences</span></a>
-  <nav><a class="plain" href="#how">How it works</a><a class="plain" href="#pricing">Pricing</a><a class="btn" href="#contact">Plan my celebration</a></nav>
-</div></header>
+<div class="preview"><div class="wrap">Preview draft. Boxes with an ID are image placeholders. Prices come from the current pricing model.</div></div>
+<header class="top"><div class="wrap"><a class="logo" href="#top">DR <i>Experiences</i></a><a class="btn" href="#contact">Plan my celebration</a></div></header>
 <main id="top">
-<section class="hero"><div class="wrap"><div class="hero-frame">
-  <figure class="ph ph-real " style="aspect-ratio:16/9"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">CE-01</span><span class="ph-type">Real photo needed</span><span class="ph-desc">Video loop: group of 6–8 toasting at the villa pool at sunset</span></figcaption></figure>
-  <div class="hero-copy">
-    <span class="eyebrow">Birthday &amp; celebration trips · Dominican Republic</span>
-    <h1>Some birthdays deserve a villa.</h1>
-    <p class="sub">Bring your people. We&#x27;ll bring the chef, the driver, the concierge and the plan.</p>
-    <div class="hero-price"><a class="btn" href="#contact">Plan my celebration</a><span class="from">From <b>$1,320</b>/person</span></div>
+<section class="hero">
+  <div class="nums" aria-hidden="true"><span>40</span><span>50</span></div>
+  <div class="confetti" aria-hidden="true"><i style="left:6%;top:18%;background:var(--gold);transform:rotate(18deg);--rot2:18deg;animation-delay:0.0s"></i><i style="left:14%;top:62%;background:var(--rose);transform:rotate(-24deg);--rot2:-24deg;animation-delay:0.6s"></i><i style="left:22%;top:30%;background:var(--sky);transform:rotate(40deg);--rot2:40deg;animation-delay:1.2s"></i><i style="left:88%;top:22%;background:var(--gold);transform:rotate(-12deg);--rot2:-12deg;animation-delay:1.8s"></i><i style="left:80%;top:58%;background:var(--rose);transform:rotate(30deg);--rot2:30deg;animation-delay:2.4s"></i><i style="left:93%;top:40%;background:var(--sky);transform:rotate(-36deg);--rot2:-36deg;animation-delay:3.0s"></i><i style="left:70%;top:12%;background:var(--gold);transform:rotate(60deg);--rot2:60deg;animation-delay:3.6s"></i><i style="left:30%;top:80%;background:var(--gold);transform:rotate(-50deg);--rot2:-50deg;animation-delay:4.2s"></i><i style="left:60%;top:76%;background:var(--sky);transform:rotate(20deg);--rot2:20deg;animation-delay:4.8s"></i><i style="left:42%;top:8%;background:var(--rose);transform:rotate(-8deg);--rot2:-8deg;animation-delay:5.4s"></i></div>
+  <div class="wrap">
+    <span class="kicker">You're invited · Birthday & celebration trips · Dominican Republic</span>
+    <h1>Some birthdays deserve <em>a villa</em>.</h1>
+    <p class="sub">Bring your people. We'll bring the chef, the driver, the concierge and the plan.</p>
+    <div class="row"><a class="btn" href="#contact">Plan my celebration</a><span class="from">Groups of 8 from <b>$1,320</b> per person</span></div>
   </div>
-</div></div></section>
-
-<section><div class="wrap story">
-  <div class="story-text"><p>Imagine your feet in the pool. It's 86 degrees, there's a breeze, Dominican music is playing, and everyone you love is laughing about the ride back from today's catamaran, when you made the driver stop for empanadas.</p><p>Tonight is the night. Your chef brings out dinner on the terrace, then the cake. Someone gives a toast that makes everyone cry a little. Then you text your concierge: <i>"We're ready to go out."</i> Thirty seconds later: <i>"Done. Your driver is outside."</i></p><p>Your driver takes the whole group to your VIP table. Security comes along, and the driver is waiting when the night is over.</p><p class="close">That's DR Experiences. Travel like the top 0.1%.</p></div>
-  <div><div class="chat" role="img" aria-label="Example text conversation with the concierge">
-    <span class="meta">Concierge · placeholder SH-07 (phone mockup)</span><div class="bubble me">Birthday dinner tonight, then VIP table for 8 after? 🎉</div><div class="bubble them">Done. Cake is with the chef for 8pm. Table&#x27;s booked for 10:30 and your driver will be outside.</div>
-    <span class="tag">Example conversation</span></div></div>
-</div></section>
-
-<section class="band"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">What's included</span><h2>The whole celebration, handled.</h2></div>
-  <div class="incl"><div><h3>Private villa, private pool</h3><p>Your group has the whole villa, minutes from the beach. No shared pool, no wristbands.</p></div><div><h3>Most meals made in your villa</h3><p>Breakfast and lunch fresh every full day. Your private chef cooks dinner every night but one, which we leave open for a night out.</p></div><div><h3>Private car service</h3><p>Airport pickup and drop-off, and a driver for your scheduled outings, with security along for those outings.</p></div><div><h3>A concierge team, day or night</h3><p>Your personal concierge, plus a 24/7 AI concierge assistant for instant answers.</p></div><div><h3>Excursions for less</h3><p>Fishing, catamarans, golf, spa days and more, at least 15% below resort prices. Booked separately.</p></div><div><h3>Welcome kit</h3><p>Waiting for you when you arrive, with local tips and emergency contacts.</p></div></div>
-  <p class="excl"><b>Not included:</b> flights, excursions, drinks and meals out, gratuities, travel insurance.</p>
-</div></section>
-
-<section id="how"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">How it works</span><h2>Three steps, and only one of them is packing.</h2></div>
-  <ol class="steps"><li><h3>Tell us the occasion</h3><p>What you&#x27;re celebrating, who&#x27;s coming and roughly when.</p></li><li><h3>Get your all-in price</h3><p>One price for the trip, split per person. Easy to share with everyone.</p></li><li><h3>Pack a bag</h3><p>Your driver meets you at the airport. We handle the rest.</p></li></ol>
-</div></section>
-
-<section class="band"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">Your team</span><h2>The team behind the celebration.</h2><p>Every trip comes with the same team, matched to your dates.</p></div>
-  <div class="team"><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">SH-10</span><span class="ph-type">Created now · swap for real</span><span class="ph-desc">Chef plating dinner for a group in the villa kitchen</span></figcaption></figure><span class="role">Private chef</span><p>Your birthday dinner, cooked in your villa.</p></article><article><figure class="ph ph-real " style="aspect-ratio:4/5"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">SH-14</span><span class="ph-type">Real photo needed</span><span class="ph-desc">Headshot of your personal concierge (the VA), with first name</span></figcaption></figure><span class="role">Personal concierge</span><p>Your point of contact from booking to departure.</p></article><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">SH-11</span><span class="ph-type">Created now · swap for real</span><span class="ph-desc">Driver holding the SUV door as guests step out at night</span></figcaption></figure><span class="role">Driver</span><p>Airport pickup, nights out, and every stop in between.</p></article><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">SH-13</span><span class="ph-type">Created now · swap for real</span><span class="ph-desc">Security walking a group from a venue to the SUV at night</span></figcaption></figure><span class="role">Security</span><p>Along for your scheduled outings, so everyone can just celebrate.</p></article><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">SH-15</span><span class="ph-type">Created now · swap for real</span><span class="ph-desc">Housekeeper setting out breakfast by the pool</span></figcaption></figure><span class="role">Housekeeper &amp; cook</span><p>Breakfast by the pool every morning after.</p></article></div>
-</div></section>
+  <div class="wrap frame"><figure class="ph ph-real " style="aspect-ratio:21/9"><figcaption><span class="ph-id">CE-01</span><span class="ph-type">Real photo needed</span><span class="ph-desc">Video loop: group of 6–8 toasting at the villa pool at sunset</span></figcaption></figure></div>
+</section>
 
 <section><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">What are you celebrating?</span><h2>Pick your occasion.</h2><p>Tap one and we'll fill it in on your inquiry.</p></div>
-  <div class="tiles">
-    <button class="tile" type="button" data-occ="Milestone birthday"><figure class="ph ph-created " style="aspect-ratio:1/1"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">CE-02</span><span class="ph-type">Created image</span><span class="ph-desc">“40” balloons at the pool (illustrative)</span></figcaption></figure><b>40th · 50th</b></button>
-    <button class="tile" type="button" data-occ="New chapter / divorce party"><figure class="ph ph-created " style="aspect-ratio:1/1"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">CE-03</span><span class="ph-type">Created image</span><span class="ph-desc">Champagne toast (illustrative)</span></figcaption></figure><b>New chapter</b></button>
-    <button class="tile" type="button" data-occ="Reunion"><figure class="ph ph-created " style="aspect-ratio:1/1"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">CE-04</span><span class="ph-type">Created image</span><span class="ph-desc">Reunion group photo (illustrative)</span></figcaption></figure><b>Reunion</b></button>
-    <button class="tile" type="button" data-occ="Anniversary"><figure class="ph ph-created " style="aspect-ratio:1/1"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">CE-05</span><span class="ph-type">Created image</span><span class="ph-desc">Anniversary dinner (illustrative)</span></figcaption></figure><b>Anniversary</b></button>
-    <button class="tile" type="button" data-occ="Retirement / promotion"><figure class="ph ph-created " style="aspect-ratio:1/1"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">CE-06</span><span class="ph-type">Created image</span><span class="ph-desc">Retirement toast (illustrative)</span></figcaption></figure><b>Retirement · promotion</b></button>
+  <div class="head"><span class="kicker">What are you celebrating?</span><h2>Pick your <em>occasion</em>.</h2><p>Tap one and we'll add it to your inquiry.</p></div>
+  <div class="cards"><button class="place" type="button" data-occ="Milestone birthday"><figure class="ph ph-created " style="aspect-ratio:1/1"><figcaption><span class="ph-id">CE-02</span><span class="ph-type">Created image</span><span class="ph-desc">“40” balloons at the pool (illustrative)</span></figcaption></figure><small>Celebrating</small><b>40th · 50th</b></button><button class="place" type="button" data-occ="New chapter / divorce party"><figure class="ph ph-created " style="aspect-ratio:1/1"><figcaption><span class="ph-id">CE-03</span><span class="ph-type">Created image</span><span class="ph-desc">Champagne toast (illustrative)</span></figcaption></figure><small>Celebrating</small><b>New chapter</b></button><button class="place" type="button" data-occ="Reunion"><figure class="ph ph-created " style="aspect-ratio:1/1"><figcaption><span class="ph-id">CE-04</span><span class="ph-type">Created image</span><span class="ph-desc">Reunion group photo (illustrative)</span></figcaption></figure><small>Celebrating</small><b>Reunion</b></button><button class="place" type="button" data-occ="Anniversary"><figure class="ph ph-created " style="aspect-ratio:1/1"><figcaption><span class="ph-id">CE-05</span><span class="ph-type">Created image</span><span class="ph-desc">Anniversary dinner (illustrative)</span></figcaption></figure><small>Celebrating</small><b>Anniversary</b></button><button class="place" type="button" data-occ="Retirement / promotion"><figure class="ph ph-created " style="aspect-ratio:1/1"><figcaption><span class="ph-id">CE-06</span><span class="ph-type">Created image</span><span class="ph-desc">Retirement toast (illustrative)</span></figcaption></figure><small>Celebrating</small><b>Retirement</b></button></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap letter">
+  <div class="copy">
+    <p>Imagine your feet in the pool. It's 86 degrees, there's a breeze, Dominican music is playing, and everyone you love is laughing about the ride back from today's catamaran, when you made the driver stop for empanadas.</p>
+    <p>Tonight is the night. Your chef brings out dinner on the terrace, then the cake. Someone gives a toast that makes everyone cry a little. Then you text your concierge: <i>"We're ready to go out."</i> Thirty seconds later: <i>"Done. Your driver is outside."</i></p>
+    <p>Your driver takes the whole group to your VIP table. Security comes along, and the driver is waiting when the night is over.</p>
+    <p class="close">That's DR Experiences. Celebrate like the top 0.1%.</p>
+  </div>
+  <div class="phone" role="img" aria-label="Example text conversation with the concierge"><span class="meta">Concierge · SH-07 phone mockup</span>
+    <div class="bub me">Birthday dinner tonight, then VIP table for 8 after? 🎉</div>
+    <div class="bub them">Done. Cake is with the chef for 8pm. Table's booked for 10:30 and your driver will be outside.</div>
+    <span class="meta">Example conversation</span></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="menu">
+    <div class="title"><span class="kicker">What's included</span><h2>The <em>menu</em></h2></div>
+    <div class="item"><div class="line"><h3>Private villa, private pool</h3><span class="dots"></span><span>Included</span></div><p>The whole villa is yours, minutes from the beach.</p></div><div class="item"><div class="line"><h3>Most meals made in your villa</h3><span class="dots"></span><span>Included</span></div><p>Breakfast and lunch fresh every full day. Your private chef cooks dinner every night but one, which we leave open for a night out.</p></div><div class="item"><div class="line"><h3>Private car service</h3><span class="dots"></span><span>Included</span></div><p>Airport pickup and drop-off, plus a driver for scheduled outings, with security along for those outings.</p></div><div class="item"><div class="line"><h3>A concierge team, day or night</h3><span class="dots"></span><span>Included</span></div><p>Your personal concierge, plus a 24/7 AI concierge assistant for instant answers.</p></div><div class="item"><div class="line"><h3>Excursions for less</h3><span class="dots"></span><span>Separate</span></div><p>Booked by your concierge at least 15% below resort prices. Paid separately.</p></div><div class="item"><div class="line"><h3>Welcome kit</h3><span class="dots"></span><span>Included</span></div><p>Waiting when you arrive, with local tips and emergency contacts.</p></div>
+    <p class="excl">Not included: Flights, excursions, drinks and meals out, gratuities, travel insurance. Cake, decor and a photographer can be arranged and are priced separately.</p>
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">The celebration night</span><h2>From the pool toast to the VIP table.</h2></div>
-  <div class="day"><article><figure class="ph ph-real " style="aspect-ratio:4/3"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">CE-01</span><span class="ph-type">Real photo needed</span><span class="ph-desc">Group toasting at the pool at sunset</span></figcaption></figure><span class="when">Sunset</span><h3>Pool toast</h3><p>Everyone together, golden hour, the first toast of the night.</p></article><article><figure class="ph ph-pref " style="aspect-ratio:4/3"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">CE-08</span><span class="ph-type">Created now · swap for real</span><span class="ph-desc">Decorated celebration dinner table</span></figcaption></figure><span class="when">Dinner</span><h3>Chef&#x27;s celebration dinner</h3><p>A decorated table on the terrace, cooked in your villa.</p></article><article><figure class="ph ph-pref " style="aspect-ratio:4/3"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">CE-07</span><span class="ph-type">Created now · swap for real</span><span class="ph-desc">Chef bringing out a birthday cake</span></figcaption></figure><span class="when">Dessert</span><h3>The cake moment</h3><p>Your chef brings it out. Phones come out.</p></article><article><figure class="ph ph-created " style="aspect-ratio:4/3"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">CR-05</span><span class="ph-type">Created image</span><span class="ph-desc">Group at a VIP lounge table (illustrative)</span></figcaption></figure><span class="when">Night</span><h3>VIP table</h3><p>Your driver takes the whole group out and brings everyone home.</p></article></div>
+  <div class="head"><span class="kicker">How it works</span><h2>Three steps to the <em>toast</em>.</h2></div>
+  <ol class="steps">
+    <li><h3>Tell us the occasion</h3><p>What you're celebrating, who's coming and roughly when.</p></li>
+    <li><h3>Get your all-in price</h3><p>One price for the trip, split per person. Easy to share with everyone.</p></li>
+    <li><h3>Pack a bag</h3><p>Your driver meets you at the airport. We handle the rest.</p></li>
+  </ol>
 </div></section>
 
-<section class="band"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">Excursions</span><h2>Catamarans, fishing, spa days and more.</h2><p>Your concierge books them for you, at least 15% below resort prices, at times that suit your group instead of the tour bus.</p></div>
-  <div class="exc"><article><figure class="ph ph-pref " style="aspect-ratio:1/1"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">GW-04</span><span class="ph-type">Created now · swap for real</span><span class="ph-desc">Catamaran excursion</span></figcaption></figure><h3>Catamaran</h3></article><article><figure class="ph ph-pref " style="aspect-ratio:1/1"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">CR-06</span><span class="ph-type">Created now · swap for real</span><span class="ph-desc">Fishing charter excursion</span></figcaption></figure><h3>Deep-sea fishing</h3></article><article><figure class="ph ph-pref " style="aspect-ratio:1/1"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">GW-07</span><span class="ph-type">Created now · swap for real</span><span class="ph-desc">Saona Island excursion</span></figcaption></figure><h3>Saona Island</h3></article><article><figure class="ph ph-pref " style="aspect-ratio:1/1"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">GW-10</span><span class="ph-type">Created now · swap for real</span><span class="ph-desc">Spa day excursion</span></figcaption></figure><h3>Spa day</h3></article></div>
-  <p class="note">Excursions are optional and priced separately, so you only pay for what your group wants to do.</p>
+<section style="padding-top:0"><div class="wrap">
+  <div class="head"><span class="kicker">The celebration night</span><h2>Order of the <em>evening</em>.</h2></div>
+  <div class="prog"><article><span class="when">Sunset</span><div><h3>The pool toast</h3><p>Everyone together at golden hour for the first toast of the night.</p></div><figure class="ph ph-real " style="aspect-ratio:16/10"><figcaption><span class="ph-id">CE-01</span><span class="ph-type">Real photo needed</span><span class="ph-desc">Group toasting at the pool</span></figcaption></figure></article><article><span class="when">Eight</span><div><h3>Celebration dinner</h3><p>A decorated table on the terrace, cooked in your villa.</p></div><figure class="ph ph-pref " style="aspect-ratio:16/10"><figcaption><span class="ph-id">CE-08</span><span class="ph-type">Created now, swap for real</span><span class="ph-desc">Decorated dinner table</span></figcaption></figure></article><article><span class="when">Nine</span><div><h3>The cake</h3><p>Your chef brings it out. Phones come out.</p></div><figure class="ph ph-pref " style="aspect-ratio:16/10"><figcaption><span class="ph-id">CE-07</span><span class="ph-type">Created now, swap for real</span><span class="ph-desc">Chef bringing out a birthday cake</span></figcaption></figure></article><article><span class="when">Late</span><div><h3>VIP table</h3><p>Your driver takes the whole group out and brings everyone home.</p></div><figure class="ph ph-created " style="aspect-ratio:16/10"><figcaption><span class="ph-id">CR-05</span><span class="ph-type">Created image</span><span class="ph-desc">Group at a VIP lounge table (illustrative)</span></figcaption></figure></article></div>
 </div></section>
 
-<section><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">Villa vs. resort</span><h2>Same island. Very different trip.</h2></div>
+<section style="padding-top:0"><div class="wrap">
+  <div class="head"><span class="kicker">Your team</span><h2>The team behind the <em>celebration</em>.</h2></div>
+  <div class="team"><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><figcaption><span class="ph-id">SH-10</span><span class="ph-type">Created now, swap for real</span><span class="ph-desc">Chef plating dinner</span></figcaption></figure><b>Private chef</b><p>Your birthday dinner, cooked in your villa.</p></article><article><figure class="ph ph-real " style="aspect-ratio:4/5"><figcaption><span class="ph-id">SH-14</span><span class="ph-type">Real photo needed</span><span class="ph-desc">Your personal concierge (the VA)</span></figcaption></figure><b>Personal concierge</b><p>Your point of contact from booking to departure.</p></article><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><figcaption><span class="ph-id">SH-11</span><span class="ph-type">Created now, swap for real</span><span class="ph-desc">Driver holding the SUV door</span></figcaption></figure><b>Driver</b><p>Airport pickup, nights out, every stop in between.</p></article><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><figcaption><span class="ph-id">SH-13</span><span class="ph-type">Created now, swap for real</span><span class="ph-desc">Security walking guests to the SUV</span></figcaption></figure><b>Security</b><p>Along for scheduled outings, so everyone can celebrate.</p></article><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><figcaption><span class="ph-id">SH-15</span><span class="ph-type">Created now, swap for real</span><span class="ph-desc">Breakfast spread by the pool</span></figcaption></figure><b>Housekeeper &amp; cook</b><p>Breakfast by the pool every morning after.</p></article></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="head"><span class="kicker">Excursions</span><h2>The day before the <em>big night</em>.</h2><p>Your concierge books them at least 15% below resort prices. Optional and priced separately.</p></div>
+  <div class="exc"><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><figcaption><span class="ph-id">GW-04</span><span class="ph-type">Created now, swap for real</span><span class="ph-desc">Catamaran</span></figcaption></figure><h3>Catamaran</h3></article><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><figcaption><span class="ph-id">CR-06</span><span class="ph-type">Created now, swap for real</span><span class="ph-desc">Fishing charter</span></figcaption></figure><h3>Deep-sea fishing</h3></article><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><figcaption><span class="ph-id">GW-07</span><span class="ph-type">Created now, swap for real</span><span class="ph-desc">Saona Island</span></figcaption></figure><h3>Saona Island</h3></article><article><figure class="ph ph-pref " style="aspect-ratio:4/5"><figcaption><span class="ph-id">GW-10</span><span class="ph-type">Created now, swap for real</span><span class="ph-desc">Spa day</span></figcaption></figure><h3>Spa day</h3></article></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="head"><span class="kicker">Villa vs. resort</span><h2>Same island. A <em>very</em> different party.</h2></div>
   <div class="cmp-wrap"><table class="cmp"><thead><tr><th></th><th>Typical resort</th><th>DR Experiences</th></tr></thead><tbody><tr><td>Space</td><td>Shared pool, lobby and beach</td><td>The whole villa is yours</td></tr><tr><td>The big night</td><td>A table at the resort restaurant</td><td>Your chef, your terrace, your cake</td></tr><tr><td>Getting around</td><td>Shuttle buses and taxi lines</td><td>Your own driver for the whole group</td></tr><tr><td>Price</td><td>Room rate plus resort fees and add-ons</td><td>One all-in price, split by the group</td></tr></tbody></table></div>
 </div></section>
 
-<section class="band"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">Bigger group, better price</span><h2>More of you, less each.</h2><p>Price per person for a 4-night trip.</p></div>
+<section style="padding-top:0"><div class="wrap">
+  <div class="head"><span class="kicker">Bigger group, better price</span><h2>More of you, <em>less each</em>.</h2><p>Price per person for a 4-night trip.</p></div>
   <div class="bars">
     <div class="bar"><b>4 guests</b><div class="track"><div class="fill" style="width:100%">$1,880</div></div></div>
     <div class="bar"><b>6 guests</b><div class="track"><div class="fill" style="width:91.5%">$1,720</div></div></div>
@@ -288,74 +277,68 @@ html{scroll-behavior:smooth}
   </div>
 </div></section>
 
-<section id="pricing" class="band"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">Pricing</span><h2>One price for the whole trip, split across your group.</h2><p>No resort fees and no surprise charges. Here's where groups start. Our team will send you an exact quote for your dates.</p></div>
+<section id="pricing" style="padding-top:0"><div class="wrap">
+  <div class="head" style="margin-inline:auto;text-align:center;justify-items:center"><span class="kicker">Pricing</span><h2>One price for the whole <em>party</em>.</h2><p>Here's where groups start. Our team sends an exact quote for your dates.</p></div>
   <div class="price">
-    <div class="price-card main"><span class="lbl">8 guests · 3 nights</span><span class="amt">$1,320<small> /person</small></span><span class="fine">Based on 8 guests sharing a 4-bedroom villa. Flights, excursions, drinks and meals out, and gratuities not included. Your exact price depends on dates, group size and villa.</span></div>
-    <div class="price-card"><span class="lbl">6 guests · 4 nights</span><span class="amt">$1,720<small> /person</small></span><span class="fine">Based on 6 guests sharing a 3-bedroom villa. Flights, excursions, drinks and meals out, and gratuities not included. Your exact price depends on dates, group size and villa.</span></div>
+    <div class="pcard"><span class="lbl">8 guests · 3 nights</span><span class="amt">$1,320<small>/person</small></span><span class="fine">Based on 8 guests sharing a 4-bedroom villa. Flights, excursions, drinks and meals out, and gratuities not included. Your exact price depends on dates, group size and villa.</span></div>
+    <div class="pcard"><span class="lbl">6 guests · 4 nights</span><span class="amt">$1,720<small>/person</small></span><span class="fine">Based on 6 guests sharing a 3-bedroom villa. Flights, excursions, drinks and meals out, and gratuities not included. Your exact price depends on dates, group size and villa.</span></div>
   </div>
-  <div class="price-cta"><a class="btn" href="#contact">Plan my celebration</a><span class="fine">50% deposit to reserve. Balance due 30 days before arrival.</span></div>
+  <div class="price-foot"><a class="btn" href="#contact">Plan my celebration</a><span>50% deposit to reserve. Balance due 30 days before arrival.</span></div>
 </div></section>
 
-<section><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">Reviews</span><h2>From our guests</h2></div>
-  <div class="reviews"><figure class="ph ph-real " style="aspect-ratio:16/5"><div class="ph-art" aria-hidden="true"></div><figcaption><span class="ph-id">SH-17</span><span class="ph-type">Real photo needed</span><span class="ph-desc">Guest photos and reviews, with written permission</span></figcaption></figure><p>Our first groups travel in early 2027. Real reviews from real guests will appear here, with their permission.</p></div>
+<section style="padding-top:0"><div class="wrap">
+  <div class="head"><span class="kicker">Reviews</span><h2>From our <em>guests</em></h2></div>
+  <div class="reviews"><figure class="ph ph-real " style="aspect-ratio:16/5"><figcaption><span class="ph-id">SH-17</span><span class="ph-type">Real photo needed</span><span class="ph-desc">Guest photos and reviews, with written permission</span></figcaption></figure><p>Our first groups travel in early 2027. Real reviews from real guests will appear here, with their permission.</p></div>
 </div></section>
 
-<section class="band"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">FAQ</span><h2>Good questions</h2></div>
-  <div class="faq"><details><summary>Can you help with a cake or decorations?</summary><p>Yes. Tell us what you have in mind and our team will arrange it. Extras like decor or a photographer are priced separately.</p></details><details><summary>Can people arrive on different days?</summary><p>Usually, yes. Your driver will handle each airport pickup. Let our team know when you ask for your quote.</p></details><details><summary>Can everyone pay their own share?</summary><p>Ask our team. We&#x27;ll walk you through how to handle payment across your group when we send your quote.</p></details><details><summary>Is this legit? How do I pay?</summary><p>You&#x27;ll talk with a real person on our team before you pay anything. To reserve, you pay a 50% deposit by card through our secure checkout and sign our terms. The balance is due 30 days before you arrive.</p></details><details><summary>What&#x27;s not included?</summary><p>Flights, excursions, drinks and meals out (including your free night), gratuities and travel insurance. We recommend every guest buys their own travel insurance.</p></details><details><summary>Who is my concierge?</summary><p>Your personal concierge handles your trip from booking to departure. Our AI concierge assistant is available 24/7 for quick answers, and anything it can&#x27;t handle goes straight to your personal concierge and our team in the DR.</p></details><details><summary>What if someone in the group cancels?</summary><p>Cancellations follow our published tiers, based on how many days before arrival you cancel. We&#x27;ll walk you through them before you book. Date changes are possible for a rebooking fee, subject to availability.</p></details><details><summary>How far is the beach?</summary><p>Our villas are minutes from the beach, and your driver can take you there on scheduled outings.</p></details><details><summary>What about getting around safely?</summary><p>Your driver takes you to and from scheduled outings, security comes along, and your concierge always knows your plans. Your welcome kit includes local tips and emergency contacts.</p></details></div>
+<section style="padding-top:0"><div class="wrap">
+  <div class="head"><span class="kicker">FAQ</span><h2>Good <em>questions</em></h2></div>
+  <div class="faq"><details><summary>Can you help with a cake or decorations?</summary><p>Yes. Tell us what you have in mind and our team will arrange it. Extras like decor or a photographer are priced separately.</p></details><details><summary>Can people arrive on different days?</summary><p>Usually, yes. Your driver handles each airport pickup. Let our team know when you ask for your quote.</p></details><details><summary>Can everyone pay their own share?</summary><p>Ask our team. We&#x27;ll walk you through how to handle payment across your group when we send your quote.</p></details><details><summary>Is this legit? How do I pay?</summary><p>You&#x27;ll talk with a real person on our team before you pay anything. To reserve, you pay a 50% deposit by card through our secure checkout and sign our terms. The balance is due 30 days before you arrive.</p></details><details><summary>What&#x27;s not included?</summary><p>Flights, excursions, drinks and meals out (including your free night), gratuities and travel insurance. We recommend every guest buys their own travel insurance.</p></details><details><summary>Who is my concierge?</summary><p>Your personal concierge handles your trip from booking to departure. Our AI concierge assistant is available 24/7 for quick answers, and anything it can&#x27;t handle goes straight to your personal concierge and our team in the DR.</p></details><details><summary>What if someone in the group cancels?</summary><p>Cancellations follow our published tiers, based on how many days before arrival you cancel. We walk you through them before you book. Date changes are possible for a rebooking fee, subject to availability.</p></details><details><summary>How far is the beach?</summary><p>Our villas are minutes from the beach, and your driver can take you there on scheduled outings.</p></details><details><summary>What about getting around safely?</summary><p>Your driver takes you to and from scheduled outings, security comes along, and your concierge always knows your plans. Your welcome kit includes local tips and emergency contacts.</p></details></div>
 </div></section>
 
-<section id="contact" class="form-sec"><div class="wrap form-grid">
-  <div class="form-side">
-    <span class="eyebrow">Talk to our team</span>
-    <h2>Let&#x27;s plan your celebration.</h2>
-    <p>Tell us a little about your group. A member of our sales team will reach out the way you prefer, usually within [X] business hours.</p>
-    <ul><li>No payment needed to get a quote</li><li>Your price, split per person</li><li>Real answers from a real person</li></ul>
-  </div>
-  <div>
-    <form id="lead" novalidate>
-      <input type="hidden" id="f-page" name="page" value="celebrate">
-      <div class="hp" aria-hidden="true"><label for="f-web">Website</label><input id="f-web" name="website" tabindex="-1" autocomplete="off"></div>
-      <div class="f"><label for="f-first">First name <span class="req">*</span></label><input id="f-first" name="first" autocomplete="given-name" required></div>
-      <div class="f"><label for="f-last">Last name <span class="req">*</span></label><input id="f-last" name="last" autocomplete="family-name" required></div>
-      <div class="f"><label for="f-email">Email <span class="req">*</span></label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-      <div class="f"><label for="f-phone">Mobile phone <span class="req">*</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
-      <fieldset class="f full" style="border:0;padding:0;margin:0"><legend class="legend">Best way to reach you <span class="req">*</span></legend>
-        <div class="chips" id="f-method">
-          <label><input type="radio" name="method" value="Call" required><span>Call</span></label>
-          <label><input type="radio" name="method" value="Text"><span>Text</span></label>
-          <label><input type="radio" name="method" value="Email"><span>Email</span></label>
-          <label><input type="radio" name="method" value="WhatsApp"><span>WhatsApp</span></label>
-        </div></fieldset>
-      <div class="f"><label for="f-time">Best time to reach you</label><select id="f-time" name="time"><option value="">Any time</option><option>Morning (ET)</option><option>Afternoon (ET)</option><option>Evening (ET)</option></select></div>
-      <div class="f"><label for="f-size">Group size <span class="req">*</span></label><select id="f-size" name="size" required><option value="">Choose…</option><option>2</option><option>3–4</option><option>5–6</option><option>7–8</option><option>Not sure yet</option></select></div>
-      <div class="f"><label for="f-occ">What's the occasion? <span class="req">*</span></label><select id="f-occ" name="occasion" required><option value="">Choose…</option><option>Milestone birthday</option><option>New chapter / divorce party</option><option>Reunion</option><option>Anniversary</option><option>Retirement / promotion</option><option>Other</option></select></div>
-      <div class="f"><label for="f-month">When are you thinking? <span class="req">*</span></label><input id="f-month" name="month" type="month" required></div>
-      <div class="f"><label for="f-nights">How many nights?</label><select id="f-nights" name="nights"><option value="">Not sure</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
-      <div class="f"><label for="f-from">Flying from</label><select id="f-from" name="from"><option value="">Choose…</option><option>Philadelphia (PHL)</option><option>DC area (DCA / IAD / BWI)</option><option>Atlanta (ATL)</option><option>New Jersey (EWR)</option><option>New York (JFK / LGA)</option><option>Other</option></select></div>
-      <div class="f full"><label class="check"><input type="checkbox" id="f-flex" name="flexible"><span>Our dates are flexible</span></label></div>
-      <div class="f full"><label for="f-notes">Anything we should know?</label><textarea id="f-notes" name="notes" placeholder="Birthdays, dietary needs, excursions you're curious about…"></textarea></div>
-      <div class="f full"><label for="f-heard">How did you hear about us?</label><select id="f-heard" name="heard"><option value="">Choose…</option><option>Instagram</option><option>Facebook</option><option>A friend</option><option>Google</option><option>Other</option></select></div>
-      <div class="f full"><label class="check"><input type="checkbox" id="f-sms" name="sms"><span>I agree to receive text messages from DR Experiences about my trip inquiry. Message and data rates may apply. Reply STOP to opt out. Consent isn't required to get a quote.</span></label></div>
-      <div class="f full"><label class="check"><input type="checkbox" id="f-news" name="news"><span>Send me occasional emails with open dates and offers. Unsubscribe any time.</span></label></div>
-      <p class="err f full" id="f-err" hidden>Please fill in the fields marked with *.</p>
-      <button class="btn" type="submit">Plan my celebration</button>
-    </form>
-    <div class="thanks" id="thanks" hidden tabindex="-1">
-      <h3>Got it, <span id="t-name"></span>!</h3>
-      <p>A member of our team will reach out by <b id="t-method"></b> within [X] business hours to start planning your trip.</p>
-      <p class="pv">Preview: this form isn't connected to the sales team yet, so nothing was sent. On the live site it will create a lead in the CRM and alert the team.</p>
-    </div>
+<section id="contact" style="padding-top:0"><div class="wrap">
+  <div class="rsvp">
+    <div class="title"><span class="kicker">Talk to our team</span><h2>RSVP for your <em>quote</em>.</h2><p>Tell us about the occasion. Someone from our sales team will reach out the way you prefer, usually within [X] business hours. No payment needed for a quote.</p></div>
+    <div><form id="lead" novalidate>
+  <input type="hidden" id="f-page" name="page" value="celebrate">
+  <div class="hp" aria-hidden="true"><label for="f-web">Website</label><input id="f-web" name="website" tabindex="-1" autocomplete="off"></div>
+  <div class="f"><label for="f-first">First name <span class="req">*</span></label><input id="f-first" name="first" autocomplete="given-name" required></div>
+  <div class="f"><label for="f-last">Last name <span class="req">*</span></label><input id="f-last" name="last" autocomplete="family-name" required></div>
+  <div class="f"><label for="f-email">Email <span class="req">*</span></label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+  <div class="f"><label for="f-phone">Mobile phone <span class="req">*</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
+  <fieldset class="f full"><legend>Best way to reach you <span class="req">*</span></legend>
+    <div class="chips">
+      <label><input type="radio" name="method" value="Call" required><span>Call</span></label>
+      <label><input type="radio" name="method" value="Text"><span>Text</span></label>
+      <label><input type="radio" name="method" value="Email"><span>Email</span></label>
+      <label><input type="radio" name="method" value="WhatsApp"><span>WhatsApp</span></label>
+    </div></fieldset>
+  <div class="f"><label for="f-size">Group size <span class="req">*</span></label><select id="f-size" name="size" required><option value="">Choose…</option><option>2</option><option>3–4</option><option>5–6</option><option>7–8</option><option>Not sure yet</option></select></div>
+  <div class="f"><label for="f-occ">What's the occasion? <span class="req">*</span></label><select id="f-occ" name="occasion" required><option value="">Choose…</option><option>Milestone birthday</option><option>New chapter / divorce party</option><option>Reunion</option><option>Anniversary</option><option>Retirement / promotion</option><option>Other</option></select></div>
+  <div class="f"><label for="f-month">When are you thinking? <span class="req">*</span></label><input id="f-month" name="month" type="month" required></div>
+  <div class="f"><label for="f-nights">How many nights?</label><select id="f-nights" name="nights"><option value="">Not sure</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+  <div class="f"><label for="f-from">Flying from</label><select id="f-from" name="from"><option value="">Choose…</option><option>Philadelphia (PHL)</option><option>DC area (DCA / IAD / BWI)</option><option>Atlanta (ATL)</option><option>New Jersey (EWR)</option><option>New York (JFK / LGA)</option><option>Other</option></select></div>
+  <div class="f"><label for="f-time">Best time to reach you</label><select id="f-time" name="time"><option value="">Any time</option><option>Morning (ET)</option><option>Afternoon (ET)</option><option>Evening (ET)</option></select></div>
+  <div class="f full"><label class="check"><input type="checkbox" id="f-flex" name="flexible"><span>Our dates are flexible</span></label></div>
+  <div class="f full"><label for="f-notes">Anything we should know?</label><textarea id="f-notes" name="notes" placeholder="Birthdays, dietary needs, excursions you're curious about…"></textarea></div>
+  <div class="f full"><label for="f-heard">How did you hear about us?</label><select id="f-heard" name="heard"><option value="">Choose…</option><option>Instagram</option><option>Facebook</option><option>A friend</option><option>Google</option><option>Other</option></select></div>
+  <div class="f full"><label class="check"><input type="checkbox" id="f-sms" name="sms"><span>I agree to receive text messages from DR Experiences about my trip inquiry. Message and data rates may apply. Reply STOP to opt out. Consent isn't required to get a quote.</span></label></div>
+  <div class="f full"><label class="check"><input type="checkbox" id="f-news" name="news"><span>Send me occasional emails with open dates and offers. Unsubscribe any time.</span></label></div>
+  <p class="err f full" id="f-err" hidden>Please fill in the fields marked with *.</p>
+  <button class="btn" type="submit">Plan my celebration</button>
+</form>
+<div class="thanks" id="thanks" hidden tabindex="-1">
+  <h3>Got it, <span id="t-name"></span>.</h3>
+  <p>A member of our team will reach out by <b id="t-method"></b> within [X] business hours to start planning your trip.</p>
+  <p class="pv">Preview: this form isn't connected to the sales team yet, so nothing was sent. On the live site it will create a lead in the CRM and alert the team.</p>
+</div></div>
   </div>
 </div></section>
 </main>
-<footer><div class="wrap">
-  <span class="tagline">DR Experiences. Travel like the top 0.1%.</span>
-  <div class="links"><span>Terms</span><span>Privacy</span><span>Guest conduct policy</span><span>[EMAIL]</span><span>[PHONE]</span><span>[BUSINESS ADDRESS]</span><span>@[HANDLE]</span></div>
-  <span>Private villa group trips to the Dominican Republic. Prices shown are per person and depend on group size, dates and villa.</span>
-</div></footer>
+<footer><div class="wrap"><span class="big">Celebrate like the top 0.1%.</span>
+<div class="links"><span>Terms</span><span>Privacy</span><span>Guest conduct policy</span><span>[EMAIL]</span><span>[PHONE]</span><span>[BUSINESS ADDRESS]</span><span>@[HANDLE]</span></div>
+<span>DR Experiences · Private villa group trips to the Dominican Republic. Prices are per person and depend on group size, dates and villa.</span></div></footer>
+<div class="mbar"><a class="btn" href="#contact">Plan my celebration</a></div>
 <script>
 (function(){
   var form=document.getElementById('lead'),err=document.getElementById('f-err'),thanks=document.getElementById('thanks');
@@ -371,8 +354,9 @@ html{scroll-behavior:smooth}
   });
   document.querySelectorAll('[data-occ]').forEach(function(t){
     t.addEventListener('click',function(){
-      var s=document.getElementById('f-occ');s.value=t.getAttribute('data-occ');
+      document.getElementById('f-occ').value=t.getAttribute('data-occ');
       document.getElementById('contact').scrollIntoView();
+      document.getElementById('f-first').focus({preventScroll:true});
     });
   });
 })();

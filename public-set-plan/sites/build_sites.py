@@ -18,7 +18,7 @@ def ph(pid, kind, desc, ratio="4/3", cls=""):
     if pid in STOCK and os.path.exists(os.path.join(STOCK_DIR, pid + ".jpg")):
         c = STOCK[pid]
         return (f'<figure class="ph ph-photo {cls}" style="aspect-ratio:{ratio}"><img src="img/stock/{pid}.jpg" alt="{E(desc)}" loading="lazy">'
-                f'<figcaption class="credit">Example photo · {E(c["photographer"])} / Pexels</figcaption></figure>')
+                f'<figcaption class="credit">Example photo · {E(c["creator"])}, CC {E(c["license"])}</figcaption></figure>')
     return (f'<figure class="ph ph-{kind.lower()} {cls}" style="aspect-ratio:{ratio}">'
             f'<figcaption><span class="ph-id">{pid}</span><span class="ph-type">{TYPE_LABEL[kind]}</span>'
             f'<span class="ph-desc">{E(desc)}</span></figcaption></figure>')
@@ -203,6 +203,10 @@ form .btn{justify-self:start}
 @media (max-width:900px){.promise{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.promise{grid-template-columns:1fr}.promise-sec{padding-block:44px}}
 .micro{font-size:.88rem;color:var(--muted)}
+.credits{padding-block:0 24px;font-size:.78rem;color:var(--muted)}
+.credits summary{cursor:pointer}
+.credits ul{margin:8px 0 0;padding-left:18px;display:grid;gap:2px}
+.credits a{color:inherit}
 .reviews{border:2px dashed var(--line);border-radius:var(--card-radius);padding:28px;display:grid;gap:14px;justify-items:center;text-align:center}
 .reviews .ph{width:100%}
 .reviews p{color:var(--muted);max-width:56ch}
@@ -214,7 +218,18 @@ html{scroll-behavior:smooth}
 """
 
 
+def credits_html(body):
+    used = [k for k in sorted(STOCK) if not k.startswith("_") and f"img/stock/{k}.jpg" in body]
+    if not used:
+        return ""
+    items = "".join(
+        f'<li><a href="{E(STOCK[k]["source_url"] or "")}">{E(STOCK[k]["title"])}</a> by {E(STOCK[k]["creator"])}, '
+        f'<a href="{E(STOCK[k].get("license_url") or "")}">CC {E(STOCK[k]["license"])} {E(STOCK[k].get("license_version") or "")}</a></li>' for k in used)
+    return f'<section class="credits"><div class="wrap"><details><summary>Example photo credits</summary><ul>{items}</ul></details></div></section>'
+
+
 def doc(title, meta, fonts, css, body):
+    body = body + credits_html(body)
     return f"""<title>{E(title)}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="{E(meta)}">

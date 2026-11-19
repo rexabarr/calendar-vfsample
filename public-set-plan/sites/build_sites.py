@@ -71,7 +71,7 @@ def form_html(p):
 </form>
 <div class="thanks" id="thanks" hidden tabindex="-1">
   <h3>Got it, <span id="t-name"></span>.</h3>
-  <p>A member of our team will reach out by <b id="t-method"></b> within [X] business hours to start planning your trip.</p>
+  <p>A member of our team will reach out by <b id="t-method"></b> during business hours (10am to 4pm ET) to start planning your trip.</p>
   <p class="pv">Preview: this form isn't connected to the sales team yet, so nothing was sent. On the live site it will create a lead in the CRM and alert the team.</p>
 </div>"""
 
@@ -532,7 +532,7 @@ def crew():
 
 <section class="light" id="contact"><div class="wrap form-grid">
   <div class="form-side"><span class="kicker">Check your dates</span><h2>See if your dates are open</h2>
-    <p style="color:#3D5170">Tell us when you want to land and who's coming. A real person on our team checks villa availability and replies the way you prefer, usually within [X] business hours, with your exact price per person.</p>
+    <p style="color:#3D5170">Tell us when you want to land and who's coming. A real person on our team checks villa availability and replies the way you prefer between 10am and 4pm ET, with your exact price per person.</p>
     <ul><li>Your exact price, split per person</li><li>Early check-in from 12pm</li><li>No payment needed to check</li></ul></div>
   <div>{form_html(p)}</div>
 </div></section>
@@ -802,7 +802,7 @@ def getaway():
 
 <section class="formband" id="contact"><div class="wrap form-grid">
   <div class="form-side"><span class="kicker">Check your dates</span><h2>See if your dates are <em>open</em>.</h2>
-    <p>Tell us when you want to land and who's coming. A real person on our team checks villa availability and replies the way you prefer, usually within [X] business hours, with your exact price per person.</p>
+    <p>Tell us when you want to land and who's coming. A real person on our team checks villa availability and replies the way you prefer between 10am and 4pm ET, with your exact price per person.</p>
     <p>No payment needed to check. Early check-in from 12pm.</p></div>
   <div class="form-card">{form_html(p)}</div>
 </div></section>
@@ -1077,7 +1077,7 @@ def celebrate():
 
 <section id="contact" style="padding-top:0"><div class="wrap">
   <div class="rsvp">
-    <div class="title"><span class="kicker">Check your dates</span><h2>RSVP for your <em>quote</em>.</h2><p>Tell us the occasion and when you want to land. A real person on our team checks villa availability and replies the way you prefer, usually within [X] business hours, with your exact price per person. No payment needed to check.</p></div>
+    <div class="title"><span class="kicker">Check your dates</span><h2>RSVP for your <em>quote</em>.</h2><p>Tell us the occasion and when you want to land. A real person on our team checks villa availability and replies the way you prefer between 10am and 4pm ET, with your exact price per person. No payment needed to check.</p></div>
     <div>{form_html(p)}</div>
   </div>
 </div></section>

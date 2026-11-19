@@ -98,10 +98,10 @@
 ---
 
 ## 5. Owner to confirm before going live
-1. **Surprise planning:** the team will plan only with the organizer (now promised on the Celebration page).
+1. ✅ **Surprise planning:** confirmed by the owner (Nov 19).
 2. **Cancellation wording:** the full refund 30+ days out, minus the 5% booking fee, is still pending attorney review.
 3. **Early check-in from 12pm** at every villa.
-4. **Response time:** fill in "[X] business hours."
+4. ✅ **Response time:** business hours are 10am–4pm ET (confirmed Nov 19). Days of the week still to confirm.
 
 ## 6. Next steps
 - Collect real proof from the pilot trip: 3 short video testimonials, photos with releases, and one quote per audience. Put them next to the price cards and the form.

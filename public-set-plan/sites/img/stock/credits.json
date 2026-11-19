@@ -24,28 +24,20 @@
     "query": "terrace dinner table"
   },
   "SH-10": {
-    "id": "20fd3a17-a65b-4108-9fa4-fdf020550272",
-    "title": "35th U.S. Army Culinary Arts Competition",
-    "creator": "US Army Africa",
-    "creator_url": "https://www.flickr.com/photos/36281822@N08",
-    "license": "BY",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "source_url": "https://www.flickr.com/photos/36281822@N08/4457275902",
-    "provider": "flickr",
-    "query": "chef plating"
+    "id": "owner-SH-10",
+    "title": "Chef",
+    "creator": null,
+    "license": null,
+    "source": "owner-supplied",
+    "query": ""
   },
   "SH-15": {
-    "id": "7ae8d775-e415-4060-bf85-dd9eaf862432",
-    "title": "Breakfast @ Pool Side Area",
-    "creator": "Prayitno / Thank you for (12 millions +) view",
-    "creator_url": "https://www.flickr.com/photos/34128007@N04",
-    "license": "BY",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "source_url": "https://www.flickr.com/photos/34128007@N04/16890109246",
-    "provider": "flickr",
-    "query": "breakfast pool"
+    "id": "owner-SH-15",
+    "title": "Housekeeper",
+    "creator": null,
+    "license": null,
+    "source": "owner-supplied",
+    "query": ""
   },
   "CR-04": {
     "id": "6d3f6176-07a2-49bd-affb-1d08a2f58d98",
@@ -249,5 +241,21 @@
     "source_url": "https://www.flickr.com/photos/7927684@N03/8337577843",
     "provider": "flickr",
     "query": "breakfast eggs coffee"
+  },
+  "SH-11": {
+    "id": "owner-SH-11",
+    "title": "Driver",
+    "creator": null,
+    "license": null,
+    "source": "owner-supplied",
+    "query": ""
+  },
+  "SH-13": {
+    "id": "owner-SH-13",
+    "title": "Security",
+    "creator": null,
+    "license": null,
+    "source": "owner-supplied",
+    "query": ""
   }
 }

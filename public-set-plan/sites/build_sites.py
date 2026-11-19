@@ -1,13 +1,24 @@
 """Builds the three DR Experiences landing pages (v2: three distinct themes and layouts).
 Run: python3 build_sites.py  -> writes crew.html, getaway.html, celebrate.html next to this file.
 Design tokens and rationale: DESIGN.md. Content rules: ../DR_EXPERIENCES_LANDING_PAGES_PLAN.md."""
-import html, os
+import html, os, json
 OUT = os.path.dirname(os.path.abspath(__file__))
 E = html.escape
 TYPE_LABEL = {"REAL": "Real photo needed", "CREATED": "Created image", "PREF": "Created now, swap for real"}
 
 
+STOCK_DIR = os.path.join(OUT, "img", "stock")
+try:
+    STOCK = json.load(open(os.path.join(STOCK_DIR, "credits.json")))
+except (OSError, ValueError):
+    STOCK = {}
+
+
 def ph(pid, kind, desc, ratio="4/3", cls=""):
+    if pid in STOCK and os.path.exists(os.path.join(STOCK_DIR, pid + ".jpg")):
+        c = STOCK[pid]
+        return (f'<figure class="ph ph-photo {cls}" style="aspect-ratio:{ratio}"><img src="img/stock/{pid}.jpg" alt="{E(desc)}" loading="lazy">'
+                f'<figcaption class="credit">Example photo · {E(c["photographer"])} / Pexels</figcaption></figure>')
     return (f'<figure class="ph ph-{kind.lower()} {cls}" style="aspect-ratio:{ratio}">'
             f'<figcaption><span class="ph-id">{pid}</span><span class="ph-type">{TYPE_LABEL[kind]}</span>'
             f'<span class="ph-desc">{E(desc)}</span></figcaption></figure>')
@@ -57,7 +68,7 @@ def form_html(p):
       <label><input type="radio" name="method" value="Email"><span>Email</span></label>
       <label><input type="radio" name="method" value="WhatsApp"><span>WhatsApp</span></label>
     </div></fieldset>
-  <div class="f"><label for="f-size">Group size <span class="req">*</span></label><select id="f-size" name="size" required><option value="">Choose…</option><option>2</option><option>3–4</option><option>5–6</option><option>7–8</option><option>Not sure yet</option></select></div>
+  <div class="f"><label for="f-size">Group size <span class="req">*</span></label><select id="f-size" name="size" required><option value="">Choose…</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9+</option></select></div>
   <div class="f"><label for="f-occ">What's the occasion? <span class="req">*</span></label><select id="f-occ" name="occasion" required><option value="">Choose…</option>{occ}</select></div>
   <div class="f"><label for="f-date">Date of arrival <span class="req">*</span></label><input id="f-date" name="arrival" type="date" required></div>
   <div class="f"><label for="f-nights">How many nights?</label><select id="f-nights" name="nights"><option value="">Not sure</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9+</option></select></div>
@@ -71,12 +82,14 @@ def form_html(p):
 </form>
 <div class="thanks" id="thanks" hidden tabindex="-1">
   <h3>Got it, <span id="t-name"></span>.</h3>
+  <p class="t-quote" id="t-quote" hidden></p>
   <p>A member of our team will reach out by <b id="t-method"></b> during business hours (10am to 4pm ET) to start planning your trip.</p>
-  <p class="pv">Preview: this form isn't connected to the sales team yet, so nothing was sent. On the live site it will create a lead in the CRM and alert the team.</p>
+  <p class="pv" id="t-pv">Preview: this form isn't connected to the sales team yet, so nothing was sent. On the live site it will create a lead in the CRM and alert the team.</p>
 </div>"""
 
 
 JS = """<script>
+var QUOTE_URL=__QUOTE_URL__;
 (function(){
   var form=document.getElementById('lead'),err=document.getElementById('f-err'),thanks=document.getElementById('thanks');
   form.addEventListener('submit',function(e){
@@ -87,7 +100,18 @@ JS = """<script>
     document.getElementById('t-name').textContent=document.getElementById('f-first').value.trim();
     var m=form.querySelector('input[name=method]:checked');
     document.getElementById('t-method').textContent=m?m.value.toLowerCase():'your preferred method';
-    form.hidden=true;thanks.hidden=false;thanks.focus();
+    function done(){form.hidden=true;thanks.hidden=false;thanks.focus();}
+    if(!QUOTE_URL){done();return;}
+    var btn=form.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Pricing your trip…';
+    var data={};new FormData(form).forEach(function(v,k){data[k]=v;});
+    ['flexible','sms','news'].forEach(function(k){data[k]=!!form.elements[k].checked;});
+    fetch(QUOTE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json();}).then(function(q){
+        var t=document.getElementById('t-quote');document.getElementById('t-pv').hidden=true;
+        if(q.status==='quoted'){t.innerHTML='Your estimate for '+q.guests+' guests, '+q.nights+' nights: <b>$'+Number(q.perPerson).toLocaleString('en-US',{maximumFractionDigits:2})+' per person</b> ($'+Number(q.total).toLocaleString('en-US')+' total). We just emailed you the details.';t.hidden=false;}
+        else if(q.status==='custom'){t.textContent='For longer stays and bigger groups, our team builds a custom quote.';t.hidden=false;}
+        done();
+      }).catch(function(){document.getElementById('t-pv').hidden=true;done();});
   });
   var bar=document.querySelector('.mbar'),contact=document.getElementById('contact');
   if(bar&&contact&&'IntersectionObserver' in window){new IntersectionObserver(function(es){bar.hidden=es[0].isIntersecting;}).observe(contact);}
@@ -129,6 +153,9 @@ a{color:inherit}
 .ph-type{font-weight:700;color:var(--cap-accent)}
 .ph-desc{flex-basis:100%;opacity:.85}
 .ph-real{outline:2px dashed var(--cap-fg);outline-offset:-7px}
+.ph-photo::before{display:none}
+.ph-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ph-photo figcaption.credit{left:auto;right:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:.62rem;padding:3px 7px;border-radius:4px}
 .faq{display:grid;gap:10px;max-width:860px}
 .faq details{border:1px solid var(--line);border-radius:var(--card-radius);padding:2px 20px;background:var(--card)}
 .faq summary{cursor:pointer;font-weight:700;padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
@@ -156,6 +183,7 @@ form .btn{justify-self:start}
 .err{color:var(--error);font-size:.92rem;font-weight:600}
 .thanks{border-radius:var(--card-radius);padding:28px;display:grid;gap:12px;background:var(--card);border:1px solid var(--line)}
 .thanks h3{font-size:1.7rem}
+.t-quote{font-size:1.1rem}
 .thanks .pv{font-size:.88rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
 .mbar{display:none}
 @media (max-width:720px){
@@ -196,7 +224,7 @@ def doc(title, meta, fonts, css, body):
 <div class="preview"><div class="wrap">Preview draft. Boxes with an ID are image placeholders. Prices come from the current pricing model.</div></div>
 {body}
 <div class="mbar"><a class="btn" href="#contact">{E(PAGE_CTA[title])}</a></div>
-{JS}"""
+{JS.replace("__QUOTE_URL__", json.dumps(os.environ.get("QUOTE_URL", "")))}"""
 
 
 PAGE_CTA = {}

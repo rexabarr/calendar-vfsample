@@ -174,6 +174,8 @@ h2{font-size:clamp(2.4rem,6vw,4.4rem);line-height:.95;text-transform:uppercase}
 .light h2{color:var(--ink)}
 @media (max-width:860px){.form-grid{grid-template-columns:1fr}}
 footer{background:var(--navy-deep)}
+.promise-head{text-transform:uppercase;line-height:.95}
+.promise div{border-top-color:var(--red)}
 footer .big{font-family:var(--display);font-size:clamp(2rem,5vw,3.2rem);text-transform:uppercase;color:var(--white);line-height:1}
 
 *{box-sizing:border-box}
@@ -239,6 +241,15 @@ form .btn{justify-self:start}
   .top .btn{display:none}
 }
 @media (max-width:560px){form{grid-template-columns:1fr}section{padding-block:52px}body{font-size:16.5px}}
+.promise-sec{padding-block:56px}
+.promise-head{font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.02;margin-bottom:28px;max-width:22ch}
+.promise{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 28px}
+.promise div{border-top:3px solid var(--primary);padding-top:14px;display:grid;gap:6px;align-content:start}
+.promise h3{font-family:var(--body);font-weight:800;font-size:1.05rem}
+.promise p{color:var(--muted);font-size:.97rem}
+@media (max-width:900px){.promise{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.promise{grid-template-columns:1fr}.promise-sec{padding-block:44px}}
+.micro{font-size:.88rem;color:var(--muted)}
 .reviews{border:2px dashed var(--line);border-radius:var(--card-radius);padding:28px;display:grid;gap:14px;justify-items:center;text-align:center}
 .reviews .ph{width:100%}
 .reviews p{color:var(--muted);max-width:56ch}
@@ -264,6 +275,7 @@ html{scroll-behavior:smooth}
 </div>
 <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Private pool</span><span>Chef dinners</span><span>Driver on call</span><span>VIP tables</span><span>Deep-sea fishing</span><span>Golf</span><span>One price, split by the crew</span><span>Private pool</span><span>Chef dinners</span><span>Driver on call</span><span>VIP tables</span><span>Deep-sea fishing</span><span>Golf</span><span>One price, split by the crew</span></div></div>
 </section>
+<section class="promise-sec"><div class="wrap"><h2 class="promise-head">Your only job is picking the dates.</h2><div class="promise"><div><h3>Nobody plays travel agent</h3><p>Your concierge books the tee times, fishing charters and VIP tables. Nobody in the group chat has to.</p></div><div><h3>Nights out, door to door</h3><p>Your driver takes the crew out and brings everyone back, with security along on scheduled outings.</p></div><div><h3>A villa, not a hotel room</h3><p>Your own pool, and a chef cooking dinner while you're still in it.</p></div><div><h3>Everyone knows their number</h3><p>One all-in price, split per person, before anyone commits a dollar.</p></div></div></div></section>
 
 <section><div class="wrap story">
   <div class="copy">
@@ -286,7 +298,7 @@ html{scroll-behavior:smooth}
 </div></section>
 
 <section class="tight"><div class="wrap">
-  <div class="head"><span class="kicker">How it works</span><h2>Three steps to the villa</h2></div>
+  <div class="head"><span class="kicker">How it works</span><h2>You pick the dates. We do the rest.</h2></div>
   <ol class="steps">
     <li><h3>Tell us about your crew</h3><p>Group size, rough dates, and what you're celebrating, if anything.</p></li>
     <li><h3>Get your all-in price</h3><p>One price for the trip, split per person, so everyone knows their share.</p></li>
@@ -343,7 +355,7 @@ html{scroll-behavior:smooth}
 
 <section style="padding-top:0"><div class="wrap">
   <div class="head"><span class="kicker">FAQ</span><h2>Questions from the group chat</h2></div>
-  <div class="faq"><details><summary>Can we add people later?</summary><p>Usually, yes. Bigger groups move into a bigger villa and the per-person price drops. Tell our team and we&#x27;ll requote.</p></details><details><summary>What about nightlife?</summary><p>Your concierge can book lounges, rooftops and VIP tables, and your driver takes you there and brings you back. Drinks and table minimums are paid separately.</p></details><details><summary>Is this legit? How do I pay?</summary><p>You&#x27;ll talk with a real person on our team before you pay anything. To reserve, you pay a 50% deposit by card through our secure checkout and sign our terms. The balance is due 30 days before you arrive.</p></details><details><summary>What&#x27;s not included?</summary><p>Flights, excursions, drinks and meals out (including your free night), gratuities and travel insurance. We recommend every guest buys their own travel insurance.</p></details><details><summary>Who is my concierge?</summary><p>Your personal concierge handles your trip from booking to departure. Our AI concierge assistant is available 24/7 for quick answers, and anything it can&#x27;t handle goes straight to your personal concierge and our team in the DR.</p></details><details><summary>What if someone in the group cancels?</summary><p>Cancellations follow our published tiers, based on how many days before arrival you cancel. We walk you through them before you book. Date changes are possible for a rebooking fee, subject to availability.</p></details><details><summary>How far is the beach?</summary><p>Our villas are minutes from the beach. On beach days your driver can bring all of your beach supplies, coolers included, and help you set up.</p></details><details><summary>What about getting around safely?</summary><p>Your driver takes you to and from scheduled outings, security comes along, and your concierge always knows your plans.</p></details></div>
+  <div class="faq"><details><summary>Can we add people later?</summary><p>Usually, yes. Bigger groups move into a bigger villa and the per-person price drops. Tell our team and we&#x27;ll requote.</p></details><details><summary>What about nightlife?</summary><p>Your concierge can book lounges, rooftops and VIP tables, and your driver takes you there and brings you back. Drinks and table minimums are paid separately.</p></details><details><summary>Is this legit? How do I pay?</summary><p>You talk with a real person on our team, and get your exact quote in writing, before you pay anything. To reserve, you pay a 50% deposit by card through our secure checkout and sign our terms. The balance is due 30 days before you arrive.</p></details><details><summary>What&#x27;s not included?</summary><p>Flights, excursions, drinks and meals out (including your free night), gratuities and travel insurance. We recommend every guest buys their own travel insurance.</p></details><details><summary>Who is my concierge?</summary><p>Your personal concierge handles your trip from booking to departure. Our AI concierge assistant is available 24/7 for quick answers, and anything it can&#x27;t handle goes straight to your personal concierge and our team in the DR.</p></details><details><summary>What if we have to cancel?</summary><p>Cancel 30 or more days before arrival and you get a full refund, minus a 5% booking fee. Closer to your trip, partial refunds apply under our published tiers, and we walk you through them before you pay anything. Date changes are possible for a rebooking fee, subject to availability.</p></details><details><summary>How far is the beach?</summary><p>Our villas are minutes from the beach. On beach days your driver can bring all of your beach supplies, coolers included, and help you set up.</p></details><details><summary>What about getting around safely?</summary><p>Your driver takes you to and from scheduled outings, security comes along, and your concierge always knows your plans.</p></details></div>
 </div></section>
 
 <section class="light" id="contact"><div class="wrap form-grid">

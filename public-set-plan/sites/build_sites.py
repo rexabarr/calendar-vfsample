@@ -28,10 +28,10 @@ INCLUDED = [
 NOT_INCLUDED = "Flights, excursions, drinks and meals out, gratuities, travel insurance."
 
 BASE_FAQ = [
-    ("Is this legit? How do I pay?", "You'll talk with a real person on our team before you pay anything. To reserve, you pay a 50% deposit by card through our secure checkout and sign our terms. The balance is due 30 days before you arrive."),
+    ("Is this legit? How do I pay?", "You talk with a real person on our team, and get your exact quote in writing, before you pay anything. To reserve, you pay a 50% deposit by card through our secure checkout and sign our terms. The balance is due 30 days before you arrive."),
     ("What's not included?", "Flights, excursions, drinks and meals out (including your free night), gratuities and travel insurance. We recommend every guest buys their own travel insurance."),
     ("Who is my concierge?", "Your personal concierge handles your trip from booking to departure. Our AI concierge assistant is available 24/7 for quick answers, and anything it can't handle goes straight to your personal concierge and our team in the DR."),
-    ("What if someone in the group cancels?", "Cancellations follow our published tiers, based on how many days before arrival you cancel. We walk you through them before you book. Date changes are possible for a rebooking fee, subject to availability."),
+    ("What if we have to cancel?", "Cancel 30 or more days before arrival and you get a full refund, minus a 5% booking fee. Closer to your trip, partial refunds apply under our published tiers, and we walk you through them before you pay anything. Date changes are possible for a rebooking fee, subject to availability."),
     ("How far is the beach?", "Our villas are minutes from the beach. On beach days your driver can bring all of your beach supplies, coolers included, and help you set up."),
     ("What about getting around safely?", "Your driver takes you to and from scheduled outings, security comes along, and your concierge always knows your plans."),
 ]
@@ -166,6 +166,15 @@ form .btn{justify-self:start}
   .top .btn{display:none}
 }
 @media (max-width:560px){form{grid-template-columns:1fr}section{padding-block:52px}body{font-size:16.5px}}
+.promise-sec{padding-block:56px}
+.promise-head{font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.02;margin-bottom:28px;max-width:22ch}
+.promise{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 28px}
+.promise div{border-top:3px solid var(--primary);padding-top:14px;display:grid;gap:6px;align-content:start}
+.promise h3{font-family:var(--body);font-weight:800;font-size:1.05rem}
+.promise p{color:var(--muted);font-size:.97rem}
+@media (max-width:900px){.promise{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.promise{grid-template-columns:1fr}.promise-sec{padding-block:44px}}
+.micro{font-size:.88rem;color:var(--muted)}
 .reviews{border:2px dashed var(--line);border-radius:var(--card-radius);padding:28px;display:grid;gap:14px;justify-items:center;text-align:center}
 .reviews .ph{width:100%}
 .reviews p{color:var(--muted);max-width:56ch}
@@ -385,6 +394,8 @@ h2{font-size:clamp(2.4rem,6vw,4.4rem);line-height:.95;text-transform:uppercase}
 .light h2{color:var(--ink)}
 @media (max-width:860px){.form-grid{grid-template-columns:1fr}}
 footer{background:var(--navy-deep)}
+.promise-head{text-transform:uppercase;line-height:.95}
+.promise div{border-top-color:var(--red)}
 footer .big{font-family:var(--display);font-size:clamp(2rem,5vw,3.2rem);text-transform:uppercase;color:var(--white);line-height:1}
 """
 
@@ -436,6 +447,7 @@ def crew():
 </div>
 <div class="ticker" aria-hidden="true"><div class="ticker-track">{ticker}</div></div>
 </section>
+<section class="promise-sec"><div class="wrap"><h2 class="promise-head">Your only job is picking the dates.</h2><div class="promise"><div><h3>Nobody plays travel agent</h3><p>Your concierge books the tee times, fishing charters and VIP tables. Nobody in the group chat has to.</p></div><div><h3>Nights out, door to door</h3><p>Your driver takes the crew out and brings everyone back, with security along on scheduled outings.</p></div><div><h3>A villa, not a hotel room</h3><p>Your own pool, and a chef cooking dinner while you're still in it.</p></div><div><h3>Everyone knows their number</h3><p>One all-in price, split per person, before anyone commits a dollar.</p></div></div></div></section>
 
 <section><div class="wrap story">
   <div class="copy">
@@ -458,7 +470,7 @@ def crew():
 </div></section>
 
 <section class="tight"><div class="wrap">
-  <div class="head"><span class="kicker">How it works</span><h2>Three steps to the villa</h2></div>
+  <div class="head"><span class="kicker">How it works</span><h2>You pick the dates. We do the rest.</h2></div>
   <ol class="steps">
     <li><h3>Tell us about your crew</h3><p>Group size, rough dates, and what you're celebrating, if anything.</p></li>
     <li><h3>Get your all-in price</h3><p>One price for the trip, split per person, so everyone knows their share.</p></li>
@@ -673,7 +685,7 @@ h2 em,h1 em{font-style:italic;color:var(--primary-text)}
 footer .big{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.6rem);color:var(--fg)}
 """
 
-GETAWAY = dict(slug="getaway", occasions=["Girls' trip", "Moms' getaway", "Birthday", "Bachelorette", "Reunion", "Just because"], cta="Get my group's price")
+GETAWAY = dict(slug="getaway", occasions=["Girls' trip", "Moms' getaway", "Birthday", "Bachelorette", "Reunion", "Just because"], cta="Check our dates & price")
 
 
 def getaway():
@@ -701,8 +713,9 @@ def getaway():
   <div class="hero-copy">
     <span class="kicker">Girls' trips & moms' getaways · Dominican Republic</span>
     <h1>Four days where nobody <em>needs</em> anything from you.</h1>
-    <p class="sub">A private villa, a private chef, and a concierge team that handles every detail.</p>
+    <p class="sub">You plan everything for everyone. This trip, we plan for you: your own villa and pool, a chef for most of your meals, and a concierge a text away.</p>
     <div class="row"><a class="btn" href="#contact">{p['cta']}</a><span class="from">From <b>$1,510</b> per person</span></div>
+    <p class="micro">Takes about a minute. No payment needed to check.</p>
   </div>
   <div class="stack">
     {ph("GW-01", "REAL", "Video loop: 4 women arriving, first look at the pool", "4/5", "arch")}
@@ -711,6 +724,7 @@ def getaway():
   </div>
 </div></section>
 
+<section class="promise-sec"><div class="wrap"><h2 class="promise-head">You've planned enough.</h2><div class="promise"><div><h3>Meals made for you</h3><p>Breakfast and lunch every full day, and chef dinners every night but one.</p></div><div><h3>A driver for every outing</h3><p>Dropped off and picked up for beach days, spa mornings and nights out.</p></div><div><h3>A pool that's only yours</h3><p>Your group, your loungers, your playlist, all day.</p></div><div><h3>One text does it</h3><p>Want a spa morning or a rooftop table? Text your concierge and it's booked.</p></div></div></div></section>
 <section class="sandband"><div class="wrap story">
   <div class="copy">
     <p>Imagine your feet in the pool. It's 86 degrees, there's a breeze, Dominican music is playing, and you're laughing with your girls about this afternoon, when you asked the driver to stop at a roadside fruit stand and he knew the best one.</p>
@@ -726,7 +740,7 @@ def getaway():
 
 <section><div class="wrap incl">
   <div class="sticky">{ph("SH-01", "REAL", "Villa exterior and pool at golden hour", "3/4", "arch")}</div>
-  <div><div class="head"><span class="kicker">What's included</span><h2>Everything taken care of. <em>Truly</em> everything.</h2></div>
+  <div><div class="head"><span class="kicker">What's included</span><h2>Taken care of, <em>start</em> to finish.</h2></div>
     <ul>{incl_h}</ul><p class="excl"><b>Not included:</b> {NOT_INCLUDED}</p></div>
 </div></section>
 
@@ -773,7 +787,7 @@ def getaway():
     <div class="pcard main"><span class="lbl">4 friends · 3 nights</span><span class="amt">$1,510<small>/person</small></span><span class="fine">Based on 4 guests sharing a 2-bedroom villa. {FINE}</span></div>
     <div class="pcard"><span class="lbl">3 friends · 4 nights</span><span class="amt">$2,390<small>/person</small></span><span class="fine">Based on 3 guests sharing a 2-bedroom villa. {FINE}</span></div>
   </div>
-  <div class="price-foot"><a class="btn" href="#contact">{p['cta']}</a><span>50% deposit to reserve. Balance due 30 days before arrival.</span></div>
+  <div class="price-foot"><a class="btn" href="#contact">{p['cta']}</a><span>No payment needed to check. When you're ready, a 50% deposit holds your dates and the balance is due 30 days before arrival.</span></div>
 </div></section>
 
 <section><div class="wrap">
@@ -787,9 +801,9 @@ def getaway():
 </div></section>
 
 <section class="formband" id="contact"><div class="wrap form-grid">
-  <div class="form-side"><span class="kicker">Talk to our team</span><h2>Get your group's <em>price</em>.</h2>
-    <p>Tell us a little about your group. Someone from our sales team will reach out the way you prefer, usually within [X] business hours.</p>
-    <p>No payment needed for a quote.</p></div>
+  <div class="form-side"><span class="kicker">Check your dates</span><h2>See if your dates are <em>open</em>.</h2>
+    <p>Tell us when you want to land and who's coming. A real person on our team checks villa availability and replies the way you prefer, usually within [X] business hours, with your exact price per person.</p>
+    <p>No payment needed to check. Early check-in from 12pm.</p></div>
   <div class="form-card">{form_html(p)}</div>
 </div></section>
 </main>
@@ -959,6 +973,7 @@ def celebrate():
     cmp_h = "".join(f"<tr><td>{E(a)}</td><td>{E(b)}</td><td>{E(c)}</td></tr>" for a, b, c in rows)
     extra_faq = [("Can you help with a cake or decorations?", "Yes. Tell us what you have in mind and our team will arrange it. Extras like decor or a photographer are priced separately."),
                  ("Can people arrive on different days?", "Usually, yes. Your driver handles each airport pickup. Let our team know when you ask for your quote."),
+                 ("Can we keep it a surprise?", "Yes. Tell us when you reach out, and our team will plan everything with you only."),
                  ("Can everyone pay their own share?", "Ask our team. We'll walk you through how to handle payment across your group when we send your quote.")]
     body = f"""<header class="top"><div class="wrap"><a class="logo" href="#top">DR <i>Experiences</i></a><a class="btn" href="#contact">{p['cta']}</a></div></header>
 <main id="top">
@@ -970,11 +985,13 @@ def celebrate():
     <h1>Some birthdays deserve <em>a villa</em>.</h1>
     <p class="sub">Bring your people. We'll bring the chef, the driver, the concierge and the plan.</p>
     <div class="row"><a class="btn" href="#contact">{p['cta']}</a><span class="from">Groups of 4 from <b>$1,510</b> per person</span></div>
+    <p class="micro">Takes about a minute. No payment needed to check.</p>
   </div>
   <div class="wrap frame">{ph("CE-01", "REAL", "Video loop: group of 4 toasting at the villa pool at sunset", "21/9")}</div>
 </section>
 
-<section><div class="wrap">
+<section class="promise-sec"><div class="wrap"><h2 class="promise-head">You bring the people. We bring the <em>night</em>.</h2><div class="promise"><div><h3>The big dinner, at home</h3><p>Your chef cooks the celebration dinner on your terrace. We can arrange the cake.</p></div><div><h3>Everyone under one roof</h3><p>From the first toast to the last breakfast, the whole group stays together.</p></div><div><h3>Out and back, together</h3><p>Your driver takes the group to the VIP table and brings everyone home.</p></div><div><h3>Planning it for someone?</h3><p>We can keep it a surprise and coordinate only with you.</p></div></div></div></section>
+<section class="tight"><div class="wrap">
   <div class="head"><span class="kicker">What are you celebrating?</span><h2>Pick your <em>occasion</em>.</h2><p>Tap one and we'll add it to your inquiry.</p></div>
   <div class="cards">{occ_h}</div>
 </div></section>
@@ -1045,7 +1062,7 @@ def celebrate():
     <div class="pcard"><span class="lbl">4 guests · 3 nights</span><span class="amt">$1,510<small>/person</small></span><span class="fine">Based on 4 guests sharing a 2-bedroom villa. {FINE}</span></div>
     <div class="pcard"><span class="lbl">3 guests · 4 nights</span><span class="amt">$2,390<small>/person</small></span><span class="fine">Based on 3 guests sharing a 2-bedroom villa. {FINE}</span></div>
   </div>
-  <div class="price-foot"><a class="btn" href="#contact">{p['cta']}</a><span>50% deposit to reserve. Balance due 30 days before arrival.</span></div>
+  <div class="price-foot"><a class="btn" href="#contact">{p['cta']}</a><span>No payment needed to check. When you're ready, a 50% deposit holds your dates and the balance is due 30 days before arrival.</span></div>
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
@@ -1060,7 +1077,7 @@ def celebrate():
 
 <section id="contact" style="padding-top:0"><div class="wrap">
   <div class="rsvp">
-    <div class="title"><span class="kicker">Talk to our team</span><h2>RSVP for your <em>quote</em>.</h2><p>Tell us about the occasion. Someone from our sales team will reach out the way you prefer, usually within [X] business hours. No payment needed for a quote.</p></div>
+    <div class="title"><span class="kicker">Check your dates</span><h2>RSVP for your <em>quote</em>.</h2><p>Tell us the occasion and when you want to land. A real person on our team checks villa availability and replies the way you prefer, usually within [X] business hours, with your exact price per person. No payment needed to check.</p></div>
     <div>{form_html(p)}</div>
   </div>
 </div></section>

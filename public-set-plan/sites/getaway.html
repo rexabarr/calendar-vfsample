@@ -203,6 +203,15 @@ form .btn{justify-self:start}
   .top .btn{display:none}
 }
 @media (max-width:560px){form{grid-template-columns:1fr}section{padding-block:52px}body{font-size:16.5px}}
+.promise-sec{padding-block:56px}
+.promise-head{font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.02;margin-bottom:28px;max-width:22ch}
+.promise{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 28px}
+.promise div{border-top:3px solid var(--primary);padding-top:14px;display:grid;gap:6px;align-content:start}
+.promise h3{font-family:var(--body);font-weight:800;font-size:1.05rem}
+.promise p{color:var(--muted);font-size:.97rem}
+@media (max-width:900px){.promise{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.promise{grid-template-columns:1fr}.promise-sec{padding-block:44px}}
+.micro{font-size:.88rem;color:var(--muted)}
 .reviews{border:2px dashed var(--line);border-radius:var(--card-radius);padding:28px;display:grid;gap:14px;justify-items:center;text-align:center}
 .reviews .ph{width:100%}
 .reviews p{color:var(--muted);max-width:56ch}
@@ -213,14 +222,15 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px}
 html{scroll-behavior:smooth}
 </style>
 <div class="preview"><div class="wrap">Preview draft. Boxes with an ID are image placeholders. Prices come from the current pricing model.</div></div>
-<header class="top"><div class="wrap"><a class="logo" href="#top">DR <i>Experiences</i></a><a class="btn" href="#contact">Get my group's price</a></div></header>
+<header class="top"><div class="wrap"><a class="logo" href="#top">DR <i>Experiences</i></a><a class="btn" href="#contact">Check our dates & price</a></div></header>
 <main id="top">
 <section class="hero"><div class="wrap">
   <div class="hero-copy">
     <span class="kicker">Girls' trips & moms' getaways · Dominican Republic</span>
     <h1>Four days where nobody <em>needs</em> anything from you.</h1>
-    <p class="sub">A private villa, a private chef, and a concierge team that handles every detail.</p>
-    <div class="row"><a class="btn" href="#contact">Get my group's price</a><span class="from">From <b>$1,510</b> per person</span></div>
+    <p class="sub">You plan everything for everyone. This trip, we plan for you: your own villa and pool, a chef for most of your meals, and a concierge a text away.</p>
+    <div class="row"><a class="btn" href="#contact">Check our dates & price</a><span class="from">From <b>$1,510</b> per person</span></div>
+    <p class="micro">Takes about a minute. No payment needed to check.</p>
   </div>
   <div class="stack">
     <figure class="ph ph-real arch" style="aspect-ratio:4/5"><figcaption><span class="ph-id">GW-01</span><span class="ph-type">Real photo needed</span><span class="ph-desc">Video loop: 4 women arriving, first look at the pool</span></figcaption></figure>
@@ -229,6 +239,7 @@ html{scroll-behavior:smooth}
   </div>
 </div></section>
 
+<section class="promise-sec"><div class="wrap"><h2 class="promise-head">You've planned enough.</h2><div class="promise"><div><h3>Meals made for you</h3><p>Breakfast and lunch every full day, and chef dinners every night but one.</p></div><div><h3>A driver for every outing</h3><p>Dropped off and picked up for beach days, spa mornings and nights out.</p></div><div><h3>A pool that's only yours</h3><p>Your group, your loungers, your playlist, all day.</p></div><div><h3>One text does it</h3><p>Want a spa morning or a rooftop table? Text your concierge and it's booked.</p></div></div></div></section>
 <section class="sandband"><div class="wrap story">
   <div class="copy">
     <p>Imagine your feet in the pool. It's 86 degrees, there's a breeze, Dominican music is playing, and you're laughing with your girls about this afternoon, when you asked the driver to stop at a roadside fruit stand and he knew the best one.</p>
@@ -244,7 +255,7 @@ html{scroll-behavior:smooth}
 
 <section><div class="wrap incl">
   <div class="sticky"><figure class="ph ph-real arch" style="aspect-ratio:3/4"><figcaption><span class="ph-id">SH-01</span><span class="ph-type">Real photo needed</span><span class="ph-desc">Villa exterior and pool at golden hour</span></figcaption></figure></div>
-  <div><div class="head"><span class="kicker">What's included</span><h2>Everything taken care of. <em>Truly</em> everything.</h2></div>
+  <div><div class="head"><span class="kicker">What's included</span><h2>Taken care of, <em>start</em> to finish.</h2></div>
     <ul><li><div><h3>Private villa, private pool</h3><p>The whole villa is yours, minutes from the beach.</p></div></li><li><div><h3>Most meals made in your villa</h3><p>Breakfast and lunch fresh every full day. Your private chef cooks dinner every night but one, which we leave open for a night out.</p></div></li><li><div><h3>Private car service</h3><p>Airport pickup and drop-off, plus a driver for scheduled outings, with security along for those outings.</p></div></li><li><div><h3>A concierge team, day or night</h3><p>Your personal concierge, plus a 24/7 AI concierge assistant for instant answers.</p></div></li><li><div><h3>Excursions for less</h3><p>Booked by your concierge at least 15% below resort prices. Paid separately.</p></div></li><li><div><h3>Early check-in from 12pm</h3><p>Check in as early as 12pm, so your first afternoon starts at the pool.</p></div></li><li><div><h3>Welcome kit</h3><p>Waiting for you when you arrive.</p></div></li></ul><p class="excl"><b>Not included:</b> Flights, excursions, drinks and meals out, gratuities, travel insurance.</p></div>
 </div></section>
 
@@ -291,7 +302,7 @@ html{scroll-behavior:smooth}
     <div class="pcard main"><span class="lbl">4 friends · 3 nights</span><span class="amt">$1,510<small>/person</small></span><span class="fine">Based on 4 guests sharing a 2-bedroom villa. Flights, excursions, drinks and meals out, and gratuities not included. Your exact price depends on dates, group size and villa.</span></div>
     <div class="pcard"><span class="lbl">3 friends · 4 nights</span><span class="amt">$2,390<small>/person</small></span><span class="fine">Based on 3 guests sharing a 2-bedroom villa. Flights, excursions, drinks and meals out, and gratuities not included. Your exact price depends on dates, group size and villa.</span></div>
   </div>
-  <div class="price-foot"><a class="btn" href="#contact">Get my group's price</a><span>50% deposit to reserve. Balance due 30 days before arrival.</span></div>
+  <div class="price-foot"><a class="btn" href="#contact">Check our dates & price</a><span>No payment needed to check. When you're ready, a 50% deposit holds your dates and the balance is due 30 days before arrival.</span></div>
 </div></section>
 
 <section><div class="wrap">
@@ -301,13 +312,13 @@ html{scroll-behavior:smooth}
 
 <section style="padding-top:0"><div class="wrap">
   <div class="head"><span class="kicker">FAQ</span><h2>Good questions</h2></div>
-  <div class="faq"><details><summary>Can the chef handle dietary needs?</summary><p>Yes. Tell us about allergies and preferences when you book, and your chef will plan around them.</p></details><details><summary>Do we have to go out, or can we stay in?</summary><p>Completely up to you. Some groups never leave the pool. Excursions and nights out are optional.</p></details><details><summary>Can we bring kids?</summary><p>These trips are designed for adults. Ask our team about your group and we&#x27;ll let you know what works.</p></details><details><summary>Is this legit? How do I pay?</summary><p>You&#x27;ll talk with a real person on our team before you pay anything. To reserve, you pay a 50% deposit by card through our secure checkout and sign our terms. The balance is due 30 days before you arrive.</p></details><details><summary>What&#x27;s not included?</summary><p>Flights, excursions, drinks and meals out (including your free night), gratuities and travel insurance. We recommend every guest buys their own travel insurance.</p></details><details><summary>Who is my concierge?</summary><p>Your personal concierge handles your trip from booking to departure. Our AI concierge assistant is available 24/7 for quick answers, and anything it can&#x27;t handle goes straight to your personal concierge and our team in the DR.</p></details><details><summary>What if someone in the group cancels?</summary><p>Cancellations follow our published tiers, based on how many days before arrival you cancel. We walk you through them before you book. Date changes are possible for a rebooking fee, subject to availability.</p></details><details><summary>How far is the beach?</summary><p>Our villas are minutes from the beach. On beach days your driver can bring all of your beach supplies, coolers included, and help you set up.</p></details><details><summary>What about getting around safely?</summary><p>Your driver takes you to and from scheduled outings, security comes along, and your concierge always knows your plans.</p></details></div>
+  <div class="faq"><details><summary>Can the chef handle dietary needs?</summary><p>Yes. Tell us about allergies and preferences when you book, and your chef will plan around them.</p></details><details><summary>Do we have to go out, or can we stay in?</summary><p>Completely up to you. Some groups never leave the pool. Excursions and nights out are optional.</p></details><details><summary>Can we bring kids?</summary><p>These trips are designed for adults. Ask our team about your group and we&#x27;ll let you know what works.</p></details><details><summary>Is this legit? How do I pay?</summary><p>You talk with a real person on our team, and get your exact quote in writing, before you pay anything. To reserve, you pay a 50% deposit by card through our secure checkout and sign our terms. The balance is due 30 days before you arrive.</p></details><details><summary>What&#x27;s not included?</summary><p>Flights, excursions, drinks and meals out (including your free night), gratuities and travel insurance. We recommend every guest buys their own travel insurance.</p></details><details><summary>Who is my concierge?</summary><p>Your personal concierge handles your trip from booking to departure. Our AI concierge assistant is available 24/7 for quick answers, and anything it can&#x27;t handle goes straight to your personal concierge and our team in the DR.</p></details><details><summary>What if we have to cancel?</summary><p>Cancel 30 or more days before arrival and you get a full refund, minus a 5% booking fee. Closer to your trip, partial refunds apply under our published tiers, and we walk you through them before you pay anything. Date changes are possible for a rebooking fee, subject to availability.</p></details><details><summary>How far is the beach?</summary><p>Our villas are minutes from the beach. On beach days your driver can bring all of your beach supplies, coolers included, and help you set up.</p></details><details><summary>What about getting around safely?</summary><p>Your driver takes you to and from scheduled outings, security comes along, and your concierge always knows your plans.</p></details></div>
 </div></section>
 
 <section class="formband" id="contact"><div class="wrap form-grid">
-  <div class="form-side"><span class="kicker">Talk to our team</span><h2>Get your group's <em>price</em>.</h2>
-    <p>Tell us a little about your group. Someone from our sales team will reach out the way you prefer, usually within [X] business hours.</p>
-    <p>No payment needed for a quote.</p></div>
+  <div class="form-side"><span class="kicker">Check your dates</span><h2>See if your dates are <em>open</em>.</h2>
+    <p>Tell us when you want to land and who's coming. A real person on our team checks villa availability and replies the way you prefer, usually within [X] business hours, with your exact price per person.</p>
+    <p>No payment needed to check. Early check-in from 12pm.</p></div>
   <div class="form-card"><form id="lead" novalidate>
   <input type="hidden" id="f-page" name="page" value="getaway">
   <div class="hp" aria-hidden="true"><label for="f-web">Website</label><input id="f-web" name="website" tabindex="-1" autocomplete="off"></div>
@@ -332,7 +343,7 @@ html{scroll-behavior:smooth}
   <div class="f full"><label class="check"><input type="checkbox" id="f-sms" name="sms"><span>I agree to receive text messages from DR Experiences about my trip inquiry. Message and data rates may apply. Reply STOP to opt out. Consent isn't required to get a quote.</span></label></div>
   <div class="f full"><label class="check"><input type="checkbox" id="f-news" name="news"><span>Send me occasional emails with open dates and offers. Unsubscribe any time.</span></label></div>
   <p class="err f full" id="f-err" hidden>Please fill in the fields marked with *.</p>
-  <button class="btn" type="submit">Get my group&#x27;s price</button>
+  <button class="btn" type="submit">Check our dates &amp; price</button>
 </form>
 <div class="thanks" id="thanks" hidden tabindex="-1">
   <h3>Got it, <span id="t-name"></span>.</h3>
@@ -344,7 +355,7 @@ html{scroll-behavior:smooth}
 <footer><div class="wrap"><span class="big">Travel like the top 0.1%.</span>
 <div class="links"><span>Terms</span><span>Privacy</span><span>Guest conduct policy</span><span>[EMAIL]</span><span>[PHONE]</span><span>[BUSINESS ADDRESS]</span><span>@[HANDLE]</span></div>
 <span>DR Experiences · Private villa group trips to the Dominican Republic. Prices are per person and depend on group size, dates and villa.</span></div></footer>
-<div class="mbar"><a class="btn" href="#contact">Get my group&#x27;s price</a></div>
+<div class="mbar"><a class="btn" href="#contact">Check our dates &amp; price</a></div>
 <script>
 (function(){
   var form=document.getElementById('lead'),err=document.getElementById('f-err'),thanks=document.getElementById('thanks');

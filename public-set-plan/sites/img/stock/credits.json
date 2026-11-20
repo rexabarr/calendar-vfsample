@@ -275,5 +275,23 @@
     "license": null,
     "source": "owner-supplied (enhanced, sky/water extended to square)",
     "query": ""
+  },
+  "GW-08": {
+    "id": "owner-GW-08",
+    "title": "Horseback riding on the beach",
+    "creator": null,
+    "license": null,
+    "source": "owner-supplied (2 photos, enhanced)",
+    "query": "",
+    "images": [
+      [
+        "GW-08a.jpg",
+        "Group of friends on horseback on a Caribbean beach, waving"
+      ],
+      [
+        "GW-08b.jpg",
+        "Rider on horseback at the water line on a Caribbean beach"
+      ]
+    ]
   }
 }

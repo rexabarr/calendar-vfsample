@@ -13,3 +13,4 @@ Commit and push: Vercel deploys the branch automatically.
 ## Prices
 Live prices come from Supabase table `pricing_inputs`, loaded from `Villa_Getaway_Expenses_v10.xlsx`.
 After editing the workbook: `python3 ../backend/scripts/import_pricing.py ../Villa_Getaway_Expenses_v10.xlsx > update.sql` and run it in Supabase.
+

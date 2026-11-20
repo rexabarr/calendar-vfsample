@@ -15,6 +15,12 @@ except (OSError, ValueError):
 
 
 def ph(pid, kind, desc, ratio="4/3", cls=""):
+    if pid in STOCK and STOCK[pid].get("images"):
+        imgs = STOCK[pid]["images"]
+        slides = "".join(f'<img src="img/stock/{f}" alt="{E(alt)}" loading="lazy">' for f, alt in imgs)
+        dots = "".join(f'<button type="button" aria-label="Show photo {n + 1} of {len(imgs)}" aria-current="{"true" if n == 0 else "false"}"></button>' for n in range(len(imgs)))
+        return (f'<figure class="ph ph-photo ph-carousel {cls}" style="aspect-ratio:{ratio}" aria-roledescription="carousel" aria-label="{E(desc)}">'
+                f'<div class="car-track" tabindex="0">{slides}</div><div class="car-dots">{dots}</div></figure>')
     if pid in STOCK and os.path.exists(os.path.join(STOCK_DIR, pid + ".jpg")):
         c = STOCK[pid]
         # no caption on photos (owner request); CC BY attribution lives in the page's "Example photo credits" list
@@ -115,6 +121,16 @@ var QUOTE_URL=__QUOTE_URL__;
         done();
       }).catch(function(){document.getElementById('t-pv').hidden=true;done();});
   });
+  document.querySelectorAll('.ph-carousel').forEach(function(c){
+    var t=c.querySelector('.car-track'),dots=[].slice.call(c.querySelectorAll('.car-dots button')),n=dots.length,i=0,paused=false,timer;
+    function go(k){i=(k+n)%n;t.scrollTo({left:i*t.clientWidth});}
+    function sync(){i=Math.round(t.scrollLeft/t.clientWidth);dots.forEach(function(d,j){d.setAttribute('aria-current',j===i?'true':'false');});}
+    t.addEventListener('scroll',function(){clearTimeout(timer);timer=setTimeout(sync,80);});
+    dots.forEach(function(d,j){d.addEventListener('click',function(){paused=true;go(j);});});
+    ['mouseenter','focusin','touchstart'].forEach(function(e){c.addEventListener(e,function(){paused=true;},{passive:true});});
+    c.addEventListener('mouseleave',function(){paused=false;});
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){setInterval(function(){if(!paused&&!document.hidden)go(i+1);},4000);}
+  });
   var bar=document.querySelector('.mbar'),contact=document.getElementById('contact');
   if(bar&&contact&&'IntersectionObserver' in window){new IntersectionObserver(function(es){bar.hidden=es[0].isIntersecting;}).observe(contact);}
   document.querySelectorAll('[data-occ]').forEach(function(t){
@@ -156,6 +172,13 @@ a{color:inherit}
 .ph-desc{flex-basis:100%;opacity:.85}
 .ph-real{outline:2px dashed var(--cap-fg);outline-offset:-7px}
 .ph-photo::before{display:none}
+.ph-carousel .car-track{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth}
+.ph-carousel .car-track::-webkit-scrollbar{display:none}
+.ph-carousel .car-track img{position:relative;inset:auto;flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:start}
+.car-dots{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;gap:2px;z-index:2}
+.car-dots button{width:26px;height:26px;border:0;padding:0;background:none;cursor:pointer;display:grid;place-items:center}
+.car-dots button::before{content:"";width:8px;height:8px;border-radius:5px;background:rgba(255,255,255,.6);box-shadow:0 1px 3px rgba(0,0,0,.45);transition:width .25s ease}
+.car-dots button[aria-current="true"]::before{width:20px;background:#fff}
 .ph-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .ph-photo figcaption.credit{left:auto;right:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:.62rem;padding:3px 7px;border-radius:4px}
 .faq{display:grid;gap:10px;max-width:860px}

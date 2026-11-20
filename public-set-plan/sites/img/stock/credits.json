@@ -100,16 +100,26 @@
     "query": "rooftop bar"
   },
   "GW-07": {
-    "id": "931afa17-49c9-46ef-ad07-b86b1c47af29",
-    "title": "Sunset at Disney's Caribbean Beach",
-    "creator": "Sam Howzit",
-    "creator_url": "https://www.flickr.com/photos/12508217@N08",
-    "license": "BY",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "source_url": "https://www.flickr.com/photos/12508217@N08/19345026068",
-    "provider": "flickr",
-    "query": "caribbean beach"
+    "id": "owner-GW-07",
+    "title": "Saona Island",
+    "creator": null,
+    "license": null,
+    "source": "owner-supplied (3 photos, enhanced)",
+    "query": "",
+    "images": [
+      [
+        "GW-07a.jpg",
+        "Aerial view of a Saona Island beach lined with palm trees"
+      ],
+      [
+        "GW-07b.jpg",
+        "Heart-shaped Saona Paradise bench on the beach"
+      ],
+      [
+        "GW-07c.jpg",
+        "Palm trees over turquoise water on Saona Island"
+      ]
+    ]
   },
   "GW-11": {
     "id": "49811d9f-b68d-46b8-8c1d-fc8db0080e15",

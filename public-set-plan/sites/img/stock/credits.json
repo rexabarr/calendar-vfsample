@@ -257,5 +257,13 @@
     "license": null,
     "source": "owner-supplied",
     "query": ""
+  },
+  "GW-04": {
+    "id": "owner-GW-04",
+    "title": "Catamaran",
+    "creator": null,
+    "license": null,
+    "source": "owner-supplied (enhanced, sky/water extended to square)",
+    "query": ""
   }
 }

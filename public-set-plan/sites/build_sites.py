@@ -1012,7 +1012,7 @@ def celebrate():
             ("Late", "VIP table", "Your driver takes the whole group out and brings everyone home.", "CR-05", "CREATED", "Group at a VIP lounge table (illustrative)")]
     prog_h = "".join(f'<article><span class="when">{E(w)}</span><div><h3>{E(h)}</h3><p>{E(x)}</p></div>{ph(i, k, d, "16/10")}</article>' for w, h, x, i, k, d in prog)
     exc = [("Catamaran", "GW-04", "Catamaran"), ("Deep-sea fishing", "CR-06", "Fishing charter"), ("Saona Island", "GW-07", "Saona Island"), ("Spa day", "GW-10", "Spa day")]
-    exc_h = "".join(f'<article>{ph(i, "PREF", d, "4/5")}<h3>{E(t)}</h3></article>' for t, i, d in exc)
+    exc_h = "".join(f'<article>{ph(i, "PREF", d, "1/1")}<h3>{E(t)}</h3></article>' for t, i, d in exc)
     rows = [("Space", "Shared pool, lobby and beach", "The whole villa is yours"), ("The big night", "A table at the resort restaurant", "Your chef, your terrace, your cake"),
             ("Getting around", "Shuttle buses and taxi lines", "Your own driver for the whole group"), ("Price", "Room rate plus resort fees and add-ons", "One all-in price, split by the group")]
     cmp_h = "".join(f"<tr><td>{E(a)}</td><td>{E(b)}</td><td>{E(c)}</td></tr>" for a, b, c in rows)

@@ -1,5 +1,9 @@
 {
-  "cleanUrls": true,
+  "redirects": [
+    { "source": "/crew.html", "destination": "/crew", "permanent": false },
+    { "source": "/getaway.html", "destination": "/getaway", "permanent": false },
+    { "source": "/celebrate.html", "destination": "/celebrate", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/", "destination": "/live/index.html" },
     { "source": "/crew", "destination": "/live/crew.html" },

@@ -17,8 +17,8 @@ except (OSError, ValueError):
 def ph(pid, kind, desc, ratio="4/3", cls=""):
     if pid in STOCK and os.path.exists(os.path.join(STOCK_DIR, pid + ".jpg")):
         c = STOCK[pid]
-        return (f'<figure class="ph ph-photo {cls}" style="aspect-ratio:{ratio}"><img src="img/stock/{pid}.jpg" alt="{E(desc)}" loading="lazy">'
-                + (f'<figcaption class="credit">Example photo · {E(c["creator"])}, CC {E(c["license"])}</figcaption></figure>' if c.get("license") else '<figcaption class="credit">Example photo</figcaption></figure>'))
+        # no caption on photos (owner request); CC BY attribution lives in the page's "Example photo credits" list
+        return f'<figure class="ph ph-photo {cls}" style="aspect-ratio:{ratio}"><img src="img/stock/{pid}.jpg" alt="{E(desc)}" loading="lazy"></figure>'
     return (f'<figure class="ph ph-{kind.lower()} {cls}" style="aspect-ratio:{ratio}">'
             f'<figcaption><span class="ph-id">{pid}</span><span class="ph-type">{TYPE_LABEL[kind]}</span>'
             f'<span class="ph-desc">{E(desc)}</span></figcaption></figure>')

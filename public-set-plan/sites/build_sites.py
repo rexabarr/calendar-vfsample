@@ -244,12 +244,14 @@ html{scroll-behavior:smooth}
 
 
 def credits_html(body):
-    used = [k for k in sorted(STOCK) if not k.startswith("_") and STOCK[k].get("license") and f"img/stock/{k}.jpg" in body]
+    used = [k for k in sorted(STOCK) if not k.startswith("_") and (STOCK[k].get("license") or STOCK[k].get("credit"))
+            and (f"img/stock/{k}.jpg" in body or any(f"img/stock/{f}" in body for f, _ in STOCK[k].get("images", [])))]
     if not used:
         return ""
     items = "".join(
-        f'<li><a href="{E(STOCK[k]["source_url"] or "")}">{E(STOCK[k]["title"])}</a> by {E(STOCK[k]["creator"])}, '
-        f'<a href="{E(STOCK[k].get("license_url") or "")}">CC {E(STOCK[k]["license"])} {E(STOCK[k].get("license_version") or "")}</a></li>' for k in used)
+        (f'<li><a href="{E(STOCK[k]["source_url"] or "")}">{E(STOCK[k]["title"])}</a> by {E(STOCK[k]["creator"])}, '
+         f'<a href="{E(STOCK[k].get("license_url") or "")}">CC {E(STOCK[k]["license"])} {E(STOCK[k].get("license_version") or "")}</a></li>')
+        if STOCK[k].get("license") else f'<li>{E(STOCK[k]["credit"])}</li>' for k in used)
     return f'<section class="credits"><div class="wrap"><details><summary>Example photo credits</summary><ul>{items}</ul></details></div></section>'
 
 
@@ -490,7 +492,7 @@ def crew():
     lineup_h = "".join(f'<div class="lu-item{" on" if n == 0 else ""}" data-i="{n}"><button class="lu-btn" type="button" aria-expanded="{"true" if n == 0 else "false"}" aria-controls="lu-{n}"><span class="lu-tag">{E(tag)}</span></button>'
                        f'<div class="lu-body" id="lu-{n}"><div><h3>{E(t)}</h3><p>{E(d)}</p></div></div><div class="lu-bar"><i></i></div></div>' for n, (tag, t, d) in enumerate(INCLUDED))
     exc = [("Deep-sea fishing", "CR-06", "Fishing charter"), ("Golf", "CR-07", "Golf course"), ("ATVs", "CR-08", "ATV ride"), ("Cigar tour", "CR-09", "Cigar factory tour")]
-    exc_h = "".join(f'<article>{ph(i, "PREF", d, "3/4")}<h3>{E(t)}</h3></article>' for t, i, d in exc)
+    exc_h = "".join(f'<article>{ph(i, "PREF", d, "1/1")}<h3>{E(t)}</h3></article>' for t, i, d in exc)
     ticker = "".join(f"<span>{w}</span>" for w in ["Private pool", "Chef dinners", "Driver on call", "VIP tables", "Deep-sea fishing", "Golf", "One price, split by the crew"] * 2)
     them = [("Space", "Shared pool, lobby and beach"), ("Getting around", "Shuttle buses and taxi lines"), ("Food", "Buffet lines and reservations"), ("Price", "Room rate plus resort fees and add-ons")]
     us = [("Space", "The whole villa is yours"), ("Getting around", "Your own driver, on your schedule"), ("Food", "A private chef in your kitchen"), ("Price", "One all-in price, split by the crew")]

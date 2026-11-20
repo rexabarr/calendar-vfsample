@@ -40,16 +40,12 @@
     "query": ""
   },
   "CR-04": {
-    "id": "6d3f6176-07a2-49bd-affb-1d08a2f58d98",
-    "title": "Deep Sea Fishing Trip 2007 110",
-    "creator": "sampitech",
-    "creator_url": "https://www.flickr.com/photos/11974523@N05",
-    "license": "BY",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "source_url": "https://www.flickr.com/photos/11974523@N05/1320422203",
-    "provider": "flickr",
-    "query": "deep sea fishing"
+    "id": "owner-CR-04",
+    "title": "Fishing",
+    "creator": null,
+    "license": null,
+    "source": "owner-supplied (marlin catch, 4:3 crop, enhanced)",
+    "query": ""
   },
   "CR-05": {
     "id": "ba03a91b-2e3e-4a16-be78-b067f07966f0",
@@ -64,16 +60,31 @@
     "query": "nightclub lounge"
   },
   "CR-06": {
-    "id": "6d314ece-3b43-4936-aef5-c47e7540a41b",
-    "title": "Fishing Boat",
-    "creator": "Damian Gadal",
-    "creator_url": "https://www.flickr.com/photos/23024164@N06",
-    "license": "BY",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "source_url": "https://www.flickr.com/photos/23024164@N06/2584616121",
-    "provider": "flickr",
-    "query": "fishing boat"
+    "id": "owner-CR-06",
+    "title": "Deep-sea fishing",
+    "creator": null,
+    "license": null,
+    "source": "owner-supplied (4 photos, enhanced, shown uncropped on blurred square)",
+    "query": "",
+    "credit": "Charter boat photo: Big Marlin Charters, Punta Cana",
+    "images": [
+      [
+        "CR-06a.jpg",
+        "Two anglers holding a marlin on a charter boat"
+      ],
+      [
+        "CR-06b.jpg",
+        "Angler holding a mahi-mahi on a fishing boat"
+      ],
+      [
+        "CR-06c.jpg",
+        "Smiling angler holding a mahi-mahi at sea"
+      ],
+      [
+        "CR-06d.jpg",
+        "Sport-fishing charter boat cruising off Punta Cana"
+      ]
+    ]
   },
   "GW-03": {
     "id": "530342bf-957a-4ce4-9872-ac1280583d8d",

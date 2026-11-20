@@ -1,0 +1,12 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/live/index.html" },
+    { "source": "/crew", "destination": "/live/crew.html" },
+    { "source": "/getaway", "destination": "/live/getaway.html" },
+    { "source": "/celebrate", "destination": "/live/celebrate.html" }
+  ],
+  "headers": [
+    { "source": "/(.*)", "headers": [ { "key": "X-Robots-Tag", "value": "noindex" } ] }
+  ]
+}

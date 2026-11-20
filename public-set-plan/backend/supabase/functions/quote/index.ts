@@ -85,7 +85,7 @@ Deno.serve(async (req) => {
 
   // basic abuse limit: 5 submissions per email per hour
   const since = new Date(Date.now() - 3600_000).toISOString();
-  const { count } = await supabase.from("leads").select("id", { count: "exact", head: true }).ilike("email", email).gte("created_at", since);
+  const { count } = await supabase.from("leads").select("id", { count: "exact", head: true }).eq("email", email).gte("created_at", since);
   if ((count ?? 0) >= 5) return new Response(JSON.stringify({ error: "rate_limited" }), { status: 429, headers });
 
   const { data: rows, error } = await supabase.from("pricing_inputs").select("key,value");

@@ -267,7 +267,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}html{scroll-behavior:auto}}
 html{scroll-behavior:smooth}
 </style>
-<div class="preview"><div class="wrap">Preview draft. Boxes with an ID are image placeholders. Prices come from the current pricing model.</div></div>
+
 <header class="top"><div class="wrap"><a class="logo" href="#top"><span class="flagmark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>DR Experiences</a><a class="btn" href="#contact">Check our dates & price</a></div></header>
 <main id="top">
 <section class="hero"><div class="wrap hero-grid">
@@ -448,7 +448,9 @@ var QUOTE_URL="https://drmwqgcqrvxkcibrptep.supabase.co/functions/v1/quote";
     fetch(QUOTE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
       .then(function(r){return r.json();}).then(function(q){
         var t=document.getElementById('t-quote');document.getElementById('t-pv').hidden=true;
-        if(q.status==='quoted'){t.innerHTML='Your estimate for '+q.guests+' guests, '+q.nights+' nights: <b>$'+Number(q.perPerson).toLocaleString('en-US',{maximumFractionDigits:2})+' per person</b> ($'+Number(q.total).toLocaleString('en-US')+' total). We just emailed you the details.';t.hidden=false;}
+        function usd(n){n=Number(n);return '$'+n.toLocaleString('en-US',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2});}
+        var tail=q.email_status==='sent'?' We just emailed you the details.':' Our team will follow up with the details.';
+        if(q.status==='quoted'){t.innerHTML='Your estimate for '+q.guests+' guests, '+q.nights+' nights: <b>'+usd(q.perPerson)+' per person</b> ('+usd(q.total)+' total).'+tail;t.hidden=false;}
         else if(q.status==='custom'){t.textContent='For longer stays and bigger groups, our team builds a custom quote.';t.hidden=false;}
         done();
       }).catch(function(){document.getElementById('t-pv').hidden=true;done();});

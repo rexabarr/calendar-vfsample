@@ -108,7 +108,9 @@ var QUOTE_URL=__QUOTE_URL__;
     fetch(QUOTE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
       .then(function(r){return r.json();}).then(function(q){
         var t=document.getElementById('t-quote');document.getElementById('t-pv').hidden=true;
-        if(q.status==='quoted'){t.innerHTML='Your estimate for '+q.guests+' guests, '+q.nights+' nights: <b>$'+Number(q.perPerson).toLocaleString('en-US',{maximumFractionDigits:2})+' per person</b> ($'+Number(q.total).toLocaleString('en-US')+' total). We just emailed you the details.';t.hidden=false;}
+        function usd(n){n=Number(n);return '$'+n.toLocaleString('en-US',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2});}
+        var tail=q.email_status==='sent'?' We just emailed you the details.':' Our team will follow up with the details.';
+        if(q.status==='quoted'){t.innerHTML='Your estimate for '+q.guests+' guests, '+q.nights+' nights: <b>'+usd(q.perPerson)+' per person</b> ('+usd(q.total)+' total).'+tail;t.hidden=false;}
         else if(q.status==='custom'){t.textContent='For longer stays and bigger groups, our team builds a custom quote.';t.hidden=false;}
         done();
       }).catch(function(){document.getElementById('t-pv').hidden=true;done();});
@@ -236,7 +238,7 @@ def doc(title, meta, fonts, css, body):
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?{fonts}&display=swap">
 <style>{css}{BASE_CSS}</style>
-<div class="preview"><div class="wrap">Preview draft. Boxes with an ID are image placeholders. Prices come from the current pricing model.</div></div>
+{"" if os.environ.get("QUOTE_URL") else '<div class="preview"><div class="wrap">Preview draft. Boxes with an ID are image placeholders. Prices come from the current pricing model.</div></div>'}
 {body}
 <div class="mbar"><a class="btn" href="#contact">{E(PAGE_CTA[title])}</a></div>
 {JS.replace("__QUOTE_URL__", json.dumps(os.environ.get("QUOTE_URL", "")))}"""

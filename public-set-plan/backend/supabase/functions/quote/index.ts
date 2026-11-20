@@ -8,7 +8,7 @@ const HOURS = "between 10am and 4pm ET";
 const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
 
 function cors(origin: string | null) {
-  const allowed = (Deno.env.get("ALLOWED_ORIGINS") ?? "*").split(",").map((s) => s.trim());
+  const allowed = (Deno.env.get("ALLOWED_ORIGINS") ?? "https://dr-experiences.vercel.app").split(",").map((s) => s.trim());
   const ok = allowed.includes("*") || (origin && allowed.includes(origin));
   return {
     "Access-Control-Allow-Origin": ok ? (origin ?? "*") : allowed[0],
@@ -39,7 +39,7 @@ export function priceTrip(i: Inputs, guests: number, nights: number) {
   return { bedrooms, total, perPerson: Math.round((total / guests) * 100) / 100 };
 }
 
-const money = (n: number) => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+const money = (n: number) => "$" + n.toLocaleString("en-US", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
 
 async function sendEmail(to: string, subject: string, html: string) {
